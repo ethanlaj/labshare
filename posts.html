@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Posts</title>
+
+	<style>
+		header {
+			text-align: center;
+		}
+	
+		table {
+			width: 100%;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<!--Header Section-->
+	<header>
+		<h1>Posts</h1>
+		<hr>
+	</header>
+
+	<div id="posts">
+		<table>
+			<tr">
+				<th>User</th>
+				<th>Posted On</th>
+				<th>Post Title</th>
+				<th>Zip Code</th>
+			</tr>
+			<tr onclick="directToPost(1)">
+				<td><a href="userProfiles.html">lajeunessee</a></td>
+				<td>5/10/2022 at 5:19</td>
+				<td>Lorem Ipsum</td>
+				<td>17022</td>
+			</tr>
+			<tr onclick="directToPost(2)">
+				<td>kennedym</td>
+				<td>6/21/2022 at 5:20</td>
+				<td>Lorem Ipsum</td>
+				<td>12345</td>
+			</tr>
+			<tr onclick="directToPost(3)">
+				<td>leap</td>
+				<td>6/20/2022 at 1:25</td>
+				<td>Lorem Ipsum</td>
+				<td>17222</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+
+<script>
+	function directToPost(id) {
+		window.location = "post.html";
+	}
+</script>
