@@ -64,6 +64,16 @@
 			display: flex;
 			flex-direction: column;
 		}
+
+		.replyButtons {
+			display: flex;
+			margin-top: 0.6em
+		}
+
+		.replyBox {
+			margin-top: 0.6em
+		}
+
 	</style>
 </head>
 <body>
@@ -107,7 +117,12 @@
 			<tr>
 				<td>Username1 at 4pm on 9/2/22</td>
 				<td>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					<div class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
+					<textarea hidden class="replyBox form-control"></textarea>
+					<div class="replyButtons">
+						<button hidden class="cancelReply btn btn-sm btn-secondary" onclick="cancelReply()">Cancel</button>
+						<button class="replyButton btn btn-sm btn-secondary" onclick="startReply()">Reply</button>
+					</div>
 				</td>
 				<td>
 					<div class="dropdown-center">
@@ -322,6 +337,7 @@
 		</div>
 	</div>
 </div>
+
 </html>
 
 <script>
@@ -333,5 +349,23 @@
 
 	postTitleForm.setAttribute("value", postTitle.textContent);
 	postTextForm.innerText = postText.textContent.trim();
+
+	function startReply() {
+		// Determine if reply has already been started, if so, "post" reply.
+		if (document.getElementsByClassName("cancelReply")[0].hidden == false)
+			return cancelReply();
+			
+		document.getElementsByClassName("replyButton")[0].classList.remove("btn-secondary")
+		document.getElementsByClassName("replyButton")[0].classList.add("btn-primary")
+		document.getElementsByClassName("cancelReply")[0].hidden = false;
+		document.getElementsByClassName("replyBox")[0].hidden = false;
+	}
+
+	function cancelReply() {
+		document.getElementsByClassName("replyButton")[0].classList.add("btn-secondary")
+		document.getElementsByClassName("replyButton")[0].classList.remove("btn-primary")
+		document.getElementsByClassName("cancelReply")[0].hidden = true;
+		document.getElementsByClassName("replyBox")[0].hidden = true;
+	}
 
 </script>
