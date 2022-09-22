@@ -1,0 +1,67 @@
+#postContent {
+	display: flex;
+}
+
+#actionButtons {
+	display: flex;
+	margin-bottom: 5px;
+	margin-bottom: 2em;
+}
+
+#actionButtons > button:nth-child(even) {
+	margin: 0 5px;
+}
+
+#postTitle {
+	/*text-align: center;*/
+	margin-top: 0.5em;
+}
+
+#postContent p {
+	margin: 0;
+}
+
+#postTitleWithDropdown {
+	display: flex;
+	align-items: center;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+	border: 2px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-right: 1.5em;
+}
+
+table {
+	width: 100%;
+}
+
+#postTable {
+	text-align: center;
+}
+
+.commentButton {
+	border: none;
+	background-color: inherit;
+}
+
+.commentButton.dropdown-toggle::after {
+	display: none;
+}
+
+#editForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.replyButtons {
+	display: flex;
+	margin-top: 0.6em
+}
+
+.replyBox {
+	margin-top: 0.6em
+}
