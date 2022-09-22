@@ -15,77 +15,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet"> 
 
 	<link rel="stylesheet" href="../global/global.css">
-
-	<style>
-		#postContent {
-			display: flex;
-		}
-
-		#actionButtons {
-			display: flex;
-			margin-bottom: 5px;
-			margin-bottom: 2em;
-		}
-
-		#actionButtons > button:nth-child(even) {
-			margin: 0 5px;
-		}
-
-		#postTitle {
-			/*text-align: center;*/
-			margin-top: 0.5em;
-		}
-
-		#postContent p {
-			margin: 0;
-		}
-
-		#postTitleWithDropdown {
-			display: flex;
-			align-items: center;
-		}
-
-		img {
-			width: 200px;
-			height: 200px;
-			border: 2px solid black;
-			border-radius: 50%;
-			object-fit: cover;
-			margin-right: 1.5em;
-		}
-
-		table {
-			width: 100%
-		}
-
-		.commentButton {
-			border: none;
-			background-color: inherit;
-		}
-
-		.commentButton.dropdown-toggle::after {
-			display: none;
-		}
-
-		#editForm {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.replyButtons {
-			display: flex;
-			margin-top: 0.6em
-		}
-
-		.replyBox {
-			margin-top: 0.6em
-		}
-
-	</style>
+	<link rel="stylesheet" href="./posting.css">
+	
+	<script src="./post.js"></script>
 </head>
 <body>
 	<div id="postContent">
-		<img src="etown-BlueJay.png" title="Profile Picture" alt="Profile Picture"></image>
+		<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture"></image>
 
 		<div id="nextToProfilePic">
 			<a href="userProfiles.html">blueJayYay</a>
@@ -346,33 +282,3 @@
 </div>
 
 </html>
-
-<script>
-	var postTitle = document.getElementById("postTitle");
-	var postText = document.getElementById("postText");
-
-	var postTitleForm = document.getElementById("postTitleForm");
-	var postTextForm = document.getElementById("postTextForm");
-
-	postTitleForm.setAttribute("value", postTitle.textContent);
-	postTextForm.innerText = postText.textContent.trim();
-
-	function startReply() {
-		// Determine if reply has already been started, if so, "post" reply.
-		if (document.getElementsByClassName("cancelReply")[0].hidden == false)
-			return cancelReply();
-			
-		document.getElementsByClassName("replyButton")[0].classList.remove("btn-secondary")
-		document.getElementsByClassName("replyButton")[0].classList.add("btn-primary")
-		document.getElementsByClassName("cancelReply")[0].hidden = false;
-		document.getElementsByClassName("replyBox")[0].hidden = false;
-	}
-
-	function cancelReply() {
-		document.getElementsByClassName("replyButton")[0].classList.add("btn-secondary")
-		document.getElementsByClassName("replyButton")[0].classList.remove("btn-primary")
-		document.getElementsByClassName("cancelReply")[0].hidden = true;
-		document.getElementsByClassName("replyBox")[0].hidden = true;
-	}
-
-</script>
