@@ -15,11 +15,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet"> 
 
 	<link rel="stylesheet" href="../global/global.css">
+	<link rel="stylesheet" href="./css/postForms.css">
 	
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script src="./js/postForms.js"></script>
 </head>
 <body>
-	
+	<h1>Create Post</h1>
+	<form id="postForm">
+		<div>
+			<label for="title">Post Title</label>
+			<input required minlength=10 maxlength=50 id="title" name="title" class="form-control" type="text">
+		</div>
+		<div>
+			<label for="content">Content</label>
+			<textarea required minlength=50 maxlength=2000 id="content" name="content" class="form-control" type="text" rows=15></textarea>
+		</div>
+
+		<input id="submit" value="Create" class="btn btn-primary" type="submit">
+	</form>
+
 </body>
 </html>

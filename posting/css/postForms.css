@@ -1,0 +1,14 @@
+#postForm {
+	display: flex;
+	flex-direction: column;
+	width: 50%
+}
+
+#submit {
+	text-align: center;
+	width: 80px;
+}
+
+div {
+	margin-bottom: 1em;
+}
