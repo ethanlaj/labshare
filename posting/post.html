@@ -15,17 +15,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet"> 
 
 	<link rel="stylesheet" href="../global/global.css">
-	<link rel="stylesheet" href="./posting.css">
+	<link rel="stylesheet" href="./css/post.css">
 	
-	<script src="./post.js"></script>
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<script src="./js/post.js"></script>
 </head>
 <body>
 	<div id="postContent">
 		<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture"></image>
 
 		<div id="nextToProfilePic">
-			<a href="userProfiles.html">blueJayYay</a>
-			<p>September 3rd 2002 at 1:51pm</p>
+			<a href="../profiles/yourProfile.html">blueJayYay</a>
+			<p>September 3rd 2022 at 1:51pm</p>
 			
 			<div id="postTitleWithDropdown">
 				<h1 id="postTitle">Post Title</h1>
@@ -35,15 +38,15 @@
 					...
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editPost">Edit</a></li>
+						<li><a class="dropdown-item" href="./editPost.html">Edit</a></li>
 						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">Delete</a></li>
 					</ul>
 				</div>
 			</div>
 			<div id="actionButtons">
-				<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#save">Save</button>
-				<button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#apply">Apply</button>
-				<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#reportPost">Report</button>
+				<button class="btn btn-sm btn-outline-primary" onclick="savePost()">Save</button>
+				<button class="btn btn-sm btn-outline-success" onclick="applyToPost()">Apply</button>
+				<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">Report</button>
 			</div>
 
 			<p id="postText">
@@ -56,15 +59,17 @@
 
 	<div id="comments">		
 		<h2>Comments</h2>
+		<button id="newComment" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addComment">Add Comment</button>
 		<table class="table table-striped">
-			<tr>
+			<tr id="comment1" class="comment" replying="false">
 				<td>Username1 at 4pm on 9/2/22</td>
 				<td>
-					<div class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
+					<div class="commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
+
 					<textarea hidden class="replyBox form-control"></textarea>
-					<div class="replyButtons">
-						<button hidden class="cancelReply btn btn-sm btn-secondary" onclick="cancelReply()">Cancel</button>
-						<button class="replyButton btn btn-sm btn-secondary" onclick="startReply()">Reply</button>
+					<div class="replyActionButtons">
+						<button hidden class="cancelReply btn btn-sm btn-secondary" onclick="cancelReply($(this.closest('.comment'))[0])">Cancel</button>
+						<button class="replyButton btn btn-sm btn-secondary" onclick="startReply($(this.closest('.comment'))[0])">Reply</button>
 					</div>
 				</td>
 				<td>
@@ -73,18 +78,56 @@
 						  ...
 						</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a></li>
-							<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment">Report</a></li>
+							<li><a class="dropdown-item" onclick="initEditComment($(this.closest('.comment'))[0])">Edit</a></li>
+							<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment" onclick="lastClicked($(this.closest('.comment'))[0])">Delete</a></li>
+							<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment" onclick="lastClicked($(this.closest('.comment'))[0])">Report</a></li>
 						</ul>
 					  </div>
 				</td>
 			</tr>
-			<tr>
-				<td>Username2 at 6pm on 9/2/22</td>
-				<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+			<tr id="reply1comment1" class="comment">
+				<td></td>
 				<td>
-
+					<div><i>Replying to Username1</i></div>
+					<div>Username4 at 8pm on 9/2/22:</div>
+					<div class="replyText commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
 				</td>
+				<td>
+					<div class="dropdown-center">
+						<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  ...
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" onclick="initEditComment($(this.closest('.comment'))[0])">Edit</a></li>
+							<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment" onclick="lastClicked($(this.closest('.comment'))[0])">Delete</a></li>
+							<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment" onclick="lastClicked($(this.closest('.comment'))[0])">Report</a></li>
+						</ul>
+					  </div>
+				</td>
+			</tr>
+			<tr id="comment2" class="comment" replying="false">
+				<td>Username2 at 6pm on 9/2/22</td>
+				<td>
+					<div class="commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+					<textarea hidden class="replyBox form-control"></textarea>
+					<div class="replyActionButtons">
+						<button hidden class="cancelReply btn btn-sm btn-secondary" onclick="cancelReply($(this.closest('.comment'))[0])">Cancel</button>
+						<button class="replyButton btn btn-sm btn-secondary" onclick="startReply($(this.closest('.comment'))[0])">Reply</button>
+					</div>
+			</td>
+			<td>
+				<div class="dropdown-center">
+					<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  ...
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" onclick="initEditComment($(this.closest('.comment'))[0])">Edit</a></li>
+						<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment" onclick="lastClicked($(this.closest('.comment'))[0])">Delete</a></li>
+						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment" onclick="lastClicked($(this.closest('.comment'))[0])">Report</a></li>
+					</ul>
+				  </div>
+			</td>
 			</tr>
 		</table>
 	</div>
@@ -92,30 +135,6 @@
 
 <!-- This is where all the modals where be placed -->
 <div id="modals">
-	<!-- Poster Dropdown-->
-	<!--Edit Post-->
-	<div class="modal fade" id="editPost" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Edit Post</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-					<div class="modal-body">
-						<form id="editForm">
-							<label class="form-label">Post Title</label>
-							<input id="postTitleForm" class="form-control" type="text">
-
-							<label class="form-label">Post Text</label>
-							<textarea id="postTextForm" class="form-control"></textarea>
-						</form>
-					</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Poster Dropdown-->
 	<!--Delete Post-->
 	<div class="modal fade" id="deletePost" tabindex="-1">
@@ -130,7 +149,7 @@
 					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#postDeleted">Delete</button>
+					<button type="button" class="btn btn-danger" onclick="deletePost()">Delete</button>
 				</div>
 			</div>
 		</div>
@@ -201,7 +220,7 @@
 					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reportReceived">Report</button>
+					<button type="button" class="btn btn-danger" onclick="reportPost()">Report</button>
 				</div>
 			</div>
 		</div>
@@ -221,11 +240,56 @@
 					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reportReceived">Report</button>
+					<button type="button" class="btn btn-danger" onclick="reportComment()">Report</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!--Add Comment-->
+	<div class="modal fade" id="addComment" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Comment</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+					<div class="modal-body">
+						<form id="editForm">
+							<label class="form-label">Comment</label>
+							<textarea id="commentAddTextForm" class="form-control" rows=5></textarea>
+						</form>
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success" onclick="addComment()">Comment</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Edit Comment-->
+	<div class="modal fade" id="editComment" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Comment</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+					<div class="modal-body">
+						<form id="editForm">
+							<label class="form-label">Comment</label>
+							<textarea id="commentEditTextForm" class="form-control"></textarea>
+						</form>
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success" onclick="saveEditComment()">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Delete Comment -->
 	<div class="modal fade" id="deleteComment" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered">
@@ -239,7 +303,7 @@
 					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#commentDeleted">Delete</button>
+					<button type="button" class="btn btn-danger" onclick="deleteComment()">Delete</button>
 				</div>
 			</div>
 		</div>

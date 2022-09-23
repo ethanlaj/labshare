@@ -39,10 +39,6 @@ table {
 	width: 100%;
 }
 
-#postTable {
-	text-align: center;
-}
-
 .commentButton {
 	border: none;
 	background-color: inherit;
@@ -57,11 +53,29 @@ table {
 	flex-direction: column;
 }
 
-.replyButtons {
+#editForm #postTextForm {
+	resize: none;
+	overflow: hidden;
+	min-height: 50px;
+	max-height: 100px;
+}
+
+.replyActionButtons {
 	display: flex;
 	margin-top: 0.6em
 }
+.replyActionButtons button:first-child {
+	margin-right: 0.2em
+}
 
 .replyBox {
-	margin-top: 0.6em
+	margin-top: 0.6em;
+}
+
+.replyText {
+	margin-top: 1em;
+}
+
+#newComment {
+	margin-bottom: 0.5em;
 }
