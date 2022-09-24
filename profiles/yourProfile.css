@@ -1,0 +1,68 @@
+html,
+body {
+    height: 100%;
+}
+
+
+
+#flexContainer {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+#edit {
+    position: relative;
+    bottom: 60px;
+}
+
+
+
+
+img {
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5em;
+}
+
+#topSideBar {
+    height: 40%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    padding-top: 25px;
+    padding: 5px;
+    border: 1px black;
+    border-radius: 5%;
+
+
+
+}
+
+#bottomSideBar {
+    height: 50%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    border: 1px black;
+    border-radius: 5%;
+}
+
+#summary {
+    margin: 20px;
+    border: 1px;
+
+}
+
+#achievements {
+    margin: 20px;
+}
