@@ -17,36 +17,45 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../global/global.css">
+    <link rel="stylesheet" href="./login.css">
 </head>
 
 <body>
-    <form>
-        <div>
-            <h1>Register</h1>
-            <p>Don't have an account? Don't worry, registering will only take a minute</p>
+    <div id="flexcontainer">
+        <div id="leftside">
+            <form>
+                <div>
+                    <h1>Login</h1>
+
+                </div>
+                <div>
+                    <label for="userName" class="form-label">Username or Email Address</label>
+                    <input type="text" class="form-control" name="userName" id="userName" required>
+                </div>
+                <div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="text" class="form-control" name="password" id="password" required>
+
+                </div>
+                <div>
+                    <input type="submit" value="Submit" id="submit">
+
+                </div>
+
+
+            </form>
         </div>
-        <div>
-            <label for="firstName">Enter your first name</label>
-            <input type="text" name="firstName" id="firstName" required>
-        </div>
-        <div>
-            <label for="lastName">Enter your last name</label>
-            <input type="text" name="lastName" id="lastName" required>
+
+
+        <div id="rightside">
+            <div id="rightSideContents">
+                <h1>Register</h1>
+                <h4>Don't Have an account? Register Now!</h4>
+                <button type="button" id="button">Register an Account</button>
+            </div>
 
         </div>
-        <div>
-            <label for="email">Enter your email address</label>
-            <input type="email" name="email" id="email" required>
-
-        </div>
-
-
-
-
-
-
-
-    </form>
+    </div>
 </body>
 
 </html>

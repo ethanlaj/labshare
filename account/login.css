@@ -1,0 +1,60 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+}
+
+#flexcontainer {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+#leftside {
+    margin: auto;
+    width: 50%;
+    background-color: #HE9C94;
+    text-align: center;
+}
+
+#rightside {
+    background-color: #bcefe3;
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    display: table;
+}
+
+#submit {
+    width: 150px;
+    margin-top: 25px;
+}
+
+.form-control {
+    width: 400px;
+    margin: auto;
+}
+
+
+
+#button {
+    margin-top: 50px;
+
+}
+
+#rightSideContents {
+    Height: 500px;
+    vertical-align: middle;
+    margin: auto;
+    display: table-cell;
+}
+
+h1 {
+    margin-bottom: 50px;
+}

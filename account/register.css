@@ -1,0 +1,36 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+}
+
+.form-control {
+    width: 500px;
+    margin: auto;
+
+}
+
+#registerform {
+    margin: auto;
+    text-align: center;
+    display: table;
+    height: 100%;
+}
+
+#submit {
+    margin-top: 25px;
+}
+
+#form {
+    display: table-cell;
+    vertical-align: middle;
+    height: 500px;
+}
+
+p {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
