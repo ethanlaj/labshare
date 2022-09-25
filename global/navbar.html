@@ -23,8 +23,14 @@
                     </ul>
                 </li>
                 <form id="searchContainer" class="d-flex" role="search">
-                    <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input id="searchBarNav" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+                    <div class="dropdown">
+                        <button id="search" class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" onclick="searchBar(1)">Posts</a></li>
+                            <li><a class="dropdown-item" onclick="searchBar(2)">Users</a></li>
+                        </ul>
+                    </div>
                 </form>
                 </li>
                 <div id="accountButtons">
@@ -52,5 +58,9 @@
 
     #accountButtons {
         display: flex;
+    }
+
+    #searchBarNav {
+        margin-right: 0!important;
     }
 </style>

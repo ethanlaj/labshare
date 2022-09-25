@@ -133,6 +133,11 @@ tbody {
 .user a {
 	width: 40%;
 	text-align: center;
+	color: black;
+}
+
+.user a:hover {
+	color: rgba(0, 0, 0, 0.651);
 }
 
 .commentDate {

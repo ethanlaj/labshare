@@ -16,12 +16,17 @@
 	margin: auto;
 }
 
+thead {
+	background-color: #468d7cc0;
+	color: white;
+}
+
 tbody {
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 tbody tr {
-	height: 6em
+	height: 6em;
 }
 
 header {
@@ -38,16 +43,13 @@ header a {
 	margin-right: 10px;
 }
 
-/*thead tr {
-	background-color: rgb(237, 211, 236);
-}
 
 tbody tr:nth-child(even) {
-	background-color: #98D4BB
+	background-color: #bcefe374;
 }
 
 tbody tr:nth-child(odd) {
-	background-color: #98d4bbda
+	background-color: #bcefe374;
 }*/
 
 tbody tr:last-child {
@@ -73,6 +75,13 @@ tbody tr:last-child {
 .user a {
 	width: 40%;
 	text-align: center;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.user a:hover {
+	color: rgba(0, 0, 0, 0.651);
 }
 
 td {
