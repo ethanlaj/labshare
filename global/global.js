@@ -1,6 +1,6 @@
 window.onload = () => {
 	$("#navbar").load("../global/navbar.html")
-	//$("#footer").load("footer.html"); 
+	$("#footer").load("../global/footer.html");
 }
 
 /**
@@ -19,6 +19,10 @@ function searchBar(kind) {
 	}
 }
 
+/**
+ * Disables the default event for the Enter key
+ * Ensures that the search bar is working the right way
+ */
 $(document).keypress(
 	function (event) {
 		if (event.which == '13') {

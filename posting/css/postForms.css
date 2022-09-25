@@ -9,6 +9,7 @@
 	width: 80px;
 }
 
-div {
+div.inputContainer
+{
 	margin-bottom: 1em;
 }
