@@ -79,3 +79,67 @@ table {
 #newComment {
 	margin-bottom: 0.5em;
 }
+
+#postContent {
+	margin: auto;
+	width: 70%;
+}
+
+#comments {
+	margin: auto;
+	width: 50%;
+}
+
+#commentHeader {
+	display: flex;
+	align-items: center;
+}
+
+#commentHeader h2 {
+	margin-right: auto;
+	margin-left: 10px;
+}
+
+#commentHeader button {
+	margin-right: 10px;
+}
+
+#commentTable {
+	border-left: 2px solid rgba(0, 0, 0, 0.1);
+	border-top: 2px solid rgba(0, 0, 0, 0.1);
+	border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.user {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin: 0 10px;
+}
+
+.user img {
+	width: 50px;
+	height: 50px;
+	border: 2px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+.user a {
+	width: 40%;
+	text-align: center;
+}
+
+.commentDate {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#commentTable tr td:first-child {
+	text-align: center;
+}

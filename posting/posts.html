@@ -10,46 +10,70 @@
 
 	<!--Montserrat Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"> 
 
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<!--Global CSS and JS-->
 	<link rel="stylesheet" href="../global/global.css">
+	<script src="../global/global.js"></script>
+
 	<link rel="stylesheet" href="./css/posts.css">
 </head>
+
 <body>
-	<!--Header Section-->
-	<header>
-		<h1>Posts</h1>
-		<a class="btn btn-primary" href="createPost.html">Create A Post</a>
-		<hr>
-	</header>
+	<div id="navbar"></div>
 
 	<div id="posts">
-		<table id="postTable" class="table table-striped table-hover">
+		<!--Header Section-->
+		<header>
+			<h2>Posts</h2>
+			<a class="btn btn-primary btn-sm" href="createPost.html">Create A Post</a>
+			<hr>
+		</header>
+
+		<table id="postTable" class="table table-hover">
 			<thead>
 				<th>User</th>
 				<th>Posted On</th>
 				<th>Post Title</th>
 				<th>Zip Code</th>
 			</thead>
-			<tbody class="table-group-divider">
+			<tbody>
 				<tr onclick="directToPost(1)">
-					<td><a href="userProfiles.html">lajeunessee</a></td>
-					<td>5/10/2022 at 5:19</td>
+					<td>
+						<div class="user">
+							<img src="../global/blank.jpg">
+							<a href="../profiles/yourProfile.html">leap</a>
+						</div>
+					</td>
+					<td>5/10/2022 at 5:39pm</td>
 					<td>Lorem Ipsum</td>
 					<td>17022</td>
 				</tr>
 				<tr onclick="directToPost(2)">
-					<td>kennedym</td>
-					<td>6/21/2022 at 5:20</td>
+					<td>
+						<div class="user">
+							<img src="../global/blank.jpg">
+							<a href="../profiles/yourProfile.html">lajeunessee</a>
+						</div>
+					</td>
+					<td>5/10/2022 at 5:29pm</td>
 					<td>Lorem Ipsum</td>
-					<td>12345</td>
+					<td>17022</td>
 				</tr>
 				<tr onclick="directToPost(3)">
-					<td>leap</td>
-					<td>6/20/2022 at 1:25</td>
+					<td>
+						<div class="user">
+							<img src="../global/blank.jpg">
+							<a href="../profiles/yourProfile.html">kennedym</a>
+						</div>
+					</td>
+					<td>5/10/2022 at 5:19pm</td>
 					<td>Lorem Ipsum</td>
-					<td>17222</td>
+					<td>17022</td>
 				</tr>
 			</tbody>
 		</table>

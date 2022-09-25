@@ -1,4 +1,80 @@
-table {
+#flex-container {
+	margin-left: 25%;
+	display: flex;
+}
+
+#postTable {
 	width: 100%;
 	text-align: center;
+	border-left: 2px solid rgba(0, 0, 0, 0.1);
+	border-top: 2px solid rgba(0, 0, 0, 0.1);
+	border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#posts {
+	width: 50%;
+	margin: auto;
+}
+
+tbody {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody tr {
+	height: 6em
+}
+
+header {
+	display: flex;
+	align-items: center;
+}
+
+header h2 {
+	margin-right: auto;
+	margin-left: 10px;
+}
+
+header a {
+	margin-right: 10px;
+}
+
+/*thead tr {
+	background-color: rgb(237, 211, 236);
+}
+
+tbody tr:nth-child(even) {
+	background-color: #98D4BB
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #98d4bbda
+}*/
+
+tbody tr:last-child {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1)
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.user img {
+	width: 50px;
+	height: 50px;
+	border: 2px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+	justify-self: flex-start;
+	margin-right: 10px;
+}
+
+.user a {
+	width: 40%;
+	text-align: center;
+}
+
+td {
+	vertical-align: middle;
 }

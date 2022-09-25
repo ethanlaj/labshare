@@ -1,51 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Montserrat Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="../global/global.css">
-    <link rel="stylesheet" href="./navbar.css">
-    <script src="./navbar.js"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">ScienceProposal</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../posting/posts.html">ScienceProposal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../profiles/yourProfile.html">Profile</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Posts</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../posting/posts.html">All Posts</a></li>
+                        <li><a class="dropdown-item" href="../posting/posts.html?type=saved">Saved Posts</a></li>
+                        <li><a class="dropdown-item" href="../posting/posts.html?type=yours">Your Posts</a></li>
+                    </ul>
+                </li>
+                <form id="searchContainer" class="d-flex" role="search">
+                    <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                </li>
+                <div id="accountButtons">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../account/login.html" id="login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="login">Login</a>
+                        <a class="nav-link" href="../account/register.html" id="register">Register</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="register">Register</a>
-                    </li>
-                </ul>
-            </div>
+                </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-</body>
+<style>
+    .navbar-nav {
+        width: 100%;
+    }
 
-</html>
+    #searchContainer {
+        width: 100%;
+        margin: 0 1%;
+    }
+
+    #accountButtons {
+        display: flex;
+    }
+</style>

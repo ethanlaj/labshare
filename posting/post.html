@@ -7,12 +7,11 @@
 
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!--Montserrat Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&display=swap" rel="stylesheet"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="../global/global.css">
 	<link rel="stylesheet" href="./css/post.css">
@@ -20,9 +19,15 @@
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
+	<!--Global CSS and JS-->
+	<link rel="stylesheet" href="../global/global.css">
+	<script src="../global/global.js"></script>
+	
 	<script src="./js/post.js"></script>
 </head>
 <body>
+	<div id="navbar"></div>
+
 	<div id="postContent">
 		<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture"></image>
 
@@ -57,12 +62,21 @@
 
 	<hr>
 
-	<div id="comments">		
-		<h2>Comments</h2>
-		<button id="newComment" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addComment">Add Comment</button>
-		<table class="table table-striped">
-			<tr id="comment1" class="comment" replying="false">
-				<td>Username1 at 4pm on 9/2/22</td>
+	<div id="comments">
+		<div id="commentHeader">	
+			<h2>Comments</h2>
+			<button id="newComment" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addComment">Add Comment</button>
+		</div>
+
+		<table id="commentTable" class="table">
+			<tr id="comment1" class="comment" replying="false" style="background-color: rgba(0, 0, 0, 0.05)">
+				<td>
+					<div class="commentDate">9/2/22 at 6:01pm</div>
+					<div class="user">
+						<img src="../global/blank.jpg">
+						<a href="../profiles/yourProfile.html">Username1</a>
+					</div>
+				</td>
 				<td>
 					<div class="commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
 
@@ -86,10 +100,15 @@
 				</td>
 			</tr>
 			<tr id="reply1comment1" class="comment">
-				<td></td>
+				<td>
+					<div class="commentDate">9/2/22 at 6:01pm</div>
+					<div class="user">
+						<img src="../global/blank.jpg">
+						<a href="../profiles/yourProfile.html">Username4</a>
+					</div>
+				</td>
 				<td>
 					<div><i>Replying to Username1</i></div>
-					<div>Username4 at 8pm on 9/2/22:</div>
 					<div class="replyText commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</div>
 				</td>
 				<td>
@@ -105,8 +124,14 @@
 					  </div>
 				</td>
 			</tr>
-			<tr id="comment2" class="comment" replying="false">
-				<td>Username2 at 6pm on 9/2/22</td>
+			<tr id="comment2" class="comment" replying="false" style="background-color: rgba(0, 0, 0, 0.05)">
+				<td>
+					<div class="commentDate">9/2/22 at 6:01pm</div>
+					<div class="user">
+						<img src="../global/blank.jpg">
+						<a href="../profiles/yourProfile.html">Username2</a>
+					</div>
+				</td>
 				<td>
 					<div class="commentContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 
@@ -115,19 +140,19 @@
 						<button hidden class="cancelReply btn btn-sm btn-secondary" onclick="cancelReply($(this.closest('.comment'))[0])">Cancel</button>
 						<button class="replyButton btn btn-sm btn-secondary" onclick="startReply($(this.closest('.comment'))[0])">Reply</button>
 					</div>
-			</td>
-			<td>
-				<div class="dropdown-center">
-					<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					  ...
-					</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" onclick="initEditComment($(this.closest('.comment'))[0])">Edit</a></li>
-						<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment" onclick="lastClicked($(this.closest('.comment'))[0])">Delete</a></li>
-						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment" onclick="lastClicked($(this.closest('.comment'))[0])">Report</a></li>
-					</ul>
-				  </div>
-			</td>
+				</td>
+				<td>
+					<div class="dropdown-center">
+						<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						...
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" onclick="initEditComment($(this.closest('.comment'))[0])">Edit</a></li>
+							<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteComment" onclick="lastClicked($(this.closest('.comment'))[0])">Delete</a></li>
+							<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportComment" onclick="lastClicked($(this.closest('.comment'))[0])">Report</a></li>
+						</ul>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</div>
