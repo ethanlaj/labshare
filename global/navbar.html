@@ -41,14 +41,121 @@
                         <a class="nav-link" href="../account/register.html" id="register">Register</a>
                     </li>
                 </div>
+                <button id="sidebarButton" class="btn" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                    </svg>
+                </button>
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- Sidebar Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="notifications" >
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Notifications</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div id="notification1" class="notification">
+            <p>Username2 applied to post title!</p>
+            
+            <div class="contact-info">
+                <p class="title">Contact Information</p>
+                <p class="email">
+                    Email: kennedym@etown.edu
+                </p>
+                <p class="phone">
+                    Phone: 572-733-8978
+                </p>
+            </div>
+            <div class="actionButtons">
+                <button class="btn btn-outline-success accept">Accept</button>
+                <button class="btn btn-outline-danger decline">Decline</button>
+            </div> 
+        </div>
+        <div id="notification2" class="notification">
+            <p>Username1 accepted your application for post title!</p>
+
+            <div class="contact-info">
+                <p class="title">Contact Information</p>
+                <p class="email">
+                    Email: lajeunessee@etown.edu
+                </p>
+                <p class="phone">
+                    Phone: 267-743-9878
+                </p>
+            </div>
+
+            <div class="actionButtons">
+                <button class="btn btn-secondary dismiss">Dismiss</button>
+            </div>
+        </div>
+        <div id="notification3" class="notification">
+            <p>Post title has been saved 100 times!</p>
+
+            <div class="actionButtons">
+                <button class="btn btn-secondary dismiss">Dismiss</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
+    #accountButtons {
+        display: flex;
+    }
+
+    .contact-info {
+        margin-top: 10px;
+        padding: 15px;
+        border: 2px rgba(0, 0, 0, 0.1) solid;
+    }
+
+    .contact-info .title {
+        font-weight: bold;
+    }
+
+    .contact-info .email {
+        margin-top: 10px;
+    }
+
+    .contact-info table {
+        width: 100%;
+    }
+
+    .contact-info tr td:first-child {
+        text-align: right;
+    }
+
+    .contact-info tr td:nth-child(2) {
+        text-align: center;
+    }
+
     .navbar-nav {
         width: 100%;
+    }
+
+    .notification {
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.89);
+        margin-bottom: 1.2em;
+    }
+
+    .notification .actionButtons {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    .notification .actionButtons :first-child {
+        margin-right: 5px;
+    }
+
+    .notification p {
+        margin: 0;
     }
 
     #searchContainer {
@@ -56,11 +163,53 @@
         margin: 0 1%;
     }
 
-    #accountButtons {
-        display: flex;
-    }
-
     #searchBarNav {
         margin-right: 0!important;
     }
+
+    #sidebarButton {
+        font-size: 10px;
+    }
 </style>
+
+<script>
+    window.addEventListener('click', init);
+
+    function init() {
+        let dismissButtons = document.querySelectorAll(".notification .actionButtons .dismiss");
+        for (let button of dismissButtons)
+            button.addEventListener('click', dismissButtonClick);
+        
+        let acceptButtons = document.querySelectorAll(".notification .actionButtons .accept");
+        for (let button of acceptButtons)
+            button.addEventListener('click', accept);
+
+        let declineButtons = document.querySelectorAll(".notification .actionButtons .decline");
+        for (let button of declineButtons)
+            button.addEventListener('click', decline);
+        
+    }
+
+    function dismissButtonClick() {
+        let notification = $(this.closest('.notification'))[0];
+        dismiss(notification);
+    }
+
+    function dismiss(notification) {
+        console.log("Dismiss notification: " + notification.id);
+    }
+
+    function accept() {
+        let notification = $(this.closest('.notification'))[0];
+        console.log("Accept notification: " + notification.id);
+
+        dismiss(notification);
+    }
+
+    function decline() {
+        let notification = $(this.closest('.notification'))[0];
+        console.log("Decline notification: " + notification.id);
+
+        dismiss(notification);
+    }
+</script>

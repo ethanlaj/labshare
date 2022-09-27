@@ -2,18 +2,17 @@
 	display: flex;
 }
 
-#actionButtons {
+#postContent #actionButtons {
 	display: flex;
 	margin-bottom: 5px;
 	margin-bottom: 2em;
 }
 
-#actionButtons > button:nth-child(even) {
+#postContent #actionButtons > button:nth-child(even) {
 	margin: 0 5px;
 }
 
 #postTitle {
-	/*text-align: center;*/
 	margin-top: 0.5em;
 }
 
@@ -33,10 +32,6 @@ img {
 	border-radius: 50%;
 	object-fit: cover;
 	margin-right: 1.5em;
-}
-
-table {
-	width: 100%;
 }
 
 .commentButton {
@@ -110,7 +105,7 @@ table {
 	border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-tbody {
+#commentTable tbody {
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
