@@ -1,3 +1,5 @@
+import { User } from "../../classes/user.js";
+
 (function () {
 	"use strict";
 
@@ -8,6 +10,9 @@
 	 * Adds event listener to form
 	 */
 	function init() {
+		let u = new User(10, "ethanlaj");
+		console.log(u);
+
 		let postForm = document.getElementById("postForm");
 		postForm.addEventListener("submit", checkInputs);
 	}
