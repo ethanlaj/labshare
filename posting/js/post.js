@@ -60,12 +60,21 @@
 		deleteCommentBtn.addEventListener("click", deleteComment);
 	}
 
+	/**
+	 * Allows the last clicked comment to be tracked for use the
+	 * comment action button modals.
+	 */
 	function lastClicked() {
 		let comment = $(this.closest('.comment'))[0];
 
 		lastClickedComment = comment;
 	}
 
+	/**
+	 * Checks to see whether a reply has been started or not.
+	 * If it has been started, then add the reply
+	 * If not, then setup the view to start the reply
+	 */
 	function startReply() {
 		let comment = $(this.closest('.comment'))[0];
 
@@ -79,8 +88,10 @@
 			comment.querySelector(".replyBox").hidden = false;
 		} else {
 			let reply = comment.querySelector('.replyBox');
-			if (reply.value.trim() == "")
-				return noReplyView(comment);
+			if (reply.value.trim() == "") {
+				noReplyView(comment);
+				return;
+			}
 
 			console.log(`Replied to ${comment.id} with "${reply.value}"`);
 			reply.value = "";
@@ -88,12 +99,19 @@
 		}
 	}
 
+	/**
+	 * Cancels a reply
+	 */
 	function cancelReply() {
 		let comment = $(this.closest('.comment'))[0];
 
 		noReplyView(comment);
 	}
 
+	/**
+	 * Returns the comment to a non-reply view.
+	 * @param {HTMLElement} comment - The comment that needs the view to be changed.
+	 */
 	function noReplyView(comment) {
 		comment.setAttribute('replying', 'false');
 
@@ -102,28 +120,43 @@
 		comment.querySelector(".replyBox").hidden = true;
 	}
 
+	/**
+	 * Saves the current post
+	 */
 	function savePost() {
 		console.log("Saved post");
 		$("#save").modal("show");
 	}
 
+	/**
+	 * Applies to the current post
+	 */
 	function applyToPost() {
 		console.log("Applied to post");
 		$("#apply").modal("show");
 	}
 
+	/**
+	 * Reports the current post
+	 */
 	function reportPost() {
 		console.log("Reported post");
 		$("#reportPost").modal("hide");
 		$("#reportReceived").modal("show");
 	}
 
+	/**
+	 * Deletes the current post
+	 */
 	function deletePost() {
 		console.log("Deleted post");
 		$("#deletePost").modal("hide");
 		$("#postDeleted").modal("show");
 	}
 
+	/**
+	 * Reports a comment
+	 */
 	function reportComment() {
 		let comment = lastClickedComment;
 
@@ -132,6 +165,9 @@
 		$("#reportReceived").modal("show");
 	}
 
+	/**
+	 * Adds a comment to the post
+	 */
 	function addComment() {
 		let modalTextArea = document.getElementById("commentAddTextForm");
 		console.log(`Added comment ${modalTextArea.value}`)
@@ -140,6 +176,10 @@
 		$("#addComment").modal("hide");
 	}
 
+	/**
+	 * Initializes the comment edit modal, changing the form field
+	 * to match the comment's content and length
+	 */
 	function initEditComment() {
 		let comment = $(this.closest('.comment'))[0];
 
@@ -153,6 +193,9 @@
 		$("#editComment").modal("show");
 	}
 
+	/**
+	 * Edits a comment
+	 */
 	function editComment() {
 		let commentToEdit = lastClickedComment;
 		let modalTextArea = document.getElementById("commentEditTextForm")
@@ -162,6 +205,9 @@
 		$("#editComment").modal("hide");
 	}
 
+	/**
+	 * Deletes a comment
+	 */
 	function deleteComment() {
 		let comment = lastClickedComment;
 
