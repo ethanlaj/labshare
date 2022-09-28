@@ -43,6 +43,10 @@ img {
 	display: none;
 }
 
+.comment:not(.reply)  {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
 #editForm {
 	display: flex;
 	flex-direction: column;
@@ -82,7 +86,7 @@ img {
 
 #comments {
 	margin: auto;
-	width: 50%;
+	width: 65%;
 }
 
 #commentHeader {

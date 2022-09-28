@@ -18,9 +18,10 @@
 
 	<!--Global CSS and JS-->
 	<link rel="stylesheet" href="../global/global.css">
-	<script src="../global/global.js"></script>
+	<script defer src="../global/global.js"></script>
 
 	<link rel="stylesheet" href="./css/posts.css">
+	<script src="./js/posts.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,7 @@
 				<th>Zip Code</th>
 			</thead>
 			<tbody>
-				<tr onclick="directToPost(1)">
+				<tr id="post1" class="post">
 					<td>
 						<div class="user">
 							<img src="../global/blank.jpg">
@@ -53,7 +54,7 @@
 					<td>Lorem Ipsum</td>
 					<td>17022</td>
 				</tr>
-				<tr onclick="directToPost(2)">
+				<tr id="post2" class="post">
 					<td>
 						<div class="user">
 							<img src="../global/blank.jpg">
@@ -64,7 +65,7 @@
 					<td>Lorem Ipsum</td>
 					<td>17022</td>
 				</tr>
-				<tr onclick="directToPost(3)">
+				<tr id="post3" class="post">
 					<td>
 						<div class="user">
 							<img src="../global/blank.jpg">
@@ -82,9 +83,3 @@
 	<div id="footer"></div>
 </body>
 </html>
-
-<script>
-	function directToPost(id) {
-		window.location = "post.html";
-	}
-</script>

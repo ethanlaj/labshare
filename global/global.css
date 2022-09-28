@@ -13,3 +13,79 @@ body {
 #footer {
 	margin-top: auto;
 }
+
+
+/* Nav and sidebar: */
+
+#accountButtons {
+	display: flex;
+}
+
+.contact-info {
+	margin-top: 10px;
+	padding: 15px;
+	border: 2px rgba(0, 0, 0, 0.1) solid;
+}
+
+.contact-info .title {
+	font-weight: bold;
+}
+
+.contact-info .email {
+	margin-top: 10px;
+}
+
+.contact-info table {
+	width: 100%;
+}
+
+.contact-info tr td:first-child {
+	text-align: right;
+}
+
+.contact-info tr td:nth-child(2) {
+	text-align: center;
+}
+
+.navbar-nav {
+	width: 100%;
+}
+
+.notification {
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.89);
+	margin-bottom: 1.2em;
+}
+
+.notification .actionButtons {
+	display: flex;
+	margin-top: 15px;
+}
+
+.notification .actionButtons :first-child {
+	margin-right: 5px;
+}
+
+.notification p {
+	margin: 0;
+}
+
+#searchContainer {
+	width: 100%;
+	margin: 0 1%;
+}
+
+#searchBarNav {
+	margin-right: 0!important;
+}
+
+#sidebarButton {
+	font-size: 10px;
+}
+
+/* Footer */
+#footerDiv {
+	height: 50px;
+}
