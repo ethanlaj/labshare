@@ -3,4 +3,13 @@ body {
 	background-color: rgb(246, 248, 250);
 	color: black;
 	margin: 70px 1.2em 1.2em 1.2em;
+
+	/* For the footer to display properly */
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+#footer {
+	margin-top: auto;
 }

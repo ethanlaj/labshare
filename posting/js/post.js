@@ -8,8 +8,7 @@ function startReply(comment) {
 	if (replyStatus == "false") {
 		comment.setAttribute('replying', 'true');
 
-		comment.querySelector(".replyButton").classList.remove("btn-secondary");
-		comment.querySelector(".replyButton").classList.add("btn-primary");
+		comment.querySelector(".replyButton").classList.replace("btn-secondary", "btn-primary")
 		comment.querySelector(".cancelReply").hidden = false;
 		comment.querySelector(".replyBox").hidden = false;
 	} else {
@@ -26,8 +25,7 @@ function startReply(comment) {
 function cancelReply(comment) {
 	comment.setAttribute('replying', 'false');
 
-	comment.querySelector(".replyButton").classList.add("btn-secondary");
-	comment.querySelector(".replyButton").classList.remove("btn-primary");
+	comment.querySelector(".replyButton").classList.replace("btn-primary", "btn-secondary")
 	comment.querySelector(".cancelReply").hidden = true;
 	comment.querySelector(".replyBox").hidden = true;
 }

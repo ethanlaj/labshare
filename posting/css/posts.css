@@ -42,7 +42,8 @@
 
 #posts {
 	width: 50%;
-	margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 header {
@@ -86,4 +87,3 @@ header a {
 .user a:hover {
 	color: rgba(0, 0, 0, 0.651);
 }
-
