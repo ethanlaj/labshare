@@ -1,10 +1,12 @@
 window.addEventListener("load", init);
 
 function init() {
-    let submit = document.getElementById('submit');
-    submit.addEventListener("click", submitForm);
+    let form = document.getElementById('form');
+    form.addEventListener("submit", link);
 }
 
-function submitForm() {
-    console.log('submit form to proper location');
+function link(event) {
+    event.preventDefault();
+    window.location.href = "../posting/posts.html";
+    console.log(event);
 }

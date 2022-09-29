@@ -55,3 +55,8 @@ body {
 h1 {
     margin-bottom: 50px;
 }
+
+#rightSideContents button {
+    margin: 40px;
+    width: 150px;
+}

@@ -34,3 +34,7 @@ p {
     margin-top: 20px;
     margin-bottom: 50px;
 }
+
+#form div {
+    margin: 1em;
+}

@@ -1,0 +1,23 @@
+body {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+body h1 {
+    margin-bottom: 20px;
+}
+
+body h4 {
+    margin-bottom: 40px;
+}
+
+body button {
+    margin-bottom: 20px;
+    width: 150px;
+    height: 40px;
+}
