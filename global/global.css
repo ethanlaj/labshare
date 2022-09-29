@@ -6,7 +6,7 @@ body {
 
 	/* For the footer to display properly */
 	display: flex;
-	min-height: 88vh;
+	min-height: calc(100vh - 70px - 1.2em);
 	flex-direction: column;
 }
 
