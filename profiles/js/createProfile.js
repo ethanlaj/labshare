@@ -8,5 +8,5 @@ function init() {
 function link(event) {
     event.preventDefault();
     window.location.href = "../posting/posts.html";
-    console.log(event);
+
 }

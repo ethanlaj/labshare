@@ -1,10 +1,15 @@
 window.addEventListener("load", init);
 
 function init() {
-    let button = document.getElementById("submit");
-    button.addEventListener("click", link);
+    let form = document.getElementById("form");
+    form.addEventListener("submit", link);
 }
-
-function link() {
+/**
+ * 
+ * @param {SubmitEvent} event 
+ */
+function link(event) {
+    event.preventDefault();
     window.location.href = "../profiles/createProfile.html";
+
 }
