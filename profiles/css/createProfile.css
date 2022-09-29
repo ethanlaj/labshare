@@ -10,6 +10,6 @@
     margin: 1em;
 }
 
-.form-control {
+.form-control:not(#searchBarNav) {
     width: 50%;
 }
