@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Create Post</title>
+	<title>Home</title>
 
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -13,9 +13,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-	<script type="module" src="./js/postForms.js"></script>
-	<link rel="stylesheet" href="./css/postForms.css">
-	
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
@@ -26,20 +23,19 @@
 <body>
 	<div id="navbar"></div>
 
-	<h1>Create Post</h1>
-	<form id="postForm">
-		<div class="inputContainer">
-			<label class="form-label" for="title">Post Title</label>
-			<input required minlength=10 maxlength=50 id="title" name="title" class="form-control" type="text">
+	<div class="px-4 py-5 my-5 text-center">
+		<img class="d-block mx-auto mb-4" src="../global/logo.jpg" alt="" width="72" height="57">
+		<h1 class="display-5 fw-bold">Science Proposal</h1>
+		<div class="col-lg-6 mx-auto">
+			<p class="lead mb-4">Get assistance from other scientists or science enthusiasts with your projects and ideas. Create an account now to get connected immediately with a wide array of experts.</p>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+				<a href="../account/register.html" type="button" class="btn btn-primary btn-lg px-4 gap-3">Register</a>
+				<a href="../account/login.html" type="button" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+			</div>
 		</div>
-		<div class="inputContainer">
-			<label class="form-label" for="content">Content</label>
-			<textarea required minlength=50 maxlength=2000 id="content" name="content" class="form-control" type="text" rows=15></textarea>
-		</div>
-
-		<input id="submit" value="Create" class="btn btn-primary" type="submit">
-	</form>
+	</div>
 
 	<div id="footer"></div>
 </body>
 </html>
+
