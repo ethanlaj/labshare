@@ -10,7 +10,7 @@ import { User } from "../../classes/user.js";
 	 * Adds event listener to form
 	 */
 	function init() {
-		let u = new User(10, "ethanlaj");
+		let u = new User(10, "lajeunessee");
 		console.log(u);
 
 		let postForm = document.getElementById("postForm");
@@ -19,14 +19,21 @@ import { User } from "../../classes/user.js";
 
 	/**
 	 * Checks the form's input fields and does not allow
-	 * submission of form if it does not meet requirements
+	 * submission of form if it does not meet requirements.
+	 * On successful submission, user will be directed to the post they created/edited.
+	 * 
 	 * @param {SubmitEvent} event
 	 */
 	function checkInputs(event) {
+		event.preventDefault();
+
 		let title = document.getElementById('title');
 		let content = document.getElementById('content');
 		if (validateTitle(title) == false || validateContent(content) == false)
-			event.preventDefault();
+			return;
+
+		window.location = "post.html"
+
 	}
 
 	/**
