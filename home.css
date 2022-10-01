@@ -1,0 +1,13 @@
+#hero {
+	background-color: rgb(246, 248, 250);;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	border-radius: 5%;
+	box-shadow: 10px 10px rgb(166, 165, 165);
+}
+
+body {
+	background-image: url("global/science.png");
+	background-size: 70px;
+}
