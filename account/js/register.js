@@ -1,5 +1,8 @@
 window.addEventListener("load", init);
 
+/**
+ * form is given event listener which links to correct location
+ */
 function init() {
     let form = document.getElementById("form");
     form.addEventListener("submit", link);
