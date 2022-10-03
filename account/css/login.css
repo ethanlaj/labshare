@@ -25,7 +25,9 @@ body {
     width: 50%;
     height: 100%;
     text-align: center;
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #submit {
@@ -34,7 +36,7 @@ body {
 }
 
 .form-control {
-    width: 400px;
+    width: 300px;
     margin: auto;
     margin-bottom: 15px;
 }
@@ -47,10 +49,20 @@ body {
 }
 
 #rightSideContents {
-    Height: 500px;
-    vertical-align: middle;
+    Height: 375px;
+    Width: 475px;
     margin: auto;
-    display: table-cell;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 80px;
+    border-radius: 25px;
+
+    box-shadow: 5px 10px 20px #888888;
+
+
 }
 
 h1 {
@@ -61,3 +73,16 @@ h1 {
     margin: 40px;
     width: 150px;
 }
+
+form {
+
+    padding: 20px;
+    margin: 80px;
+    border-radius: 25px;
+    box-shadow: 5px 10px 20px #888888;
+
+
+
+}
+
+form input {}

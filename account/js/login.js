@@ -1,10 +1,15 @@
-window.addEventListener("load", init);
+(function () {
+    "use strict";
 
-function init() {
-    let button = document.getElementById("register");
-    button.addEventListener("click", link);
-}
+    window.addEventListener("load", init);
 
-function link() {
-    window.location.href = "./register.html";
-}
+    function init() {
+        let button = document.getElementById("register");
+        button.addEventListener("click", link);
+    }
+
+    function link() {
+        window.location.href = "./register.html";
+    }
+
+})();
