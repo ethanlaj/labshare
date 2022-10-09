@@ -28,7 +28,7 @@
 	<div id="navbar"></div>
 
 	<div id="postContent">
-		<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture"></image>
+		<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture">
 
 		<div id="nextToProfilePic">
 			<a href="../profiles/yourProfile.html">blueJayYay</a>
@@ -43,7 +43,7 @@
 					</button>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="./createPost.html">Edit</a></li>
-						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">Delete</a></li>
+						<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">Delete</button></li>
 					</ul>
 				</div>
 			</div>
@@ -68,11 +68,11 @@
 		</div>
 
 		<table id="commentTable" class="table">
-			<tr id="comment1" class="comment" replying="false">
+			<tr id="comment1" class="comment">
 				<td>
 					<div class="commentDate">9/2/22 at 6:01pm</div>
 					<div class="user">
-						<img src="../global/blank.jpg">
+						<img src="../global/blank.jpg" alt="Username1">
 						<a href="../profiles/yourProfile.html">Username1</a>
 					</div>
 				</td>
@@ -93,7 +93,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item edit">Edit</a></li>
 							<li><a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a></li>
-							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</a></li>
+							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</button></li>
 						</ul>
 					  </div>
 				</td>
@@ -102,7 +102,7 @@
 				<td>
 					<div class="commentDate">9/2/22 at 6:01pm</div>
 					<div class="user">
-						<img src="../global/blank.jpg">
+						<img src="../global/blank.jpg" alt="Username4">
 						<a href="../profiles/yourProfile.html">Username4</a>
 					</div>
 				</td>
@@ -118,16 +118,16 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item edit">Edit</a></li>
 							<li><a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a></li>
-							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</a></li>
+							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</button></li>
 						</ul>
 					  </div>
 				</td>
 			</tr>
-			<tr id="comment2" class="comment" replying="false">
+			<tr id="comment2" class="comment">
 				<td>
 					<div class="commentDate">9/2/22 at 6:01pm</div>
 					<div class="user">
-						<img src="../global/blank.jpg">
+						<img src="../global/blank.jpg" alt="Username2">
 						<a href="../profiles/yourProfile.html">Username2</a>
 					</div>
 				</td>
@@ -148,7 +148,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item edit">Edit</a></li>
 							<li><a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a></li>
-							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</a></li>
+							<li><button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">Report</button></li>
 						</ul>
 					</div>
 				</td>
@@ -157,10 +157,9 @@
 	</div>
 
 	<div id="footer"></div>
-</body>
 
-<!-- This is where all the modals where be placed -->
-<div id="modals">
+	<!-- This is where all the modals where be placed -->
+	<div id="modals">
 	<!-- Poster Dropdown-->
 	<!--Delete Post-->
 	<div class="modal fade" id="deletePost" tabindex="-1">
@@ -281,7 +280,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 					<div class="modal-body">
-						<form id="editForm">
+						<form>
 							<label class="form-label">Comment</label>
 							<textarea id="commentAddTextForm" class="form-control" rows=5></textarea>
 						</form>
@@ -370,5 +369,6 @@
 		</div>
 	</div>
 </div>
+</body>
 
 </html>

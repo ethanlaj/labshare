@@ -78,10 +78,10 @@
 	function startReply() {
 		let comment = $(this.closest('.comment'))[0];
 
-		let replyStatus = comment.getAttribute('replying');
+		let replyStatus = comment.classList.contains('replying');
 
-		if (replyStatus == "false") {
-			comment.setAttribute('replying', 'true');
+		if (replyStatus == false) {
+			comment.classList.add('replying');
 
 			comment.querySelector(".replyButton").classList.replace("btn-secondary", "btn-primary")
 			comment.querySelector(".cancelReply").hidden = false;
@@ -113,7 +113,7 @@
 	 * @param {HTMLElement} comment - The comment that needs the view to be changed.
 	 */
 	function noReplyView(comment) {
-		comment.setAttribute('replying', 'false');
+		comment.classList.remove('replying');
 
 		comment.querySelector(".replyButton").classList.replace("btn-primary", "btn-secondary")
 		comment.querySelector(".cancelReply").hidden = true;
