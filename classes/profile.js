@@ -4,7 +4,7 @@ export class Profile {
 	/**
 	 * Matches the Profiles table in the database
 	 * @param {int} user_id 
-	 * @param {string} quals_degress Qualifications/Degrees
+	 * @param {string} quals_degrees Qualifications/Degrees
 	 * @param {string} areaOfStudy 
 	 * @param {string} yearsInField 
 	 * @param {string} secondaryAreaOfStudy 
