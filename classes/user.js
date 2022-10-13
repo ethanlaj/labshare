@@ -5,7 +5,7 @@ export class User {
 	 * Matches the Users table in the database
 	 * @param {int} user_id 
 	 * @param {string} username 
-	 * @param {string} password 
+	 * @param {string} pwd 
 	 * @param {string} firstName 
 	 * @param {string} lastName 
 	 * @param {string} email 

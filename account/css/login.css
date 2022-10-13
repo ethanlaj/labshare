@@ -22,6 +22,7 @@ body {
 
 #row {
     height: 100%;
+    gap: 20px;
 }
 
 
