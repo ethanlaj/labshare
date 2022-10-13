@@ -4,7 +4,7 @@ export class Post {
 	/**
 	 * Matches the Posts table in the database
 	 * @param {int} post_id
-	 * @param {timestamp} timestamp When the post was created
+	 * @param {Date} creationDate When the post was created
 	 * @param {int} author_id Same as user_id
 	 * @param {string} title 
 	 * @param {string} content 
@@ -12,11 +12,11 @@ export class Post {
 	 * @param {boolean} inactive
 	 */
 
-	constructor(post_id, timestamp, author_id, title,
+	constructor(post_id, creationDate, author_id, title,
 		content, reports, inactive) {
 
 		this.post_id = post_id;
-		this.timestamp = timestamp;
+		this.creationDate = creationDate;
 		this.author_id = author_id;
 		this.title = title;
 		this.content = content;
