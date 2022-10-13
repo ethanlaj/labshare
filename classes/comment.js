@@ -6,7 +6,7 @@ export class Comment {
 	 * @param {int} comment_id 
 	 * @param {int} post_id 
 	 * @param {int} author_id Matches user_id, this is the comment author.
-	 * @param {timestamp} timestamp 
+	 * @param {Date} creationDate 
 	 * @param {int} parent_id 
 	 * @param {string} content 
 	 * @param {int} reports 
@@ -14,13 +14,13 @@ export class Comment {
 	 */
 
 	constructor(comment_id, post_id, author_id,
-		timestamp, parent_id, content,
+		creationDate, parent_id, content,
 		reports, inactive) {
 
 		this.comment_id = comment_id;
 		this.post_id = post_id;
 		this.author_id = author_id;
-		this.timestamp = timestamp;
+		this.creationDate = creationDate;
 		this.parent_id = parent_id;
 		this.content = content;
 		this.reports = reports;
