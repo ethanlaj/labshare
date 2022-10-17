@@ -4,9 +4,11 @@
 	width: 75%;
 	border-radius: 5%;
 	box-shadow: 10px 10px rgb(166, 165, 165);
+	border: 2px rgba(0, 0, 0, 0.1) solid;
 }
 
 body {
 	background-image: url("global/science.png");
-	background-size: 70px;
+	background-size: 100px;
+	justify-content: center;
 }
