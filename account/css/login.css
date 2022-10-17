@@ -22,7 +22,8 @@ body {
 
 #row {
     height: 100%;
-    gap: 20px;
+    row-gap: 20px;
+    column-gap: 10%;
 }
 
 
