@@ -40,7 +40,7 @@ body {
 
 #submit {
     width: 150px;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .form-control {
@@ -58,16 +58,18 @@ body {
 }
 
 form {
+
     height: 100%;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
 }
 
 
 .my-col {
-    Height: 50%;
+    height: 350px;
+    min-height: 250px;
     Width: 400px;
     padding: 20px;
     border-radius: 25px;
@@ -77,7 +79,7 @@ form {
 }
 
 h1 {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 #register {
