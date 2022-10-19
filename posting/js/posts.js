@@ -1,5 +1,5 @@
 (function () {
-	const BASE_URL = "https://api.zippopotam.us/us/";
+	const ZIPCODE_BASE_URL = "https://api.zippopotam.us/us/";
 
 	window.addEventListener("load", init);
 
@@ -39,7 +39,7 @@
 		postZip = "17022";
 		selectedZip = "18073";
 
-		let postZipInfo = await fetch(BASE_URL + postZip).then((response) => {
+		let postZipInfo = await fetch(ZIPCODE_BASE_URL + postZip).then((response) => {
 			if (response.ok) {
 				return response.json();
 			} else {
@@ -47,7 +47,7 @@
 			}
 		}).then((result) => result.places[0]);
 
-		let selectedZipInfo = await fetch(BASE_URL + selectedZip).then((response) => {
+		let selectedZipInfo = await fetch(ZIPCODE_BASE_URL + selectedZip).then((response) => {
 			if (response.ok) {
 				return response.json();
 			} else {
