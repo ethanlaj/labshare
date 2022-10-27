@@ -1,7 +1,7 @@
 <?PHP
  // connect to baseball db
 
-echo 'My host name is ' .$_ENV["SP_HOST_NAME"];
+echo 'My host name is ' . getenv("SP_PASSWORD");
  
  // make sql
 //  $sql = "SELECT DISTINCT teamID,name FROM teams ORDER BY name;";
