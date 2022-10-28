@@ -8,12 +8,60 @@
 	 * Adds event listeners to posts
 	 */
 	function init() {
-		let posts = document.querySelectorAll(".post");
-		for (let post of posts)
-			post.addEventListener("click", directToPost);
+		fetch("getAllPosts.php")
+			.then(checkStatus)
+			.then((posts) => addPostsToView(posts))
 
 		let locationButton = document.querySelector("header h2");
 		locationButton.addEventListener("click", getMilesBetween);
+	}
+
+	function addPostsToView(posts) {
+		console.log(posts);
+		let tbody = document.querySelector("#postTable tbody");
+
+		for (let post of posts) {
+			let tr = document.createElement("tr");
+			tr.id = "post" + post.post_id;
+			tr.classList.add("post");
+
+			// User table cell
+			let userData = document.createElement("td");
+			tr.appendChild(userData);
+
+			let innerDiv = document.createElement("div");
+			innerDiv.classList.add("user");
+			userData.appendChild(innerDiv);
+
+			let userImg = document.createElement("img");
+			userImg.src = "../global/blank.jpg";
+			userImg.alt = post.user.username;
+			innerDiv.appendChild(userImg);
+
+			linkToProfile = document.createElement("a");
+			linkToProfile.href = "../profiles/yourProfile.php?id=" + post.author_id;
+			linkToProfile.innerText = post.user.username;
+			innerDiv.appendChild(linkToProfile);
+
+			// Post creation table cell
+			let creationData = document.createElement("td");
+			tr.appendChild(creationData);
+			creationData.innerText = post.creationDate;
+
+			// Post title table cell
+			let titleData = document.createElement("td");
+			tr.appendChild(titleData);
+			titleData.innerText = post.title;
+
+			// Zip code table cell
+			let zipData = document.createElement("td");
+			tr.appendChild(zipData);
+			zipData.innerText = "17022";
+
+			tr.addEventListener("click", directToPost);
+			tbody.appendChild(tr);
+		}
+
 	}
 
 	/**
@@ -23,7 +71,7 @@
 	function directToPost() {
 		let postID = Number(this.id.split("post")[1]);
 		console.log("Directed to post " + postID);
-		window.location = "./post.html"
+		window.location = "./post.php?id=" + postID
 	}
 
 	/**
@@ -102,4 +150,19 @@
 		}
 		return degrees / 180 * Math.PI;
 	};
+
+	/**
+	 * Helper function to return the response's result text if successful, otherwise
+	 * returns the rejected Promise result with an error status and corresponding text
+	 * @param {object} response - response to check for success/error
+	 * @returns {object} - valid result text if response was successful, otherwise rejected
+	 *                     Promise result
+	 */
+	function checkStatus(response) {
+		if (response.ok) {
+			return response.json();
+		} else {
+			return Promise.reject(new Error(response.status + ": " + response.statusText));
+		}
+	}
 })();

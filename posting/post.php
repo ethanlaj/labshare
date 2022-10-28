@@ -1,9 +1,13 @@
+<?PHP
+	$post = include_once("getPostDetails.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Post Title</title>
+		<title><?PHP echo $post->title ?></title>
 
 		<!-- Bootstrap -->
 		<link
@@ -42,6 +46,7 @@
 	<body>
 		<div id="navbar"></div>
 
+		<?PHP if ($post) {?>
 		<main id="postContent">
 			<img
 				src="../global/etown-BlueJay.png"
@@ -50,11 +55,15 @@
 			/>
 
 			<div id="nextToProfilePic">
-				<a href="../profiles/yourProfile.html">blueJayYay</a>
-				<p>September 3rd 2022 at 1:51pm</p>
+				<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
+					<?PHP echo $post->user->username ?>
+				</a>
+				<p><?PHP echo $post->creationDate ?></p>
 
 				<div id="postTitleWithDropdown">
-					<h1 id="postTitle">Post Title</h1>
+					<h1 id="postTitle">
+						<?PHP echo $post->title ?>
+					</h1>
 					<!--This Dropdown should only be visible to the post owner-->
 					<div class="dropdown-center dropend">
 						<button
@@ -107,16 +116,7 @@
 					</button>
 				</div>
 
-				<p id="postText">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna
-					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat.
-					Duis aute irure dolor in reprehenderit in voluptate velit
-					esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-					occaecat cupidatat non proident, sunt in culpa qui officia
-					deserunt mollit anim id est laborum.
-				</p>
+				<p id="postText"><?PHP echo $post->content ?></p>
 			</div>
 		</main>
 
@@ -332,6 +332,10 @@
 		</section>
 
 		<footer id="footer"></footer>
+
+		<?PHP } else {?>
+			<p>This post has been deleted or does not exist.</p>
+		<?PHP } ?>
 
 		<!-- This is where all the modals where be placed -->
 		<div id="modals">
