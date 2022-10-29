@@ -87,15 +87,28 @@
 			comment.querySelector(".cancelReply").hidden = false;
 			comment.querySelector(".replyBox").hidden = false;
 		} else {
+			this.disabled = true;
+
 			let reply = comment.querySelector('.replyBox');
 			if (reply.value.trim() == "") {
 				noReplyView(comment);
 				return;
 			}
 
-			console.log(`Replied to ${comment.id} with "${reply.value}"`);
-			reply.value = "";
-			noReplyView(comment);
+			const urlParams = new URLSearchParams(window.location.search);
+
+			let data = new FormData();
+			data.append("post_id", urlParams.get("id"));
+			data.append("content", reply.value);
+			data.append("parent_id", comment.id.split("comment")[1]);
+
+			fetch("api/addComment.php", { method: 'POST', body: data })
+				.then(checkStatus)
+				.then(() => {
+					location.reload();
+				}).catch((e) => {
+					console.error("Could not reply to comment")
+				});
 		}
 	}
 
@@ -170,10 +183,20 @@
 	 */
 	function addComment() {
 		let modalTextArea = document.getElementById("commentAddTextForm");
-		console.log(`Added comment ${modalTextArea.value}`)
-		modalTextArea.value = "";
 
-		$("#addComment").modal("hide");
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+		data.append("content", modalTextArea.value);
+
+		fetch("api/addComment.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				location.reload();
+			}).catch((e) => {
+				console.error("Could not add a new comment")
+			});
 	}
 
 	/**
@@ -214,5 +237,20 @@
 		console.log(`Deleted comment ${comment.id}`);
 		$("#deleteComment").modal("hide");
 		$("#commentDeleted").modal("show");
+	}
+
+	/**
+	 * Helper function to return the response's result text if successful, otherwise
+	 * returns the rejected Promise result with an error status
+	 * @param {object} response - response to check for success/error
+	 * @returns {boolean} - true if response was successful, otherwise rejected
+	 *                     Promise result
+	 */
+	function checkStatus(response) {
+		if (response.ok) {
+			return true;
+		} else {
+			return Promise.reject(new Error(response.status + ": " + response.statusText));
+		}
 	}
 })();

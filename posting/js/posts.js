@@ -8,7 +8,7 @@
 	 * Adds event listeners to posts
 	 */
 	function init() {
-		fetch("getAllPosts.php")
+		fetch("./api/getAllPosts.php")
 			.then(checkStatus)
 			.then((posts) => addPostsToView(posts))
 
@@ -17,7 +17,6 @@
 	}
 
 	function addPostsToView(posts) {
-		console.log(posts);
 		let tbody = document.querySelector("#postTable tbody");
 
 		for (let post of posts) {
@@ -155,7 +154,7 @@
 	 * Helper function to return the response's result text if successful, otherwise
 	 * returns the rejected Promise result with an error status and corresponding text
 	 * @param {object} response - response to check for success/error
-	 * @returns {object} - valid result text if response was successful, otherwise rejected
+	 * @returns {object} - valid result json if response was successful, otherwise rejected
 	 *                     Promise result
 	 */
 	function checkStatus(response) {
