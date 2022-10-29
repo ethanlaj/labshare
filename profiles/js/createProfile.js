@@ -7,8 +7,7 @@
      * form is given event listener
      */
     function init() {
-        let form = document.getElementById('form');
-        form.addEventListener("submit", link);
+
     }
     /**
      * 

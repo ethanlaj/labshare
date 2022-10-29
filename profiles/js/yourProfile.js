@@ -12,6 +12,10 @@
         let recentPosts = document.querySelectorAll('#recentposts td');
         for (let i = 0; i < recentPosts.length; i++)
             recentPosts[i].addEventListener("click", post);
+
+        fetch("./api/getAllPosts.php")
+            .then(checkStatus)
+            .then((posts) => addPostsToView(posts))
     }
     /**
      * Function links to create profile page 

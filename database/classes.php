@@ -101,6 +101,7 @@ class User
 	public $username;
 	public $firstName;
 	public $lastName;
+	public $fullName;
 	public $email;
 	public $phoneNumber;
 	public $birthday;
@@ -133,6 +134,7 @@ class User
 		$this->username = $username;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
+		$this->fullName = $firstName . " " . $lastName;
 		$this->email = $email;
 		$this->phoneNumber = $phoneNumber;
 		$this->birthday = $birthday;
@@ -140,7 +142,7 @@ class User
 	}
 }
 
-class Profile 
+class Profile
 {
 	public $user_id;
 	public $quals_degrees;
@@ -149,6 +151,8 @@ class Profile
 	public $secondaryAreaOfStudy;
 	public $about;
 	public $achievements_interests;
+
+	public $user;
 
 
 	/**
@@ -170,7 +174,7 @@ class Profile
 		$secondaryAreaOfStudy,
 		$about,
 		$achievements_interests
-	){
+	) {
 
 		$this->user_id = $user_id;
 		$this->quals_degrees = $quals_degrees;
@@ -179,6 +183,6 @@ class Profile
 		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
 		$this->about = $about;
 		$this->achievements_interests = $achievements_interests;
-
+		$this->user = getUser($user_id);
 	}
 }

@@ -4,19 +4,21 @@ require_once "connect.php";
 require_once "classes.php";
 require_once "userFunctions.php";
 
+
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 
-function createProfile($user_id,
-$quals_degrees = null,
-$areaOfStudy = null,
-$yearsOfStudy = null,
-$secondaryAreaOfStudy = null,
-$about = null,
-$achievements_interests = null)
-{
-	$sql = "INSERT INTO profiles (user_id,
+function createProfile(
+    $user_id,
+    $quals_degrees = null,
+    $areaOfStudy = null,
+    $yearsOfStudy = null,
+    $secondaryAreaOfStudy = null,
+    $about = null,
+    $achievements_interests = null
+) {
+    $sql = "INSERT INTO profiles (user_id,
     quals_degrees,
     areaOfStudy,
     yearsOfStudy,
@@ -32,20 +34,31 @@ $achievements_interests = null)
 		:achievements_interests)";
 
 
-	$params =
-		[
-			":user_id" => $user_id,
-			":quals_degrees" => $quals_degrees,
-			":areaOfStudy" => $areaOfStudy,
-			":yearsOfStudy" => $yearsOfStudy,
-			":secondaryAreaOfStudy" => $secondaryAreaOfStudy,
+    $params =
+        [
+            ":user_id" => $user_id,
+            ":quals_degrees" => $quals_degrees,
+            ":areaOfStudy" => $areaOfStudy,
+            ":yearsOfStudy" => $yearsOfStudy,
+            ":secondaryAreaOfStudy" => $secondaryAreaOfStudy,
             ":about" => $about,
             ":achievements_interests" => $achievements_interests,
-		];
+        ];
 
-	try {
-		postDataFromSQL($sql, $params);
-	} catch (Exception $e) {
-		header("HTTP/1.1 500 Fatal Error");
-	}
+    try {
+        postDataFromSQL($sql, $params);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+
+
+function fetchProfile()
+{
+    $sql = "SELECT * FROM profiles;";
+
+    $prof = getDataFromSQL($sql)[0];
+
+
+    return new Profile(3, $prof["quals_degrees"], $prof["areaOfStudy"], $prof["yearsOfStudy"], $prof["secondaryAreaOfStudy"], $prof["about"], $prof["achievements_interests"]);
 }
