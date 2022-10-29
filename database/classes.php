@@ -139,3 +139,46 @@ class User
 		$this->inactive = $inactive;
 	}
 }
+
+class Profile 
+{
+	public $user_id;
+	public $quals_degrees;
+	public $areaOfStudy;
+	public $yearsOfStudy;
+	public $secondaryAreaOfStudy;
+	public $about;
+	public $achievements_interests;
+
+
+	/**
+	 * Matches the profiles table in the database
+	 * @param {int} user_id
+	 * @param {string} quals_degrees
+	 * @param {string} areaOfStudy
+	 * @param {string} yearsOfStudy
+	 * @param {string} secondaryAreaOfStudy
+	 * @param {string} about 
+	 * @param {string} achievements_interests
+	 * 
+	 */
+	function __construct(
+		$user_id,
+		$quals_degrees,
+		$areaOfStudy,
+		$yearsOfStudy,
+		$secondaryAreaOfStudy,
+		$about,
+		$achievements_interests
+	){
+
+		$this->user_id = $user_id;
+		$this->quals_degrees = $quals_degrees;
+		$this->areaOfStudy = $areaOfStudy;
+		$this->yearsOfStudy = $yearsOfStudy;
+		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
+		$this->about = $about;
+		$this->achievements_interests = $achievements_interests;
+
+	}
+}
