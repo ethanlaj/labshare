@@ -37,8 +37,8 @@ class Post
 		$this->reports = $reports;
 		$this->inactive = $inactive;
 
-		//$this->user = getUser($author_id);
-		//$this->comments = getCommentsForPost($post_id);
+		$this->user = getUser($author_id);
+		$this->comments = getCommentsForPost($post_id);
 	}
 }
 
