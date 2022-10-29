@@ -75,8 +75,8 @@ function addComment($post_id, $content, $parent_id = null)
 	$sql = "INSERT INTO comments (post_id, author_id, creationDate, content, parent_id)
           VALUES (:post_id, :author_id, :creationDate, :content, :parent_id)";
 
-	// Use 24 as the default id until we have session data
-	$author_id = 24;
+	// Use 2 as the default id until we have session data
+	$author_id = 2;
 
 	$params =
 		[
