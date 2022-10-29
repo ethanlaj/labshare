@@ -4,7 +4,7 @@ $host = getenv("SP_HOST_NAME");
 $database = getenv("SP_SCHEMA");
 $username = getenv("SP_USERNAME");
 $password = getenv("SP_PASSWORD");
-$dns = "mysql:host=$host;dbname=$database;charset=UTF8";
+$dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=25060";
 $dbconnection = new PDO($dns, $username, $password);
 
 function getDataFromSQL($sql, $params = null)
