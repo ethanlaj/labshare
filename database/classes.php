@@ -13,6 +13,7 @@ class Post
 	public $reports;
 	public $inactive;
 	public $username;
+	public $zip;
 
 	// Not mapped in the DB
 	public $comments;
@@ -34,6 +35,8 @@ class Post
 			? $db_object["reports"] : null;
 		$this->inactive = array_key_exists("inactive", $db_object)
 			? $db_object["inactive"] : null;
+		$this->zip = array_key_exists("zip", $db_object)
+			? $db_object["zip"] : null;
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
 
@@ -168,5 +171,71 @@ class Profile
 		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
 		$this->about = $about;
 		$this->achievements_interests = $achievements_interests;
+	}
+}
+
+class Save
+{
+	public $user_id;
+	public $post_id;
+
+	/**
+	 * Matches the Saves table in the database
+	 * @param {int} user_id 
+	 * @param {int} post_id 
+	 */
+
+	function __construct($user_id, $post_id)
+	{
+		$this->user_id = $user_id;
+		$this->post_id = $post_id;
+	}
+}
+
+class Application
+{
+	public $user_id;
+	public $post_id;
+	public $status;
+
+	/**
+	 * Matches the Applications table in the database
+	 * @param {int} user_id 
+	 * @param {int} post_id 
+	 * @param {int} status
+	 * 1 = Awaiting response;
+	 * 2 = Declined;
+	 * 3 = Accepted;
+	 */
+
+	function __construct($user_id, $post_id, $status)
+	{
+		$this->user_id = $user_id;
+		$this->post_id = $post_id;
+		$this->status = $status;
+	}
+}
+
+class Report
+{
+	public $reporter_id;
+	public $id;
+	public $type;
+
+	/**
+	 * Matches the Applications table in the database
+	 * @param {int} reporter_id 
+	 * @param {int} id
+	 * ID of what the user reported
+	 * @param {int} type
+	 * 1 = Post;
+	 * 2 = Comment;
+	 */
+
+	function __construct($reporter_id, $id, $type)
+	{
+		$this->reporter_id = $reporter_id;
+		$this->id = $id;
+		$this->type = $type;
 	}
 }

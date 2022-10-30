@@ -66,7 +66,7 @@ if (isset($_GET["id"])) {
 						</button>
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item" href="./createPost.html">Edit</a>
+								<a class="dropdown-item" href="./editPost.php?id=<?PHP echo $post->post_id ?>">Edit</a>
 							</li>
 							<li>
 								<button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">

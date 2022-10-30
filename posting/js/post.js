@@ -137,45 +137,110 @@
 	 * Saves the current post
 	 */
 	function savePost() {
-		console.log("Saved post");
-		$("#save").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/save.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				console.log("Saved post");
+				$("#save").modal("show");
+			}).catch((e) => {
+				console.error("Could not save post")
+			});
 	}
 
 	/**
 	 * Applies to the current post
 	 */
 	function applyToPost() {
-		console.log("Applied to post");
-		$("#apply").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/apply.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				console.log("Applied to post");
+				$("#apply").modal("show");
+			}).catch((e) => {
+				console.error("Could not apply to post")
+			});
 	}
 
 	/**
 	 * Reports the current post
 	 */
 	function reportPost() {
-		console.log("Reported post");
-		$("#reportPost").modal("hide");
-		$("#reportReceived").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("id", urlParams.get("id"));
+		data.append("type", 1);
+
+		fetch("api/report.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				console.log("Reported post");
+				$("#reportPost").modal("hide");
+				$("#reportReceived").modal("show");
+			}).catch((e) => {
+				console.error("Could not report post");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
 	 * Deletes the current post
 	 */
 	function deletePost() {
-		console.log("Deleted post");
-		$("#deletePost").modal("hide");
-		$("#postDeleted").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/deletePost.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				console.log("Deleted post");
+
+				window.location = "posts.html"
+			}).catch((e) => {
+				console.error("Could not delete post")
+			});
 	}
 
 	/**
 	 * Reports a comment
 	 */
 	function reportComment() {
+		this.disabled = true;
+
 		let comment = lastClickedComment;
 
-		console.log(`Reported comment ${comment.id}`);
-		$("#reportComment").modal("hide");
-		$("#reportReceived").modal("show");
+		let data = new FormData();
+		data.append("id", comment.id.split("comment")[1]);
+		data.append("type", 2);
+
+		fetch("api/report.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				console.log(`Reported comment ${comment.id}`);
+				$("#reportComment").modal("hide");
+				$("#reportReceived").modal("show");
+			}).catch((e) => {
+				console.error("Could not report comment");
+			}).finally(() => this.disabled = false)
 	}
 
 	/**

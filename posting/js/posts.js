@@ -55,7 +55,7 @@
 			// Zip code table cell
 			let zipData = document.createElement("td");
 			tr.appendChild(zipData);
-			zipData.innerText = "17022";
+			zipData.innerText = post.zip;
 
 			tr.addEventListener("click", directToPost);
 			tbody.appendChild(tr);

@@ -10,11 +10,8 @@ import { User } from "../../classes/user.js";
 	 * Adds event listener to form
 	 */
 	function init() {
-		let u = new User(10, "lajeunessee");
-		console.log(u);
-
 		let postForm = document.getElementById("postForm");
-		postForm.addEventListener("submit", checkInputs);
+		//postForm.addEventListener("submit", checkInputs);
 	}
 
 	/**
@@ -29,11 +26,9 @@ import { User } from "../../classes/user.js";
 
 		let title = document.getElementById('title');
 		let content = document.getElementById('content');
+
 		if (validateTitle(title) == false || validateContent(content) == false)
-			return;
-
-		window.location = "post.html"
-
+			return event.preventDefault();
 	}
 
 	/**
