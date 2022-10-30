@@ -182,6 +182,8 @@
 	 * Adds a comment to the post
 	 */
 	function addComment() {
+		this.disabled = true;
+
 		let modalTextArea = document.getElementById("commentAddTextForm");
 
 		const urlParams = new URLSearchParams(window.location.search);

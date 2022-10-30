@@ -34,12 +34,12 @@
 
 			let userImg = document.createElement("img");
 			userImg.src = "../global/blank.jpg";
-			userImg.alt = post.user.username;
+			userImg.alt = post.username;
 			innerDiv.appendChild(userImg);
 
 			linkToProfile = document.createElement("a");
 			linkToProfile.href = "../profiles/yourProfile.php?id=" + post.author_id;
-			linkToProfile.innerText = post.user.username;
+			linkToProfile.innerText = post.username;
 			innerDiv.appendChild(linkToProfile);
 
 			// Post creation table cell

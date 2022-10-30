@@ -12,33 +12,33 @@ class Post
 	public $content;
 	public $reports;
 	public $inactive;
+	public $username;
 
 	// Not mapped in the DB
-	public $user;
 	public $comments;
 
-	/**
-	 * Matches the Posts table in the database
-	 * @param {int} post_id
-	 * @param {Date} creationDate When the post was created
-	 * @param {int} author_id Same as user_id
-	 * @param {string} title
-	 * @param {string} content
-	 * @param {int} reports
-	 * @param {boolean} inactive
-	 */
-	function __construct($post_id, $creationDate, $author_id, $title, $content, $reports, $inactive)
+	function __construct($db_object, $includeComments = false)
 	{
-		$this->post_id = $post_id;
-		$this->creationDate = $creationDate;
-		$this->author_id = $author_id;
-		$this->title = $title;
-		$this->content = $content;
-		$this->reports = $reports;
-		$this->inactive = $inactive;
+		$this->post_id = array_key_exists("post_id", $db_object)
+			? $db_object["post_id"] : null;
+		$this->creationDate = array_key_exists("creationDate", $db_object)
+			? convertToLocal($db_object["creationDate"])
+			: null;
+		$this->author_id = array_key_exists("author_id", $db_object)
+			? $db_object["author_id"] : null;
+		$this->title = array_key_exists("title", $db_object)
+			? $db_object["title"] : null;
+		$this->content = array_key_exists("content", $db_object)
+			? $db_object["content"] : null;
+		$this->reports = array_key_exists("reports", $db_object)
+			? $db_object["reports"] : null;
+		$this->inactive = array_key_exists("inactive", $db_object)
+			? $db_object["inactive"] : null;
+		$this->username = array_key_exists("username", $db_object)
+			? $db_object["username"] : null;
 
-		$this->user = getUser($author_id);
-		$this->comments = getCommentsForPost($post_id);
+		if ($includeComments)
+			$this->comments = getCommentsForPost($this->post_id);
 	}
 }
 
@@ -53,45 +53,34 @@ class Comment
 	public $content;
 	public $reports;
 	public $inactive;
+	public $username;
 
 	// Not mapped in the DB
-	public $user;
 	public $children;
 
-	/**
-	 * Matches the Comments table in the database
-	 * @param {int} comment_id 
-	 * @param {int} post_id 
-	 * @param {int} author_id Matches user_id, this is the comment author.
-	 * @param {Date} creationDate 
-	 * @param {int} parent_id 
-	 * @param {string} content 
-	 * @param {int} reports 
-	 * @param {boolean} inactive 
-	 */
+	function __construct($db_object)
+	{
+		$this->comment_id = array_key_exists("comment_id", $db_object)
+			? $db_object["comment_id"] : null;
+		$this->post_id = array_key_exists("post_id", $db_object)
+			? $db_object["post_id"] : null;
+		$this->author_id = array_key_exists("author_id", $db_object)
+			? $db_object["author_id"] : null;
+		$this->creationDate = array_key_exists("creationDate", $db_object)
+			? convertToLocal($db_object["creationDate"])
+			: null;
+		$this->parent_id = array_key_exists("parent_id", $db_object)
+			? $db_object["parent_id"] : null;
+		$this->content = array_key_exists("content", $db_object)
+			? $db_object["content"] : null;
+		$this->reports = array_key_exists("reports", $db_object)
+			? $db_object["reports"] : null;
+		$this->inactive = array_key_exists("inactive", $db_object)
+			? $db_object["inactive"] : null;
+		$this->username = array_key_exists("username", $db_object)
+			? $db_object["username"] : null;
 
-	function __construct(
-		$comment_id,
-		$post_id,
-		$author_id,
-		$creationDate,
-		$parent_id,
-		$content,
-		$reports,
-		$inactive
-	) {
-
-		$this->comment_id = $comment_id;
-		$this->post_id = $post_id;
-		$this->author_id = $author_id;
-		$this->creationDate = $creationDate;
-		$this->parent_id = $parent_id;
-		$this->content = $content;
-		$this->reports = $reports;
-		$this->inactive = $inactive;
-
-		$this->user = getUser($author_id);
-		$this->children = getRepliesToComment($comment_id);
+		$this->children = getRepliesToComment($this->comment_id);
 	}
 }
 
@@ -140,7 +129,7 @@ class User
 	}
 }
 
-class Profile 
+class Profile
 {
 	public $user_id;
 	public $quals_degrees;
@@ -170,7 +159,7 @@ class Profile
 		$secondaryAreaOfStudy,
 		$about,
 		$achievements_interests
-	){
+	) {
 
 		$this->user_id = $user_id;
 		$this->quals_degrees = $quals_degrees;
@@ -179,6 +168,5 @@ class Profile
 		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
 		$this->about = $about;
 		$this->achievements_interests = $achievements_interests;
-
 	}
 }

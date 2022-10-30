@@ -33,7 +33,7 @@
 }
 
 #postTable tbody tr:last-child {
-	border-bottom: 2px solid rgba(0, 0, 0, 0.1)
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 #postTable td {
@@ -41,7 +41,7 @@
 }
 
 #posts {
-	width: 50%;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -53,11 +53,11 @@ header {
 
 header h2 {
 	margin-right: auto;
-	margin-left: 10px;
+	margin-left: 0;
 }
 
 header a {
-	margin-right: 10px;
+	margin-right: 0;
 }
 
 .user {

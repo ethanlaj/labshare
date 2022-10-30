@@ -51,7 +51,7 @@ if (isset($_GET["id"])) {
 
 			<div id="nextToProfilePic">
 				<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
-					<?PHP echo $post->user->username ?>
+					<?PHP echo $post->username ?>
 				</a>
 				<p><?PHP echo $post->creationDate ?></p>
 
@@ -115,9 +115,9 @@ if (isset($_GET["id"])) {
 							<td>
 								<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
 								<div class="user">
-									<img src="../global/blank.jpg" alt="<?PHP echo $comment->user->username ?>" />
+									<img src="../global/blank.jpg" alt="<?PHP echo $comment->username ?>" />
 									<a href="<?PHP echo "../profiles/yourProfile.php?id=" . $comment->author_id ?>">
-										<?PHP echo $comment->user->username ?>
+										<?PHP echo $comment->username ?>
 									</a>
 								</div>
 							</td>
@@ -163,14 +163,14 @@ if (isset($_GET["id"])) {
 								<td>
 									<div class="commentDate"><?PHP echo $child->creationDate ?></div>
 									<div class="user">
-										<img src="../global/blank.jpg" alt="<?PHP echo $child->user->username ?>" />
+										<img src="../global/blank.jpg" alt="<?PHP echo $child->username ?>" />
 										<a href="<?PHP echo "../profiles/yourProfile.php?id=" . $child->author_id ?>">
-											<?PHP echo $child->user->username ?>
+											<?PHP echo $child->username ?>
 										</a>
 									</div>
 								</td>
 								<td>
-									<div><i>Replying to <?PHP echo $comment->user->username ?></i></div>
+									<div><i>Replying to <?PHP echo $comment->username ?></i></div>
 									<div class="replyText commentContent">
 										<?PHP echo $child->content ?>
 									</div>
