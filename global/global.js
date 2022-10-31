@@ -10,6 +10,16 @@
 	 * - Document (for keypresses)
 	 */
 	function init() {
+		let data = new FormData();
+		data.append("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone);
+		fetch("../global/updateSession.php", { method: 'POST', body: data })
+			.then((res) => res.json())
+			.then((json) => {
+				if (json == true)
+					location.reload();
+			})
+			.catch(e => console.error(e));
+
 		document.addEventListener("keypress", handleEnterPress);
 		$("#navbar").load("../global/navbar.html", addNavbarListeners);
 		$("#footer").load("../global/footer.html");

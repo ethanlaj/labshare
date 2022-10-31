@@ -1,4 +1,6 @@
 <?PHP
+session_start();
+
 $post = null;
 
 ini_set("display_errors", 1);
@@ -6,6 +8,8 @@ error_reporting(E_ALL);
 
 if (isset($_GET["id"])) {
 	require_once("../database/postFunctions.php");
+
+	echo $_SESSION["timezone"];
 
 	$post = getPost($_GET["id"]);
 }

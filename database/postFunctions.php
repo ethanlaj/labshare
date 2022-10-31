@@ -1,4 +1,6 @@
 <?PHP
+session_start();
+
 // Include connection
 require_once "connect.php";
 require_once "classes.php";
@@ -9,12 +11,19 @@ error_reporting(E_ALL);
 
 function convertToLocal($datetime)
 {
-	date_default_timezone_set("America/New_York");
+	$timestamp = strtotime($datetime . ' UTC');
 
-	$time = strtotime($datetime . ' UTC');
-	$dateInLocal = date('m/d/Y \a\t g:ia', $time);
+	$date = new DateTime("@" . $timestamp);
 
-	return $dateInLocal;
+	if (isset($_SESSION["timestamp"])) {
+		var_dump($_SESSION);
+
+		$date->setTimezone(new DateTimeZone($_SESSION["timestamp"]));
+	}
+
+	echo $date->format('m/d/Y \a\t g:ia');
+
+	return $date->format('m/d/Y \a\t g:ia');
 }
 
 function getPost($post_id)
