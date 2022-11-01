@@ -14,7 +14,11 @@
 	function init() {
 		// Post buttons
 		let savePostBtn = document.getElementById("savePostBtn");
-		savePostBtn.addEventListener("click", savePost);
+		if (savePostBtn.innerText == "Save")
+			savePostBtn.addEventListener("click", savePost);
+		else
+			savePostBtn.addEventListener("click", unsavePost);
+
 
 		let applyToPostBtn = document.getElementById("applyToPostBtn");
 		applyToPostBtn.addEventListener("click", applyToPost);
@@ -58,6 +62,21 @@
 
 		let deleteCommentBtn = document.getElementById("deleteCommentBtn");
 		deleteCommentBtn.addEventListener("click", deleteComment);
+	}
+
+	/**
+	 * Shows a message in a modal
+	 * @param {string} title The title of the modal
+	 * @param {string} body The body text of the modal
+	 */
+	function showModal(title, body) {
+		let titleEle = document.querySelector("#generalMessage .modal-title");
+		let bodyEle = document.querySelector("#generalMessage .modal-body");
+
+		titleEle.innerText = title;
+		bodyEle.innerText = body;
+
+		$("#generalMessage").modal("show");
 	}
 
 	/**
@@ -107,7 +126,7 @@
 				.then(() => {
 					location.reload();
 				}).catch((e) => {
-					console.error("Could not reply to comment")
+					showModal("Failed to Add Comment", "Could not reply to comment, please try again later");
 				});
 		}
 	}
@@ -147,10 +166,29 @@
 		fetch("api/save.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
-				console.log("Saved post");
-				$("#save").modal("show");
+				showModal("Successfully Saved", "You have successfully saved this post");
 			}).catch((e) => {
-				console.error("Could not save post")
+				showModal("Failed to Save", "Could not save this post, please try again later");
+			});
+	}
+
+	/**
+	 * Saves the current post
+	 */
+	function unsavePost() {
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/unsave.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				showModal("Successfully Unsaved", "You have successfully unsaved this post");
+			}).catch((e) => {
+				showModal("Failed to Unsave", "Could not unsave this post, please try again later");
 			});
 	}
 
@@ -168,10 +206,9 @@
 		fetch("api/apply.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
-				console.log("Applied to post");
-				$("#apply").modal("show");
+				showModal("Successfully Applied", "You have successfully applied to this project");
 			}).catch((e) => {
-				console.error("Could not apply to post")
+				showModal("Failed to Apply", "Could not apply to this project, please try again later");
 			});
 	}
 
@@ -190,11 +227,10 @@
 		fetch("api/report.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
-				console.log("Reported post");
 				$("#reportPost").modal("hide");
-				$("#reportReceived").modal("show");
+				showModal("Report Received", "Thank you for your report");
 			}).catch((e) => {
-				console.error("Could not report post");
+				showModal("Failed to Report Post", "Could not report post, please try again later");
 			}).finally(() => this.disabled = false);
 	}
 
@@ -212,12 +248,10 @@
 		fetch("api/deletePost.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
-				console.log("Deleted post");
-
 				window.location = "posts.html"
 			}).catch((e) => {
-				console.error("Could not delete post")
-			});
+				showModal("Failed to Delete Post", "Could not delete this post, please try again later");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
@@ -235,11 +269,10 @@
 		fetch("api/report.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
-				console.log(`Reported comment ${comment.id}`);
 				$("#reportComment").modal("hide");
-				$("#reportReceived").modal("show");
+				showModal("Report Received", "Thank you for your report");
 			}).catch((e) => {
-				console.error("Could not report comment");
+				showModal("Failed to Report Comment", "Could not report comment, please try again later");
 			}).finally(() => this.disabled = false)
 	}
 
@@ -262,7 +295,7 @@
 			.then(() => {
 				location.reload();
 			}).catch((e) => {
-				console.error("Could not add a new comment")
+				showModal("Failed to Add Comment", "Could not add comment, please try again later");
 			});
 	}
 
@@ -303,6 +336,7 @@
 
 		console.log(`Deleted comment ${comment.id}`);
 		$("#deleteComment").modal("hide");
+
 		$("#commentDeleted").modal("show");
 	}
 

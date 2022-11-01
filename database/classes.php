@@ -16,9 +16,12 @@ class Post
 	public $zip;
 
 	// Not mapped in the DB
-	public $comments;
+	public $comments = array();
+	public $hasApplied;
+	public $hasSaved;
+	public $hasReported;
 
-	function __construct($db_object, $includeComments = false)
+	function __construct($db_object, $includeExtraData = false)
 	{
 		$this->post_id = array_key_exists("post_id", $db_object)
 			? $db_object["post_id"] : null;
@@ -40,8 +43,13 @@ class Post
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
 
-		if ($includeComments)
+		if ($includeExtraData) {
 			$this->comments = getCommentsForPost($this->post_id);
+
+			$this->hasApplied = applicationExists($this->post_id);
+			$this->hasSaved = saveExists($this->post_id);
+			$this->hasReported = reportExists($this->post_id, 1);
+		}
 	}
 }
 
@@ -59,9 +67,10 @@ class Comment
 	public $username;
 
 	// Not mapped in the DB
-	public $children;
+	public $children = array();
+	public $hasReported;
 
-	function __construct($db_object)
+	function __construct($db_object, $includeChildren = false)
 	{
 		$this->comment_id = array_key_exists("comment_id", $db_object)
 			? $db_object["comment_id"] : null;
@@ -83,7 +92,8 @@ class Comment
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
 
-		$this->children = getRepliesToComment($this->comment_id);
+		if ($includeChildren)
+			$this->children = getRepliesToComment($this->comment_id);
 	}
 }
 

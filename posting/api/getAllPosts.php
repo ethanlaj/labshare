@@ -6,6 +6,8 @@ header("Content-Type: application/json");
 
 require_once("../../database/postFunctions.php");
 
-$posts = getPosts();
+$type = isset($_GET["type"]) ? $_GET["type"] : null;
+
+$posts = getPosts($type);
 
 echo json_encode($posts);

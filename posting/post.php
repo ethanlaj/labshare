@@ -3,15 +3,10 @@ session_start();
 
 $post = null;
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
 if (isset($_GET["id"])) {
 	require_once("../database/postFunctions.php");
 
-	echo $_SESSION["timezone"];
-
-	$post = getPost($_GET["id"]);
+	$post = getPost($_GET["id"], true);
 }
 ?>
 
@@ -82,14 +77,22 @@ if (isset($_GET["id"])) {
 				</div>
 				<div id="actionButtons">
 					<button id="savePostBtn" class="btn btn-sm btn-outline-primary">
-						Save
+						<?PHP echo $post->hasSaved ? "Unsave" : "Save" ?>
 					</button>
-					<button id="applyToPostBtn" class="btn btn-sm btn-outline-success">
-						Apply
+					<button id="applyToPostBtn" <?PHP if ($post->hasApplied) echo "disabled" ?> class="btn btn-sm btn-outline-success">
+						<?PHP echo $post->hasApplied ? "Applied" : "Apply" ?>
 					</button>
-					<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
-						Report
-					</button>
+
+					<?PHP
+					if ($post->hasReported == false) {
+					?>
+						<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
+							Report
+						</button>
+					<?PHP
+					}
+					?>
+
 				</div>
 
 				<p id="postText"><?PHP echo $post->content ?></p>
@@ -128,7 +131,7 @@ if (isset($_GET["id"])) {
 							<td>
 								<div class="commentContent"><?PHP echo $comment->content ?></div>
 
-								<textarea hidden class="replyBox form-control"></textarea>
+								<textarea hidden class="replyBox form-control" maxlength="500"></textarea>
 								<div class="replyActionButtons">
 									<button hidden class="cancelReply btn btn-sm btn-secondary">
 										Cancel
@@ -246,63 +249,7 @@ if (isset($_GET["id"])) {
 				</div>
 			</div>
 		</div>
-		<!-- Post Deletion Successful-->
-		<div class="modal fade" id="postDeleted" tabindex="-1">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Post Deleted</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">Successfully deleted post</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-bs-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<!-- Post Action Buttons -->
-		<!-- Save -->
-		<div class="modal fade" id="save" tabindex="-1">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Successfully Saved</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						You have successfully saved this post
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-bs-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Apply -->
-		<div class="modal fade" id="apply" tabindex="-1">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Successfully Applied</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						You have successfully applied to this project
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-bs-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
 		<!-- Report Post -->
 		<div class="modal fade" id="reportPost" tabindex="-1">
 			<div class="modal-dialog modal-dialog-centered">
@@ -444,15 +391,15 @@ if (isset($_GET["id"])) {
 			</div>
 		</div>
 
-		<!-- Report Received -->
-		<div class="modal fade" id="reportReceived" tabindex="-1">
+		<!-- General Message -->
+		<div class="modal fade" id="generalMessage" tabindex="-1">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Report Received</h5>
+						<h5 class="modal-title"></h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body">Thank you for your report</div>
+					<div class="modal-body"></div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-success" data-bs-dismiss="modal">
 							Close
@@ -461,6 +408,7 @@ if (isset($_GET["id"])) {
 				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 

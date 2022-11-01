@@ -62,7 +62,10 @@ if (isset($_GET["id"])) {
 				<textarea required minlength="50" maxlength="2000" id="content" name="content" class="form-control" rows="15"><?PHP echo $post->content ?></textarea>
 			</div>
 
-			<input id="submit" value="Edit" class="btn btn-primary" type="submit" />
+			<div>
+				<input id="submit" value="Edit" class="btn btn-primary" type="submit" />
+				<a class="btn btn-secondary" href="<?PHP echo "post.php?id={$_GET["id"]}" ?>">Cancel</a>
+			</div>
 		</form>
 
 	<?PHP } else { ?>

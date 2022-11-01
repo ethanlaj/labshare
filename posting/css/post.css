@@ -1,3 +1,7 @@
+.commentContent {
+	overflow-wrap: anywhere;
+}
+
 #postContent {
 	display: flex;
 }
@@ -13,10 +17,12 @@
 }
 
 #postTitle {
+	overflow-wrap: anywhere;
 	margin-top: 0.5em;
 }
 
 #postContent p {
+	overflow-wrap: anywhere;
 	margin: 0;
 }
 

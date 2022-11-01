@@ -15,18 +15,14 @@ function convertToLocal($datetime)
 
 	$date = new DateTime("@" . $timestamp);
 
-	if (isset($_SESSION["timestamp"])) {
-		var_dump($_SESSION);
-
-		$date->setTimezone(new DateTimeZone($_SESSION["timestamp"]));
+	if (isset($_SESSION["timezone"])) {
+		$date->setTimezone(new DateTimeZone($_SESSION["timezone"]));
 	}
-
-	echo $date->format('m/d/Y \a\t g:ia');
 
 	return $date->format('m/d/Y \a\t g:ia');
 }
 
-function getPost($post_id)
+function getPost($post_id, $includeExtraData = false)
 {
 	$sql = "SELECT post_id,creationDate,title,content,username,author_id FROM post_with_username WHERE inactive=0 AND post_id=:id";
 	$params = [":id" => $post_id];
@@ -38,7 +34,7 @@ function getPost($post_id)
 
 	$post = $posts[0];
 	if ($post) {
-		return new Post($post, true);
+		return new Post($post, $includeExtraData);
 	} else return null;
 }
 
@@ -99,11 +95,25 @@ function deletePost($post_id)
 	}
 }
 
-function getPosts(): array
+function getPosts($type): array
 {
 	$sql = "SELECT post_id,creationDate,title,username,author_id,zip FROM post_with_username WHERE inactive=0";
 
-	$posts = getDataFromSQL($sql);
+	// Use 2 as the default id until we have session data
+	$user_id = 2;
+
+	$params = [
+		":user_id" => $user_id
+	];
+
+	if ($type == "your") {
+		$sql = $sql . " AND author_id=:user_id";
+	} else if ($type == "saved")
+		$sql = $sql . " AND post_id IN (SELECT post_id FROM saves WHERE user_id=:user_id)";
+	else
+		$params = null;
+
+	$posts = getDataFromSQL($sql, $params);
 
 	$post_array = array();
 
@@ -115,7 +125,7 @@ function getPosts(): array
 
 function getCommentsForPost($post_id): array
 {
-	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username FROM comment_with_username WHERE inactive=0 AND post_id=:id";
+	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username FROM comment_with_username WHERE inactive=0 AND post_id=:id AND parent_id IS NULL";
 	$params = [":id" => $post_id];
 
 	$comments = getDataFromSQL($sql, $params);
@@ -123,7 +133,7 @@ function getCommentsForPost($post_id): array
 	$comment_array = array();
 
 	foreach ($comments as $comment)
-		array_push($comment_array, new Comment($comment));
+		array_push($comment_array, new Comment($comment, true));
 
 	return $comment_array;
 }
@@ -138,7 +148,7 @@ function getRepliesToComment($comment_id): array
 	$comment_array = array();
 
 	foreach ($comments as $comment)
-		array_push($comment_array, new Comment($comment));
+		array_push($comment_array, new Comment($comment,));
 
 	return $comment_array;
 }
@@ -166,8 +176,35 @@ function addComment($post_id, $content, $parent_id = null)
 	}
 }
 
+function applicationExists($post_id)
+{
+	$sql = "SELECT COUNT(post_id) as \"count\" FROM applications
+          WHERE post_id=:post_id AND user_id=:user_id";
+
+	// Use 2 as the default id until we have session data
+	$user_id = 2;
+
+	$params =
+		[
+			":post_id" => $post_id,
+			":user_id" => $user_id,
+		];
+
+	try {
+		$resp = getDataFromSQL($sql, $params)[0];
+
+		return $resp["count"] > 0;
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
 function apply($post_id)
 {
+	if (applicationExists($post_id)) {
+		return header("HTTP/1.1 403 Already Exists");
+	}
+
 	$sql = "INSERT INTO applications (post_id, user_id)
           VALUES (:post_id, :user_id)";
 
@@ -187,8 +224,35 @@ function apply($post_id)
 	}
 }
 
+function saveExists($post_id)
+{
+	$sql = "SELECT COUNT(post_id) as \"count\" FROM saves
+          WHERE post_id=:post_id AND user_id=:user_id";
+
+	// Use 2 as the default id until we have session data
+	$user_id = 2;
+
+	$params =
+		[
+			":post_id" => $post_id,
+			":user_id" => $user_id,
+		];
+
+	try {
+		$resp = getDataFromSQL($sql, $params)[0];
+
+		return $resp["count"] > 0;
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
 function save($post_id)
 {
+	if (saveExists($post_id)) {
+		return header("HTTP/1.1 403 Already Exists");
+	}
+
 	$sql = "INSERT INTO saves (post_id, user_id)
           VALUES (:post_id, :user_id)";
 
@@ -208,8 +272,61 @@ function save($post_id)
 	}
 }
 
+function unsave($post_id)
+{
+	if (!saveExists($post_id)) {
+		return header("HTTP/1.1 403 Does Not Exist");
+	}
+
+	$sql = "DELETE FROM saves
+          WHERE post_id=:post_id AND user_id=:user_id";
+
+	// Use 2 as the default id until we have session data
+	$user_id = 2;
+
+	$params =
+		[
+			":post_id" => $post_id,
+			":user_id" => $user_id,
+		];
+
+	try {
+		postDataFromSQL($sql, $params);
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
+function reportExists($id, $type)
+{
+	$sql = "SELECT COUNT(id) as \"count\" FROM reports
+          WHERE id=:id AND type=:type AND reporter_id=:user_id";
+
+	// Use 2 as the default id until we have session data
+	$user_id = 2;
+
+	$params =
+		[
+			":id" => $id,
+			":type" => $type,
+			":user_id" => $user_id,
+		];
+
+	try {
+		$resp = getDataFromSQL($sql, $params)[0];
+
+		return $resp["count"] > 0;
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
 function report($id, $type)
 {
+	if (reportExists($id, $type)) {
+		return header("HTTP/1.1 403 Already Exists");
+	}
+
 	$sql = "INSERT INTO reports (reporter_id, id, type)
           VALUES (:reporter_id, :id, :type)";
 

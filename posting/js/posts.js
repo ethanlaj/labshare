@@ -5,12 +5,24 @@
 
 	/**
 	 * Initial function that is ran when the window loads
-	 * Adds event listeners to posts
+	 * Fetches posts and calls the function to add them to the view
 	 */
 	function init() {
-		fetch("./api/getAllPosts.php")
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let type = urlParams.get("type");
+
+		fetch("./api/getAllPosts.php" + (type ? ("?type=" + type) : ""))
 			.then(checkStatus)
 			.then((posts) => addPostsToView(posts))
+			.catch((e) => console.log(e));
+
+		if (type) {
+			let upperType = type.charAt(0).toUpperCase() + type.slice(1);
+			let str = upperType + " Posts";
+			document.querySelector("header h2").innerText = str;
+			document.title = str;
+		}
 
 		let locationButton = document.querySelector("header h2");
 		locationButton.addEventListener("click", getMilesBetween);
