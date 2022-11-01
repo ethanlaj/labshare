@@ -53,7 +53,7 @@ if (isset($_GET["id"])) {
 	<main>
 		<section id="flexContainer">
 			<article id="picture">
-				<img id="background" src="<?PHP $profile->profilePic . IMG_JPG ?>" alt="Background photo" />
+				<img id="background" src=<?PHP $profile->profilePic ?> alt="Background photo" />
 				<img id="profile" src="../global/etown-BlueJay.png" alt="Name of User" />
 			</article>
 			<article>
@@ -65,50 +65,33 @@ if (isset($_GET["id"])) {
 					<tr>
 						<th>Qualifications/Degrees</th>
 						<td>
-							Bachelors degree in Computer Science from
-							Elizabethtown College
+							<?PHP echo $profile->quals_degrees ?>
 						</td>
 					</tr>
 					<tr>
 						<th>Area of Study</th>
-						<td>This is my area of study</td>
+						<td><?PHP echo $profile->areaOfStudy ?></td>
 					</tr>
 					<tr>
 						<th>Years in field</th>
-						<td>30</td>
+						<td><?PHP echo $profile->yearsOfStudy ?></td>
 					</tr>
 					<tr>
 						<th>Secondary Area of Study</th>
-						<td>This is my second area of study</td>
+						<td><?PHP echo $profile->secondaryAreaOfStudy ?></td>
 					</tr>
 				</table>
 			</article>
 			<article id="summary">
 				<h4>Summary/About Info</h4>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore
-					magna aliqua. Ut enim ad minim veniam, quis nostrud
-					exercitation ullamco laboris nisi ut aliquip ex ea
-					commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-					non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.
+					<?PHP echo $profile->about ?>
 				</p>
 			</article>
 			<article id="achievements">
 				<h4>Achievements/Interests</h4>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore
-					magna aliqua. Ut enim ad minim veniam, quis nostrud
-					exercitation ullamco laboris nisi ut aliquip ex ea
-					commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-					non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum.
+					<?PHP echo $profile->achievements_interests ?>
 				</p>
 			</article>
 		</section>
