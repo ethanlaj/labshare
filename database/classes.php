@@ -213,9 +213,9 @@ class Application
 	 * @param {int} user_id 
 	 * @param {int} post_id 
 	 * @param {int} status
-	 * 1 = Awaiting response;
-	 * 2 = Declined;
-	 * 3 = Accepted;
+	 * AWAIT = Awaiting response;
+	 * DECLINE = Declined;
+	 * ACCEPT = Accepted;
 	 */
 
 	function __construct($user_id, $post_id, $status)
