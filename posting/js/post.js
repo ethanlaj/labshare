@@ -14,7 +14,11 @@
 	function init() {
 		// Post buttons
 		let savePostBtn = document.getElementById("savePostBtn");
-		savePostBtn.addEventListener("click", savePost);
+		if (savePostBtn.innerText == "Save")
+			savePostBtn.addEventListener("click", savePost);
+		else
+			savePostBtn.addEventListener("click", unsavePost);
+
 
 		let applyToPostBtn = document.getElementById("applyToPostBtn");
 		applyToPostBtn.addEventListener("click", applyToPost);
@@ -58,6 +62,21 @@
 
 		let deleteCommentBtn = document.getElementById("deleteCommentBtn");
 		deleteCommentBtn.addEventListener("click", deleteComment);
+	}
+
+	/**
+	 * Shows a message in a modal
+	 * @param {string} title The title of the modal
+	 * @param {string} body The body text of the modal
+	 */
+	function showModal(title, body) {
+		let titleEle = document.querySelector("#generalMessage .modal-title");
+		let bodyEle = document.querySelector("#generalMessage .modal-body");
+
+		titleEle.innerText = title;
+		bodyEle.innerText = body;
+
+		$("#generalMessage").modal("show");
 	}
 
 	/**
@@ -107,7 +126,7 @@
 				.then(() => {
 					location.reload();
 				}).catch((e) => {
-					console.error("Could not reply to comment")
+					showModal("Failed to Add Comment", "Could not reply to comment, please try again later");
 				});
 		}
 	}
@@ -137,51 +156,132 @@
 	 * Saves the current post
 	 */
 	function savePost() {
-		console.log("Saved post");
-		$("#save").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/save.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				showModal("Successfully Saved", "You have successfully saved this post");
+			}).catch((e) => {
+				showModal("Failed to Save", "Could not save this post, please try again later");
+			});
+	}
+
+	/**
+	 * Saves the current post
+	 */
+	function unsavePost() {
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/unsave.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				showModal("Successfully Unsaved", "You have successfully unsaved this post");
+			}).catch((e) => {
+				showModal("Failed to Unsave", "Could not unsave this post, please try again later");
+			});
 	}
 
 	/**
 	 * Applies to the current post
 	 */
 	function applyToPost() {
-		console.log("Applied to post");
-		$("#apply").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/apply.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				showModal("Successfully Applied", "You have successfully applied to this project");
+			}).catch((e) => {
+				showModal("Failed to Apply", "Could not apply to this project, please try again later");
+			});
 	}
 
 	/**
 	 * Reports the current post
 	 */
 	function reportPost() {
-		console.log("Reported post");
-		$("#reportPost").modal("hide");
-		$("#reportReceived").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("id", urlParams.get("id"));
+		data.append("type", 1);
+
+		fetch("api/report.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				$("#reportPost").modal("hide");
+				showModal("Report Received", "Thank you for your report");
+			}).catch((e) => {
+				showModal("Failed to Report Post", "Could not report post, please try again later");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
 	 * Deletes the current post
 	 */
 	function deletePost() {
-		console.log("Deleted post");
-		$("#deletePost").modal("hide");
-		$("#postDeleted").modal("show");
+		this.disabled = true;
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+
+		fetch("api/deletePost.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				window.location = "posts.html"
+			}).catch((e) => {
+				showModal("Failed to Delete Post", "Could not delete this post, please try again later");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
 	 * Reports a comment
 	 */
 	function reportComment() {
+		this.disabled = true;
+
 		let comment = lastClickedComment;
 
-		console.log(`Reported comment ${comment.id}`);
-		$("#reportComment").modal("hide");
-		$("#reportReceived").modal("show");
+		let data = new FormData();
+		data.append("id", comment.id.split("comment")[1]);
+		data.append("type", 2);
+
+		fetch("api/report.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				$("#reportComment").modal("hide");
+				showModal("Report Received", "Thank you for your report");
+			}).catch((e) => {
+				showModal("Failed to Report Comment", "Could not report comment, please try again later");
+			}).finally(() => this.disabled = false)
 	}
 
 	/**
 	 * Adds a comment to the post
 	 */
 	function addComment() {
+		this.disabled = true;
+
 		let modalTextArea = document.getElementById("commentAddTextForm");
 
 		const urlParams = new URLSearchParams(window.location.search);
@@ -195,7 +295,7 @@
 			.then(() => {
 				location.reload();
 			}).catch((e) => {
-				console.error("Could not add a new comment")
+				showModal("Failed to Add Comment", "Could not add comment, please try again later");
 			});
 	}
 
@@ -236,6 +336,7 @@
 
 		console.log(`Deleted comment ${comment.id}`);
 		$("#deleteComment").modal("hide");
+
 		$("#commentDeleted").modal("show");
 	}
 

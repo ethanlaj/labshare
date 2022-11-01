@@ -1,3 +1,7 @@
+.commentContent {
+	overflow-wrap: anywhere;
+}
+
 #postContent {
 	display: flex;
 }
@@ -13,10 +17,12 @@
 }
 
 #postTitle {
+	overflow-wrap: anywhere;
 	margin-top: 0.5em;
 }
 
 #postContent p {
+	overflow-wrap: anywhere;
 	margin: 0;
 }
 
@@ -43,7 +49,7 @@ img {
 	display: none;
 }
 
-.comment:not(.reply)  {
+.comment:not(.reply) {
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -61,10 +67,10 @@ img {
 
 .replyActionButtons {
 	display: flex;
-	margin-top: 0.6em
+	margin-top: 0.6em;
 }
 .replyActionButtons button:first-child {
-	margin-right: 0.2em
+	margin-right: 0.2em;
 }
 
 .replyBox {
@@ -96,11 +102,11 @@ img {
 
 #commentHeader h2 {
 	margin-right: auto;
-	margin-left: 10px;
+	margin-left: 0;
 }
 
 #commentHeader button {
-	margin-right: 10px;
+	margin-right: 0;
 }
 
 #commentTable {
