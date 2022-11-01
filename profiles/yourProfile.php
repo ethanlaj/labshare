@@ -45,7 +45,7 @@ if (isset($_GET["id"])) {
 	<div id="navbar"></div>
 
 	<header>
-		<h1><?PHP echo $profile->user->fullName ?></h1>
+		<h1><?PHP echo $profile->fullName ?></h1>
 		<button class="btn btn-primary" type="button" id="edit">
 			Edit Profile
 		</button>
@@ -53,14 +53,14 @@ if (isset($_GET["id"])) {
 	<main>
 		<section id="flexContainer">
 			<article id="picture">
-				<img id="background" src="https://wallpaperaccess.com/full/1324659.jpg" alt="Background photo" />
+				<img id="background" src="<?PHP $profile->profilePic . IMG_JPG ?>" alt="Background photo" />
 				<img id="profile" src="../global/etown-BlueJay.png" alt="Name of User" />
 			</article>
 			<article>
 				<table class="table">
 					<tr>
 						<th>Age</th>
-						<td>55</td>
+						<td><?PHP echo $profile->age ?></td>
 					</tr>
 					<tr>
 						<th>Qualifications/Degrees</th>

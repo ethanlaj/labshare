@@ -153,6 +153,10 @@ class Profile
 	public $secondaryAreaOfStudy;
 	public $about;
 	public $achievements_interests;
+	public $fullName;
+	public $age;
+	public $profilePic;
+	public $banner;
 
 	public $user;
 
@@ -175,7 +179,12 @@ class Profile
 		$yearsOfStudy,
 		$secondaryAreaOfStudy,
 		$about,
-		$achievements_interests
+		$achievements_interests,
+		$fullName,
+		$age,
+		$profilePic,
+		$banner
+
 	) {
 
 		$this->user_id = $user_id;
@@ -185,6 +194,10 @@ class Profile
 		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
 		$this->about = $about;
 		$this->achievements_interests = $achievements_interests;
+		$this->fullName = $fullName;
+		$this->age = $age;
+		$this->profilePic = $profilePic;
+		$this->banner = $banner;
 	}
 }
 
