@@ -29,9 +29,15 @@ $birthday = array_key_exists("birthday", $_POST)
     ? $_POST["birthday"]
     : null;
 
+if ($firstName && $lastName && $email && $userName && $pwd && $birthday) {
+    try {
+        $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-try {
-    createUser($user_id, $firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
-} catch (Exception $e) {
-    echo $e;
+        createUser($user_id, $firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+    } catch (Exception $e) {
+        echo $e;
+    }
+} else {
+    header("HTTP/1.1 400 Invalid parameter");
+    echo "missing a city parameter";
 }

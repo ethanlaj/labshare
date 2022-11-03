@@ -49,3 +49,19 @@ function createUser(
         header("HTTP/1.1 500 Fatal Error");
     }
 }
+
+function get_user_login($username)
+{
+    $sql = "SELECT user_id, username, pwd FROM users WHERE username=:username";
+
+    $params =
+        [
+            ":username" => $username,
+        ];
+
+    try {
+        return getDataFromSQL($sql, $params)[0];
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
