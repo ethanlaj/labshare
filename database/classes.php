@@ -130,43 +130,43 @@ class User
 	 * @param {boolean} inactive
 	 */
 
-	function __construct(
-		$user_id,
-		$username,
-		$firstName,
-		$lastName,
-		$email,
-		$phoneNumber,
-		$birthday,
-		$qualifications,
-		$areaofstudy,
-		$years,
-		$secondarea,
-		$summary,
-		$achievements,
-		$age,
-		$profilePic,
-		$banner,
-		$inactive
-	) {
+	function __construct($db_object, $inactive)
+	{
 
-		$this->user_id = $user_id;
-		$this->username = $username;
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->fullName = $firstName . " " . $lastName;
-		$this->email = $email;
-		$this->phoneNumber = $phoneNumber;
-		$this->birthday = $birthday;
-		$this->qualifications = $qualifications;
-		$this->areaofstudy = $areaofstudy;
-		$this->years = $years;
-		$this->secondarea = $secondarea;
-		$this->summary = $summary;
-		$this->achievements = $achievements;
-		$this->age = $age;
-		$this->profilePic = $profilePic;
-		$this->banner = $banner;
+		$this->user_id = array_key_exists("user_id", $db_object)
+			? $db_object["user_id"] : null;
+		$this->username = array_key_exists("username", $db_object)
+			? $db_object["username"] : null;
+		$this->firstName = array_key_exists("firstName", $db_object)
+			? $db_object["firstName"] : null;
+		$this->lastName = array_key_exists("lastName", $db_object)
+			? $db_object["firstName"] : null;
+		$this->fullName = array_key_exists("firstName", $db_object) && array_key_exists("lastName", $db_object)
+			? $db_object["firstName"] . " " . $db_object["lastName"] : null;
+		$this->email = array_key_exists("emai;", $db_object)
+			? $db_object["email"] : null;
+		$this->phoneNumber = array_key_exists("phoneNumber", $db_object)
+			? $db_object["phoneNumber"] : null;
+		$this->birthday = array_key_exists("birthday", $db_object)
+			? $db_object["birthday"] : null;
+		$this->qualifications = array_key_exists("qualifications", $db_object)
+			? $db_object["qualifications"] : null;
+		$this->areaofstudy = array_key_exists("areaofstudy", $db_object)
+			? $db_object["areaofstudy"] : null;
+		$this->years = array_key_exists("years", $db_object)
+			? $db_object["years"] : null;
+		$this->secondarea = array_key_exists("secondarea", $db_object)
+			? $db_object["secondarea"] : null;
+		$this->summary = array_key_exists("summary", $db_object)
+			? $db_object["summary"] : null;
+		$this->achievements = array_key_exists("achievements", $db_object)
+			? $db_object["achievements"] : null;
+		$this->age = array_key_exists("age", $db_object)
+			? $db_object["age"] : null;
+		$this->profilePic = array_key_exists("profilePic", $db_object)
+			? $db_object["profilePic"] : null;
+		$this->banner = array_key_exists("banner", $db_object)
+			? $db_object["banner"] : null;
 		$this->inactive = $inactive;
 	}
 }

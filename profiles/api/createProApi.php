@@ -38,8 +38,6 @@ $banner = array_key_exists("banner", $_POST)
     ? $_POST["banner"]
     : null;
 
-var_dump($_FILES);
-
 
 try {
     createProfile($user_id, $quals_degrees, $areaOfStudy, $yearsOfStudy, $secondaryAreaOfStudy, $about, $achievements, $fullName, $age, $profilePic, $banner);

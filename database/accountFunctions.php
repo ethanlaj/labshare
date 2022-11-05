@@ -10,31 +10,23 @@ error_reporting(E_ALL);
 
 
 function createUser(
-    $firstName = null,
-    $lastName = null,
-    $email = null,
-    $username = null,
-    $pwd = null,
-    $phoneNumber = null,
-    $birthday = null,
-    $qualifications = null,
-    $areaofstudy = null,
-    $years = null,
-    $secondarea = null
+    $firstName,
+    $lastName,
+    $email,
+    $userName,
+    $pwd,
+    $phoneNumber,
+    $birthday,
 ) {
-    $sql = "INSERT INTO users (firstName,lastName, email, username, pwd, phoneNumber, birthday, qualifications, areaofstudy, years, secondarea)
+    $sql = "INSERT INTO users (firstName,lastName, email, username, pwd, phoneNumber, birthday)
           VALUES (:firstName,
 		:lastName,
 		:email,
 		:username,
 		:pwd,
 		:phoneNumber,
-        :birthday,
-        :qualifications,
-        :areaofstudy,
-        :years,
-        :secondarea
-	)";
+        :birthday
+	);";
 
 
     $params =
@@ -42,14 +34,10 @@ function createUser(
             ":firstName" => $firstName,
             ":lastName" => $lastName,
             ":email" => $email,
-            ":username" => $username,
+            ":username" => $userName,
             ":pwd" => $pwd,
             ":phoneNumber" => $phoneNumber,
-            ":birthday" => $birthday,
-            ":qualifications" => $qualifications,
-            ":areaofstudy" => $areaofstudy,
-            ":years" => $years,
-            ":secondarea" => $secondarea
+            ":birthday" => $birthday
         ];
 
     try {
@@ -59,17 +47,65 @@ function createUser(
     }
 }
 
-function get_user_login($username)
+function get_user_login($userName)
 {
     $sql = "SELECT user_id, username, pwd FROM users WHERE username=:username";
 
     $params =
         [
-            ":username" => $username,
+            ":username" => $userName,
         ];
 
     try {
         return getDataFromSQL($sql, $params)[0];
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+
+function updatePictures($profilepic = null, $banner = null)
+{
+    $sql = "INSERT INTO users (profilepic, banner)
+          VALUES (:profilepic,
+		:banner
+	
+	)";
+
+
+    $params =
+        [
+            ":profilepic" => $profilepic,
+            ":banner" => $banner
+
+        ];
+
+    try {
+        postDataFromSQL($sql, $params);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+
+function createProfile($qualifications = null, $areaofstudy = null, $years = null, $secondarea = null)
+{
+    $sql = "INSERT INTO users (qualifications, areaofstudy, years, secondarea)
+    VALUES (:qualifications,
+  :areaofstudy, :years, :secondarea
+
+)";
+
+
+    $params =
+        [
+            ":qualifications" => $qualifications,
+            ":areaofstudy" => $areaofstudy,
+            ":years" => $years,
+            ":secondarea" => $secondarea
+
+        ];
+
+    try {
+        postDataFromSQL($sql, $params);
     } catch (Exception $e) {
         header("HTTP/1.1 500 Fatal Error");
     }

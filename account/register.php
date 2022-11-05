@@ -29,7 +29,7 @@
 
 <body>
 	<main id="registerform">
-		<form id="form" action="./api/register.php">
+		<form id="form" action="./api/register.php" method="post">
 			<article>
 				<h1>Register</h1>
 				<p>
@@ -63,23 +63,7 @@
 			</article>
 			<article>
 				<label for="birthday" class="form-label">Birthday</label>
-				<input type="date" class="form-control" name="birthday" id="birthday" required />
-			</article>
-			<article>
-				<label for="qualifications" class="form-label">Qualifications/Degrees</label>
-				<input type="text" class="form-control" name="qualifications" id="qualifications" minlength="2" maxlength="45" required />
-			</article>
-			<article>
-				<label for="areaofstudy" class="form-label">Area of Study</label>
-				<input type="text" class="form-control" name="areaofstudy" id="areaofstudy" minlength="2" maxlength="45" required />
-			</article>
-			<article>
-				<label for="years" class="form-label">Years in Field</label>
-				<input type="text" class="form-control" name="years" id="years" minlength="1" maxlength="45" required />
-			</article>
-			<article>
-				<label for="secondfield" class="form-label">Secondary Area of Study</label>
-				<input type="text" class="form-control" name="secondarea" id="secondarea" minlength="2" maxlength="45" required />
+				<input type="date" value="2017-06-01" class="form-control" name="birthday" id="birthday" required />
 			</article>
 			<article>
 				<input class="btn btn-primary" type="submit" value="Submit" id="submit" />
