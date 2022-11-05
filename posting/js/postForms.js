@@ -1,5 +1,3 @@
-import { User } from "../../classes/user.js";
-
 (function () {
 	"use strict";
 

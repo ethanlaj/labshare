@@ -136,25 +136,27 @@ $logged_in_user = isset($_SESSION["user"])
 					?>
 						<tr id=<?PHP echo "comment" . $comment->comment_id ?> class="comment">
 							<td>
-								<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
-								<div class="user">
-									<img src="../global/blank.jpg" alt="<?PHP echo $comment->username ?>" />
-									<a href="<?PHP echo "../profiles/yourProfile.php?id=" . $comment->author_id ?>">
-										<?PHP echo $comment->username ?>
-									</a>
-								</div>
-							</td>
-							<td>
-								<div class="commentContent"><?PHP echo $comment->content ?></div>
+								<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $comment->username ?>" />
+								<div class="nextToCommentProfilePic">
+									<div class="commentUnameDate">
+										<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $comment->author_id ?>">
+											<?PHP echo $comment->username ?>
+										</a>
+										<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
+									</div>
+									<div class="contentAndReplyBox">
+										<div class="commentContent"><?PHP echo $comment->content ?></div>
 
-								<textarea hidden class="replyBox form-control" maxlength="500"></textarea>
-								<div class="replyActionButtons">
-									<button hidden class="cancelReply btn btn-sm btn-secondary">
-										Cancel
-									</button>
-									<button class="replyButton btn btn-sm btn-secondary">
-										Reply
-									</button>
+										<textarea hidden class="replyBox form-control" maxlength="500"></textarea>
+										<div class="replyActionButtons">
+											<button class="replyButton btn btn-sm btn-secondary">
+												Reply
+											</button>
+											<button hidden class="cancelReply btn btn-sm btn-secondary">
+												Cancel
+											</button>
+										</div>
+									</div>
 								</div>
 							</td>
 							<td>
@@ -192,18 +194,18 @@ $logged_in_user = isset($_SESSION["user"])
 						?>
 							<tr id="<?PHP echo "reply{$i}comment{$child->comment_id}" ?>" class="comment reply">
 								<td>
-									<div class="commentDate"><?PHP echo $child->creationDate ?></div>
-									<div class="user">
-										<img src="../global/blank.jpg" alt="<?PHP echo $child->username ?>" />
-										<a href="<?PHP echo "../profiles/yourProfile.php?id=" . $child->author_id ?>">
-											<?PHP echo $child->username ?>
-										</a>
-									</div>
-								</td>
-								<td>
-									<div><i>Replying to <?PHP echo $comment->username ?></i></div>
-									<div class="replyText commentContent">
-										<?PHP echo $child->content ?>
+									<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $child->username ?>" />
+									<div class="nextToCommentProfilePic">
+										<div class="commentUnameDate">
+											<div>
+												<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $child->author_id ?>">
+													<?PHP echo $child->username ?>
+												</a>
+												<div><i>Replying to <?PHP echo $comment->username ?></i></div>
+											</div>
+											<div class="commentDate"><?PHP echo $child->creationDate ?></div>
+										</div>
+										<div class="replyText commentContent"><?PHP echo $child->content ?></div>
 									</div>
 								</td>
 								<td>

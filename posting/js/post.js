@@ -146,6 +146,7 @@
 	 */
 	function noReplyView(comment) {
 		comment.classList.remove('replying');
+		this.disabled = false;
 
 		comment.querySelector(".replyButton").classList.replace("btn-primary", "btn-secondary")
 		comment.querySelector(".cancelReply").hidden = true;
