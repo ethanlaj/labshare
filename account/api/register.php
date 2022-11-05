@@ -29,7 +29,7 @@ $birthday = array_key_exists("birthday", $_POST)
 
 try {
     $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-
+    echo $birthday;
     createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
 } catch (Exception $e) {
     echo $e;

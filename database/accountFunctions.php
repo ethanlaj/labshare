@@ -16,7 +16,7 @@ function createUser(
     $userName,
     $pwd,
     $phoneNumber,
-    $birthday,
+    $birthday
 ) {
     $sql = "INSERT INTO users (firstName,lastName, email, username, pwd, phoneNumber, birthday)
           VALUES (:firstName,
