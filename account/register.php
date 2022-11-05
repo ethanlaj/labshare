@@ -6,15 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Registration Page</title>
 	<!-- Bootstrap -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
 	<!--Montserrat Font-->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap"
-		rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -32,7 +29,7 @@
 
 <body>
 	<main id="registerform">
-		<form id="form" action="./api/createUser.php">
+		<form id="form" action="./api/register.php">
 			<article>
 				<h1>Register</h1>
 				<p>
@@ -67,6 +64,22 @@
 			<article>
 				<label for="birthday" class="form-label">Birthday</label>
 				<input type="date" class="form-control" name="birthday" id="birthday" required />
+			</article>
+			<article>
+				<label for="qualifications" class="form-label">Qualifications/Degrees</label>
+				<input type="text" class="form-control" name="qualifications" id="qualifications" minlength="2" maxlength="45" required />
+			</article>
+			<article>
+				<label for="areaofstudy" class="form-label">Area of Study</label>
+				<input type="text" class="form-control" name="areaofstudy" id="areaofstudy" minlength="2" maxlength="45" required />
+			</article>
+			<article>
+				<label for="years" class="form-label">Years in Field</label>
+				<input type="text" class="form-control" name="years" id="years" minlength="1" maxlength="45" required />
+			</article>
+			<article>
+				<label for="secondfield" class="form-label">Secondary Area of Study</label>
+				<input type="text" class="form-control" name="secondarea" id="secondarea" minlength="2" maxlength="45" required />
 			</article>
 			<article>
 				<input class="btn btn-primary" type="submit" value="Submit" id="submit" />

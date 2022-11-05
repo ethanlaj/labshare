@@ -60,38 +60,38 @@ if (isset($_GET["id"])) {
 				<table class="table">
 					<tr>
 						<th>Age</th>
-						<td><?PHP echo $profile->age ?></td>
+						<td><?PHP echo $user->age ?></td>
 					</tr>
 					<tr>
 						<th>Qualifications/Degrees</th>
 						<td>
-							<?PHP echo $profile->quals_degrees ?>
+							<?PHP echo $user->qualifications ?>
 						</td>
 					</tr>
 					<tr>
 						<th>Area of Study</th>
-						<td><?PHP echo $profile->areaOfStudy ?></td>
+						<td><?PHP echo $user->areaofstudy ?></td>
 					</tr>
 					<tr>
 						<th>Years in field</th>
-						<td><?PHP echo $profile->yearsOfStudy ?></td>
+						<td><?PHP echo $user->years ?></td>
 					</tr>
 					<tr>
 						<th>Secondary Area of Study</th>
-						<td><?PHP echo $profile->secondaryAreaOfStudy ?></td>
+						<td><?PHP echo $user->secondarea ?></td>
 					</tr>
 				</table>
 			</article>
 			<article id="summary">
 				<h4>Summary/About Info</h4>
 				<p>
-					<?PHP echo $profile->about ?>
+					<?PHP echo $user->summary ?>
 				</p>
 			</article>
 			<article id="achievements">
 				<h4>Achievements/Interests</h4>
 				<p>
-					<?PHP echo $profile->achievements_interests ?>
+					<?PHP echo $user->achievements ?>
 				</p>
 			</article>
 		</section>

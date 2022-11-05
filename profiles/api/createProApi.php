@@ -38,6 +38,7 @@ $banner = array_key_exists("banner", $_POST)
     ? $_POST["banner"]
     : null;
 
+var_dump($_FILES);
 
 
 try {

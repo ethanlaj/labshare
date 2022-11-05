@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 require_once("../../database/accountFunctions.php");
 
 //$user_id = $_POST["user_id"];
-$user_id = 7;
 $firstName = array_key_exists("firstName", $_POST)
     ? $_POST["firstName"]
     : null;
@@ -28,16 +27,29 @@ $phoneNumber = array_key_exists("phoneNumber", $_POST)
 $birthday = array_key_exists("birthday", $_POST)
     ? $_POST["birthday"]
     : null;
+$qualifications = array_key_exists("qualifications", $_POST)
+    ? $_POST["qualifications"]
+    : null;
+$areaofstudy = array_key_exists("areaofstudy", $_POST)
+    ? $_POST["areaofstudy"]
+    : null;
+$years = array_key_exists("years", $_POST)
+    ? $_POST["years"]
+    : null;
+$secondarea = array_key_exists("secondarea", $_POST)
+    ? $_POST["secondarea"]
+    : null;
 
-if ($firstName && $lastName && $email && $userName && $pwd && $birthday) {
+
+if ($firstName && $lastName && $email && $userName && $pwd && $birthday && $qualifications && $areaofstudy && $years && $secondarea) {
     try {
         $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-        createUser($user_id, $firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+        createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday, $qualifications, $areaofstudy, $years, $secondarea);
     } catch (Exception $e) {
         echo $e;
     }
 } else {
     header("HTTP/1.1 400 Invalid parameter");
-    echo "missing a city parameter";
+    echo "You are missing a field";
 }

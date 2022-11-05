@@ -10,37 +10,46 @@ error_reporting(E_ALL);
 
 
 function createUser(
-    $user_id,
     $firstName = null,
     $lastName = null,
     $email = null,
     $username = null,
     $pwd = null,
     $phoneNumber = null,
-    $birthday = null
+    $birthday = null,
+    $qualifications = null,
+    $areaofstudy = null,
+    $years = null,
+    $secondarea = null
 ) {
-    $sql = "INSERT INTO users (user_id, firstName,lastName, email, username, pwd, phoneNumber, birthday)
-          VALUES (:user_id,
-        :firstName,
+    $sql = "INSERT INTO users (firstName,lastName, email, username, pwd, phoneNumber, birthday, qualifications, areaofstudy, years, secondarea)
+          VALUES (:firstName,
 		:lastName,
 		:email,
 		:username,
 		:pwd,
 		:phoneNumber,
-        :birthday
+        :birthday,
+        :qualifications,
+        :areaofstudy,
+        :years,
+        :secondarea
 	)";
 
 
     $params =
         [
-            ":user_id" => $user_id,
             ":firstName" => $firstName,
             ":lastName" => $lastName,
             ":email" => $email,
             ":username" => $username,
             ":pwd" => $pwd,
             ":phoneNumber" => $phoneNumber,
-            ":birthday" => $birthday
+            ":birthday" => $birthday,
+            ":qualifications" => $qualifications,
+            ":areaofstudy" => $areaofstudy,
+            ":years" => $years,
+            ":secondarea" => $secondarea
         ];
 
     try {

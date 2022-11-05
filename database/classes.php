@@ -106,6 +106,16 @@ class User
 	public $email;
 	public $phoneNumber;
 	public $birthday;
+	public $qualifications;
+	public $areaofstudy;
+	public $years;
+	public $secondarea;
+	public $summary;
+	public $achievements;
+	public $age;
+	public $profilePic;
+	public $banner;
+
 	public $inactive;
 
 	/**
@@ -128,6 +138,15 @@ class User
 		$email,
 		$phoneNumber,
 		$birthday,
+		$qualifications,
+		$areaofstudy,
+		$years,
+		$secondarea,
+		$summary,
+		$achievements,
+		$age,
+		$profilePic,
+		$banner,
 		$inactive
 	) {
 
@@ -139,6 +158,15 @@ class User
 		$this->email = $email;
 		$this->phoneNumber = $phoneNumber;
 		$this->birthday = $birthday;
+		$this->qualifications = $qualifications;
+		$this->areaofstudy = $areaofstudy;
+		$this->years = $years;
+		$this->secondarea = $secondarea;
+		$this->summary = $summary;
+		$this->achievements = $achievements;
+		$this->age = $age;
+		$this->profilePic = $profilePic;
+		$this->banner = $banner;
 		$this->inactive = $inactive;
 	}
 }

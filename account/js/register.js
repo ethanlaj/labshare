@@ -16,7 +16,7 @@
      */
     function link(event) {
         event.preventDefault();
-        window.location.href = "../profiles/createProfile.html";
+        window.location.href = "../posting/posts.html";
 
     }
 

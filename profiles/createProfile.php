@@ -53,38 +53,14 @@
 			<input type="text" class="form-control" name="age" id="age" minlength="2" maxlength="45" required />
 		</div>
 		<div>
-			<label for="qualifications" class="form-label">Qualifications/Degrees</label>
-			<input type="text" class="form-control" name="qualifications" id="qualifications" minlength="2" maxlength="45" required />
-		</div>
-		<div>
-			<label for="areaofstudy" class="form-label">Area of Study</label>
-			<input type="text" class="form-control" name="areaofstudy" id="areaofstudy" minlength="2" maxlength="45" required />
-		</div>
-		<div>
-			<label for="years" class="form-label">Years in Field</label>
-			<input type="text" class="form-control" name="years" id="years" minlength="1" maxlength="45" required />
-		</div>
-		<div>
-			<label for="secondfield" class="form-label">Secondary Area of Study</label>
-			<input type="text" class="form-control" name="secondfield" id="secondfield" minlength="2" maxlength="45" required />
-		</div>
-		<div>
-			<label for="summary" class="form-label">Summary/About Info</label>
-			<textarea class="form-control" name="summary" id="summary" rows="5" cols="200" minlength="2" maxlength="300"></textarea>
-		</div>
-		<div>
-			<label for="achievements" class="form-label">Achievements/Interests</label>
-			<textarea class="form-control" name="achievements" id="achievements" rows="5" cols="200" minlength="2" maxlength="45"></textarea>
-		</div>
-		<div>
 			<label for="profilepic" class="form-label">Please select a profile picture:</label>
 
-			<input class="form-control" type="file" name="profilePic" id="profilePic" required capture="user" />
+			<input class="form-control" enctype="multipart/form-data" type="file" name="profilePic" id="profilePic" required capture="user" />
 		</div>
 		<div>
 			<label for="banner" class="form-label">Please select a picture for the profile banner:</label>
 
-			<input class="form-control" type="file" name="banner" id="banner" required capture="user" />
+			<input class="form-control" enctype="multipart/form-data" type="file" name="banner" id="banner" required capture="user" />
 		</div>
 		<div>
 			<input class="btn btn-primary" type="submit" value="Submit" id="submit" />
