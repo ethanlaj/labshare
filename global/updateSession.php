@@ -4,6 +4,7 @@ header("Content-Type: application/json");
 session_start();
 
 $reload_required = false;
+$logged_in = false;
 
 foreach ($_POST as $key => $value) {
 	if (!isset($_SESSION[$key]))
@@ -12,4 +13,9 @@ foreach ($_POST as $key => $value) {
 	$_SESSION[$key] = $value;
 }
 
-echo json_encode($reload_required);
+if (isset($_SESSION["user"]))
+	$logged_in = true;
+
+$arr = array("reload" => $reload_required, "logged_in" => $logged_in);
+
+echo json_encode($arr);

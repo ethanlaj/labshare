@@ -68,7 +68,6 @@ class Comment
 
 	// Not mapped in the DB
 	public $children = array();
-	public $hasReported;
 
 	function __construct($db_object, $includeChildren = false)
 	{

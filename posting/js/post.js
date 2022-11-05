@@ -14,20 +14,20 @@
 	function init() {
 		// Post buttons
 		let savePostBtn = document.getElementById("savePostBtn");
-		if (savePostBtn.innerText == "Save")
+		if (savePostBtn?.innerText == "Save")
 			savePostBtn.addEventListener("click", savePost);
 		else
-			savePostBtn.addEventListener("click", unsavePost);
+			savePostBtn?.addEventListener("click", unsavePost);
 
 
 		let applyToPostBtn = document.getElementById("applyToPostBtn");
-		applyToPostBtn.addEventListener("click", applyToPost);
+		applyToPostBtn?.addEventListener("click", applyToPost);
 
 		let reportPostBtn = document.getElementById("reportPostBtn");
-		reportPostBtn.addEventListener("click", reportPost);
+		reportPostBtn?.addEventListener("click", reportPost);
 
 		let deletePostBtn = document.getElementById("deletePostBtn");
-		deletePostBtn.addEventListener("click", deletePost);
+		deletePostBtn?.addEventListener("click", deletePost);
 
 		// Reply buttons
 		let replyButtons = document.getElementsByClassName("replyButton");
@@ -52,16 +52,16 @@
 			initReportCommentBtn.addEventListener("click", lastClicked);
 
 		let reportCommentBtn = document.getElementById("reportCommentBtn");
-		reportCommentBtn.addEventListener("click", reportComment);
+		reportCommentBtn?.addEventListener("click", reportComment);
 
 		let addCommentBtn = document.getElementById("addCommentBtn");
-		addCommentBtn.addEventListener("click", addComment);
+		addCommentBtn?.addEventListener("click", addComment);
 
 		let editCommentBtn = document.getElementById("editCommentBtn");
-		editCommentBtn.addEventListener("click", editComment);
+		editCommentBtn?.addEventListener("click", editComment);
 
 		let deleteCommentBtn = document.getElementById("deleteCommentBtn");
-		deleteCommentBtn.addEventListener("click", deleteComment);
+		deleteCommentBtn?.addEventListener("click", deleteComment);
 	}
 
 	/**

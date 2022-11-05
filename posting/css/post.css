@@ -2,17 +2,27 @@
 	overflow-wrap: anywhere;
 }
 
-#postContent {
+#post {
 	display: flex;
+	flex-direction: column;
 }
 
-#postContent #actionButtons {
+#post #actionButtons {
 	display: flex;
 	margin-bottom: 5px;
 	margin-bottom: 2em;
 }
 
-#postContent #actionButtons > button:nth-child(even) {
+#postHeader {
+	display: flex;
+}
+
+#nextToProfilePic {
+	display: flex;
+	flex-direction: column;
+}
+
+#postHeader #actionButtons > button:nth-child(even) {
 	margin: 0 5px;
 }
 
@@ -21,9 +31,14 @@
 	margin-top: 0.5em;
 }
 
-#postContent p {
-	overflow-wrap: anywhere;
+#postHeader p {
 	margin: 0;
+}
+
+#postText {
+	margin-top: 1rem;
+	margin-left: 2rem;
+	overflow-wrap: anywhere;
 }
 
 #postTitleWithDropdown {
@@ -32,8 +47,8 @@
 }
 
 img {
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	border: 2px solid black;
 	border-radius: 50%;
 	object-fit: cover;
@@ -85,7 +100,7 @@ img {
 	margin-bottom: 0.5em;
 }
 
-#postContent {
+#post {
 	margin: auto;
 	width: 70%;
 }
@@ -117,6 +132,18 @@ img {
 
 #commentTable tbody {
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#commentTable td:first-child {
+	width: 25%;
+}
+
+#commentTable td:nth-child(2) {
+	width: 70%;
+}
+
+#commentTable td:nth-child(3) {
+	width: 5%;
 }
 
 .user {

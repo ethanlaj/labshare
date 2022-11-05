@@ -8,6 +8,9 @@ if (isset($_GET["id"])) {
 
 	$post = getPost($_GET["id"], true);
 }
+
+$logged_in_user = isset($_SESSION["user"])
+	? $_SESSION["user"] : null;
 ?>
 
 <!DOCTYPE html>
@@ -45,58 +48,63 @@ if (isset($_GET["id"])) {
 	<div id="navbar"></div>
 
 	<?PHP if ($post) { ?>
-		<main id="postContent">
-			<img src="../global/etown-BlueJay.png" title="Profile Picture" alt="Profile Picture">
+		<main id="post">
+			<div id="postHeader">
+				<img src="../global/etown-BlueJay.png" alt="<?PHP echo $post->username ?>">
 
-			<div id="nextToProfilePic">
-				<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
-					<?PHP echo $post->username ?>
-				</a>
-				<p><?PHP echo $post->creationDate ?></p>
+				<div id="nextToProfilePic">
+					<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
+						<?PHP echo $post->username ?>
+					</a>
+					<p><?PHP echo $post->creationDate ?></p>
 
-				<div id="postTitleWithDropdown">
-					<h1 id="postTitle">
-						<?PHP echo $post->title ?>
-					</h1>
-					<!--This Dropdown should only be visible to the post owner-->
-					<div class="dropdown-center dropend">
-						<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							...
-						</button>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="./editPost.php?id=<?PHP echo $post->post_id ?>">Edit</a>
-							</li>
-							<li>
-								<button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">
-									Delete
+					<div id="postTitleWithDropdown">
+						<h1 id="postTitle">
+							<?PHP echo $post->title ?>
+						</h1>
+						<?PHP if ($logged_in_user && $logged_in_user == $post->author_id) { ?>
+							<!--This Dropdown should only be visible to the post owner-->
+							<div class="dropdown-center dropend">
+								<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									...
 								</button>
-							</li>
-						</ul>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="./editPost.php?id=<?PHP echo $post->post_id ?>">Edit</a>
+									</li>
+									<li>
+										<button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">
+											Delete
+										</button>
+									</li>
+								</ul>
+							</div>
+						<?PHP } ?>
 					</div>
-				</div>
-				<div id="actionButtons">
-					<button id="savePostBtn" class="btn btn-sm btn-outline-primary">
-						<?PHP echo $post->hasSaved ? "Unsave" : "Save" ?>
-					</button>
-					<button id="applyToPostBtn" <?PHP if ($post->hasApplied) echo "disabled" ?> class="btn btn-sm btn-outline-success">
-						<?PHP echo $post->hasApplied ? "Applied" : "Apply" ?>
-					</button>
+					<?PHP if ($logged_in_user && $logged_in_user != $post->author_id) { ?>
+						<!-- Should only be visible for non-authors -->
+						<div id="actionButtons">
+							<button id="savePostBtn" class="btn btn-sm btn-outline-primary">
+								<?PHP echo $post->hasSaved ? "Unsave" : "Save" ?>
+							</button>
+							<button id="applyToPostBtn" <?PHP if ($post->hasApplied) echo "disabled" ?> class="btn btn-sm btn-outline-success">
+								<?PHP echo $post->hasApplied ? "Applied" : "Apply" ?>
+							</button>
 
+							<?PHP
+							if ($post->hasReported == false) {
+							?>
+								<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
+									Report
+								</button>
+						</div>
 					<?PHP
-					if ($post->hasReported == false) {
+							}
 					?>
-						<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
-							Report
-						</button>
-					<?PHP
-					}
-					?>
-
+				<?PHP } ?>
 				</div>
-
-				<p id="postText"><?PHP echo $post->content ?></p>
 			</div>
+			<p id="postText"><?PHP echo $post->content ?></p>
 		</main>
 
 		<hr />
@@ -104,14 +112,22 @@ if (isset($_GET["id"])) {
 		<section id="comments">
 			<div id="commentHeader">
 				<h2>Comments</h2>
-				<button id="newComment" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addComment">
-					Add Comment
-				</button>
+
+				<?PHP
+				if ($logged_in_user) {
+				?>
+					<button id="newComment" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addComment">
+						Add Comment
+					</button>
+				<?PHP
+				}
+				?>
 			</div>
 
 			<?PHP
-			if (count($post->comments) > 0) {
+			if ($logged_in_user && count($post->comments) > 0) {
 			?>
+				<!--For logged in users only-->
 				<table id="commentTable" class="table">
 					<?PHP
 					foreach ($post->comments as $comment) {
@@ -142,22 +158,30 @@ if (isset($_GET["id"])) {
 								</div>
 							</td>
 							<td>
-								<div class="dropdown-center">
-									<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										...
-									</button>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item edit">Edit</a></li>
-										<li>
-											<a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a>
-										</li>
-										<li>
-											<button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">
-												Report
-											</button>
-										</li>
-									</ul>
-								</div>
+								<?PHP if (
+									$logged_in_user == $comment->author_id
+									|| !reportExists($comment->comment_id, 2)
+								) { ?>
+									<div class="dropdown-center">
+										<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											...
+										</button>
+										<ul class="dropdown-menu">
+											<?PHP if ($logged_in_user == $comment->author_id) { ?>
+												<li><a class="dropdown-item edit">Edit</a></li>
+												<li>
+													<a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a>
+												</li>
+											<?PHP } else if (!reportExists($comment->comment_id, 2)) { ?>
+												<li>
+													<button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">
+														Report
+													</button>
+												</li>
+											<?PHP } ?>
+										</ul>
+									</div>
+								<?PHP } ?>
 							</td>
 						</tr>
 						<?PHP
@@ -183,22 +207,30 @@ if (isset($_GET["id"])) {
 									</div>
 								</td>
 								<td>
-									<div class="dropdown-center">
-										<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-											...
-										</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item edit">Edit</a></li>
-											<li>
-												<a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a>
-											</li>
-											<li>
-												<button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">
-													Report
-												</button>
-											</li>
-										</ul>
-									</div>
+									<?PHP if (
+										$logged_in_user == $child->author_id
+										|| !reportExists($child->comment_id, 2)
+									) { ?>
+										<div class="dropdown-center">
+											<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+												...
+											</button>
+											<ul class="dropdown-menu">
+												<?PHP if ($logged_in_user == $child->author_id) { ?>
+													<li><a class="dropdown-item edit">Edit</a></li>
+													<li>
+														<a class="dropdown-item delete" data-bs-toggle="modal" data-bs-target="#deleteComment">Delete</a>
+													</li>
+												<?PHP } else if (!reportExists($child->comment_id, 2)) { ?>
+													<li>
+														<button class="dropdown-item report" data-bs-toggle="modal" data-bs-target="#reportComment">
+															Report
+														</button>
+													</li>
+												<?PHP } ?>
+											</ul>
+										</div>
+									<?PHP } ?>
 								</td>
 							</tr>
 
@@ -208,14 +240,16 @@ if (isset($_GET["id"])) {
 					?>
 				</table>
 			<?PHP
+			} else if (!$logged_in_user) {
+			?>
+				<p>You must be logged in to view comments</p>
+			<?PHP
 			} else {
 			?>
-				<p>Be the first to comment</p>
+				<p>Be the first to comment!</p>
 			<?PHP
 			}
 			?>
-
-
 		</section>
 
 		<footer id="footer"></footer>
@@ -224,7 +258,8 @@ if (isset($_GET["id"])) {
 		<p>This post has been deleted or does not exist.</p>
 	<?PHP } ?>
 
-	<!-- This is where all the modals where be placed -->
+
+	<!-- This is where all the modals will be placed -->
 	<div id="modals">
 		<!-- Poster Dropdown-->
 		<!--Delete Post-->
