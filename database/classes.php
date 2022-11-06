@@ -130,7 +130,7 @@ class User
 	 * @param {boolean} inactive
 	 */
 
-	function __construct($db_object, $inactive)
+	function __construct($db_object)
 	{
 
 		$this->user_id = array_key_exists("user_id", $db_object)
@@ -143,7 +143,7 @@ class User
 			? $db_object["firstName"] : null;
 		$this->fullName = array_key_exists("firstName", $db_object) && array_key_exists("lastName", $db_object)
 			? $db_object["firstName"] . " " . $db_object["lastName"] : null;
-		$this->email = array_key_exists("emai;", $db_object)
+		$this->email = array_key_exists("email", $db_object)
 			? $db_object["email"] : null;
 		$this->phoneNumber = array_key_exists("phoneNumber", $db_object)
 			? $db_object["phoneNumber"] : null;
@@ -167,7 +167,6 @@ class User
 			? $db_object["profilePic"] : null;
 		$this->banner = array_key_exists("banner", $db_object)
 			? $db_object["banner"] : null;
-		$this->inactive = $inactive;
 	}
 }
 

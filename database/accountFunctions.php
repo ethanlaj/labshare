@@ -86,13 +86,14 @@ function updatePictures($profilepic = null, $banner = null)
     }
 }
 
-function createProfile($qualifications = null, $areaofstudy = null, $years = null, $secondarea = null)
+function createProfile($qualifications = null, $areaofstudy = null, $years = null, $secondarea = null, $summary = null, $achievements = null)
 {
-    $sql = "INSERT INTO users (qualifications, areaofstudy, years, secondarea)
-    VALUES (:qualifications,
-  :areaofstudy, :years, :secondarea
+    if (!isset($_SESSION["user"]))
+        return header("HTTP/1.1 401 Unauthorized");
 
-)";
+    $current_user_id = $_SESSION["user"];
+    $sql = "UPDATE users SET qualifications= :qualifications, areaofstudy = :areaofstudy, years = :years, secondarea = :secondarea, summary = :summary, achievements = :achievements
+    WHERE user_id = $current_user_id";
 
 
     $params =
@@ -100,7 +101,68 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
             ":qualifications" => $qualifications,
             ":areaofstudy" => $areaofstudy,
             ":years" => $years,
-            ":secondarea" => $secondarea
+            ":secondarea" => $secondarea,
+            ":summary" => $summary,
+            ":achievements" => $achievements,
+        ];
+
+    try {
+        postDataFromSQL($sql, $params);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+
+function getprofile()
+{
+    $current_user_id = $_SESSION["user"];
+    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements FROM users
+    WHERE user_id = $current_user_id;";
+
+
+    $prof = getDataFromSQL($sql);
+
+    if (count($prof) == 0)
+        return null;
+
+    $profile = $prof[0];
+    if ($profile) {
+        return new User($profile);
+    } else return null;
+}
+function accountinfo()
+{
+    $current_user_id = $_SESSION["user"];
+    $sql = "SELECT username, email, phoneNumber FROM users
+    WHERE user_id = $current_user_id;";
+
+
+    $account = getDataFromSQL($sql);
+
+    if (count($account) == 0)
+        return null;
+
+    $myaccount = $account[0];
+    if ($myaccount) {
+        return new User($myaccount);
+    } else return null;
+}
+function editAccount($userName = null, $pwd = null, $email = null, $phoneNumber = null)
+{
+    if (!isset($_SESSION["user"]))
+        return header("HTTP/1.1 401 Unauthorized");
+
+    $current_user_id = $_SESSION["user"];
+    $sql = "UPDATE users SET username= :username, pwd = :pwd, email = :email, phoneNumber = :phoneNumber
+    WHERE user_id = $current_user_id";
+
+
+    $params =
+        [
+            ":username" => $userName,
+            ":pwd" => $pwd,
+            ":email" => $email,
+            ":phoneNumber" => $phoneNumber
 
         ];
 
