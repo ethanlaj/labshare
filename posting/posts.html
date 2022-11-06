@@ -46,10 +46,30 @@
 			<!--Header Section-->
 			<header>
 				<h2>Posts</h2>
-				<a class="btn btn-outline-success btn-sm" href="createPost.html"
-					>Create A Post</a
-				>
-				<hr />
+				<div>
+					<a
+						id="createPostBtn"
+						class="btn btn-outline-success"
+						href="createPost.html"
+						>Create A Post</a
+					>
+					<form>
+						<div class="form-group">
+							<input
+								placeholder="Zip Code"
+								class="form-control"
+								name="zip"
+								type="text"
+							/>
+						</div>
+						<input
+							id="addFilter"
+							class="btn btn-outline-primary"
+							type="submit"
+							value="Add Filter"
+						/>
+					</form>
+				</div>
 			</header>
 
 			<table id="postTable" class="table table-hover">
