@@ -5,9 +5,9 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 if (isset($_GET["id"])) {
-	require_once("../database/profileFunctions.php");
+	require_once("../database/accountFunctions.php");
 
-	$profile = fetchProfile($_GET["id"]);
+	$profile = getprofile();
 }
 ?>
 
@@ -60,38 +60,38 @@ if (isset($_GET["id"])) {
 				<table class="table">
 					<tr>
 						<th>Age</th>
-						<td><?PHP echo $user->age ?></td>
+						<td><?PHP echo $profile->age ?></td>
 					</tr>
 					<tr>
 						<th>Qualifications/Degrees</th>
 						<td>
-							<?PHP echo $user->qualifications ?>
+							<?PHP echo $profile->qualifications ?>
 						</td>
 					</tr>
 					<tr>
 						<th>Area of Study</th>
-						<td><?PHP echo $user->areaofstudy ?></td>
+						<td><?PHP echo $profile->areaofstudy ?></td>
 					</tr>
 					<tr>
 						<th>Years in field</th>
-						<td><?PHP echo $user->years ?></td>
+						<td><?PHP echo $profile->years ?></td>
 					</tr>
 					<tr>
 						<th>Secondary Area of Study</th>
-						<td><?PHP echo $user->secondarea ?></td>
+						<td><?PHP echo $profile->secondarea ?></td>
 					</tr>
 				</table>
 			</article>
 			<article id="summary">
 				<h4>Summary/About Info</h4>
 				<p>
-					<?PHP echo $user->summary ?>
+					<?PHP echo $profile->summary ?>
 				</p>
 			</article>
 			<article id="achievements">
 				<h4>Achievements/Interests</h4>
 				<p>
-					<?PHP echo $user->achievements ?>
+					<?PHP echo $profile->achievements ?>
 				</p>
 			</article>
 		</section>
