@@ -172,3 +172,30 @@ function editAccount($userName = null, $pwd = null, $email = null, $phoneNumber 
         header("HTTP/1.1 500 Fatal Error");
     }
 }
+function editPictures($profilepic = null, $banner = null)
+{
+    if (!isset($_SESSION["user"]))
+        return header("HTTP/1.1 401 Unauthorized");
+
+    $current_user_id = $_SESSION["user"];
+    $sql = "UPDATE users SET profilepic= :profilepic, banner = :banner
+    WHERE user_id = $current_user_id";
+
+
+    $params =
+        [
+            ":profilepic" => $profilepic,
+            ":banner" => $banner,
+
+
+        ];
+
+    try {
+        postDataFromSQL($sql, $params);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+function storePic()
+{
+}
