@@ -11,10 +11,16 @@
 		const urlParams = new URLSearchParams(window.location.search);
 
 		let type = urlParams.get("type");
+		let zip = urlParams.get("zip");
 
 		fetch("./api/getAllPosts.php" + (type ? ("?type=" + type) : ""))
 			.then(checkStatus)
-			.then((posts) => addPostsToView(posts))
+			.then((posts) => {
+				if (zip)
+					return sortByZip(posts, zip);
+
+				addPostsToView(posts);
+			})
 			.catch((e) => console.log(e));
 
 		if (type) {
@@ -23,11 +29,58 @@
 			document.querySelector("header h2").innerText = str;
 			document.title = str;
 		}
-
-		let locationButton = document.querySelector("header h2");
-		locationButton.addEventListener("click", getMilesBetween);
 	}
 
+	/**
+	 * If a zip code is present in search parameters, 
+	 * we will sort by distance on the front end. 
+	 * @param {Array} posts All of the posts returned by the backend
+	 * @param {string} zip The zip code to sort by
+	 */
+	async function sortByZip(posts, zip) {
+		let selectedZipInfo = await getLatLon(zip);
+
+		if (selectedZipInfo) {
+			//posts = posts.filter(p => p.zip != null);
+			posts = posts.sort((a, b) => compareDistances(a, b, selectedZipInfo));
+		}
+
+		addPostsToView(posts);
+	}
+
+	/**
+	 * This function is used in the posts.sort() call.
+	 * Suprisingly, this works even if a post does not
+	 * have a zip code, as the getDistance function returns
+	 * a value around 5000 miles.
+	 * @param {object} a Post A
+	 * @param {object} b Post B
+	 * @param {object} selectedZipInfo An object containing the latitude and 
+	 * longitude of the selected zip code
+	 * @returns -1 if Post A is closer to the selected zip code than Post B;
+	 * 1 if Post A is further away from the selected zip code than Post B;
+	 * 0 if equal;
+	 */
+
+	// FUTURE TODO: If equal distances, sort by date!
+	function compareDistances(a, b, selectedZipInfo) {
+		let distanceA = getDistance(a.lat, a.lon, selectedZipInfo.lat, selectedZipInfo.lon);
+		let distanceB = getDistance(b.lat, b.lon, selectedZipInfo.lat, selectedZipInfo.lon)
+
+		if (distanceA < distanceB) {
+			return -1;
+		}
+		if (distanceA > distanceB) {
+			return 1;
+		}
+		// a must be equal to b
+		return 0;
+	}
+
+	/**
+	 * Populates the posts table with posts from the database
+	 * @param {Array} posts The posts to be added to the table
+	 */
 	function addPostsToView(posts) {
 		let tbody = document.querySelector("#postTable tbody");
 
@@ -86,25 +139,12 @@
 	}
 
 	/**
-	 * Called when each post is loaded, used to sort posts by the distance between
-	 * the post and either the user's zip code or the zip code inputted.
-	 * @param {string} postZip - The zip code of the post
-	 * @param {string} selectedZip - The zip code of the user or the zip code inputted by the user
-	 * @returns {double} distance - The distance between the two zip codes in miles
+	 * This function gets the latitude and longitude of the selected zip code.
+	 * @param {string} selectedZip - The zip code inputted by the user
+	 * @returns {object} that contains the latitude and longitude of the zip code
 	 */
-	async function getMilesBetween(postZip, selectedZip) {
+	async function getLatLon(selectedZip) {
 		// https://api.zippopotam.us/us/zipcode
-
-		postZip = "17022";
-		selectedZip = "18073";
-
-		let postZipInfo = await fetch(ZIPCODE_BASE_URL + postZip).then((response) => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error("Response Failed")
-			}
-		}).then((result) => result.places[0]);
 
 		let selectedZipInfo = await fetch(ZIPCODE_BASE_URL + selectedZip).then((response) => {
 			if (response.ok) {
@@ -112,16 +152,15 @@
 			} else {
 				throw new Error("Response Failed")
 			}
-		}).then((result) => { console.log(result); return result.places[0] });
+		}).then((result) => result.places[0])
+			.catch(console.error);
 
-		let distance = getDistance(
-			Number(postZipInfo.latitude),
-			Number(postZipInfo.longitude),
-			Number(selectedZipInfo.latitude),
-			Number(selectedZipInfo.longitude)
-		);
-
-		return distance;
+		if (selectedZipInfo)
+			return {
+				lat: selectedZipInfo.latitude,
+				lon: selectedZipInfo.longitude
+			};
+		else return null;
 	}
 
 	/**

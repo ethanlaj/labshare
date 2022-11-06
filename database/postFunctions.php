@@ -48,7 +48,7 @@ function get_comment_author($comment_id)
 
 function getPost($post_id, $includeExtraData = false)
 {
-	$sql = "SELECT post_id,creationDate,title,content,username,author_id FROM post_with_username WHERE inactive=0 AND post_id=:id";
+	$sql = "SELECT post_id,creationDate,title,content,username,author_id,zip FROM post_with_username WHERE inactive=0 AND post_id=:id";
 	$params = [":id" => $post_id];
 
 	$posts = getDataFromSQL($sql, $params);
@@ -62,6 +62,18 @@ function getPost($post_id, $includeExtraData = false)
 	} else return null;
 }
 
+function getLocationData($zip)
+{
+	try {
+		$response = file_get_contents("https://api.zippopotam.us/us/$zip");
+		$response = json_decode($response);
+
+		return $response->places[0];
+	} catch (Exception $e) {
+		return null;
+	}
+}
+
 function createPost($title, $content, $zip)
 {
 	if (!isset($_SESSION["user"]))
@@ -69,15 +81,36 @@ function createPost($title, $content, $zip)
 
 	$author_id = $_SESSION["user"];
 
-	$sql = "INSERT INTO posts (author_id, title, content, zip)
-	VALUES (:author_id, :title, :content, :zip)";
+	// Add latitude/longitude to database
+	$location_data = null;
+	if ($zip) {
+		$location_data = getLocationData($zip);
 
-	$params = [
-		":author_id" => $author_id,
-		":title" => $title,
-		":content" => $content,
-		":zip" => $zip
-	];
+		if ($location_data) {
+			$sql = "INSERT INTO posts (author_id, title, content, zip, lat, lon)
+				VALUES (:author_id, :title, :content, :zip, :lat, :lon)";
+
+			$params = [
+				":author_id" => $author_id,
+				":title" => $title,
+				":content" => $content,
+				":zip" => $zip,
+				":lat" => $location_data->latitude,
+				":lon" => $location_data->longitude,
+			];
+		}
+	}
+	if (!$zip || !$location_data) {
+		$sql = "INSERT INTO posts (author_id, title, content, zip)
+				VALUES (:author_id, :title, :content, :zip)";
+
+		$params = [
+			":author_id" => $author_id,
+			":title" => $title,
+			":content" => $content,
+			":zip" => $zip
+		];
+	}
 
 	try {
 		postDataFromSQL($sql, $params);
@@ -96,16 +129,31 @@ function editPost($post_id, $title, $content, $zip)
 	$author_id = $_SESSION["user"];
 
 	$sql = "UPDATE posts 
-	SET title=:title, content=:content, zip=:zip
-	WHERE post_id=:post_id AND author_id=:author_id";
+			SET title=:title, content=:content, zip=:zip, lat=:lat, lon=:lon
+			WHERE post_id=:post_id AND author_id=:author_id";
 
 	$params = [
 		":post_id" => $post_id,
 		":author_id" => $author_id,
 		":title" => $title,
 		":content" => $content,
-		":zip" => $zip
+		":zip" => $zip,
 	];
+
+	// Update latitude/longitude in database
+	$location_data = null;
+	if ($zip) {
+		$location_data = getLocationData($zip);
+
+		if ($location_data) {
+			$params[":lat"] = $location_data->latitude;
+			$params[":lon"] = $location_data->longitude;
+		}
+	}
+	if (!$zip || !$location_data) {
+		$params[":lat"] = null;
+		$params[":lon"] = null;
+	}
 
 	try {
 		postDataFromSQL($sql, $params);
@@ -141,7 +189,7 @@ function deletePost($post_id)
 
 function getPosts($type): array
 {
-	$sql = "SELECT post_id,creationDate,title,username,author_id,zip FROM post_with_username WHERE inactive=0";
+	$sql = "SELECT post_id,creationDate,title,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0 ORDER BY creationDate DESC";
 
 	$params = null;
 

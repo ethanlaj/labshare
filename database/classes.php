@@ -14,6 +14,8 @@ class Post
 	public $inactive;
 	public $username;
 	public $zip;
+	public $lat;
+	public $lon;
 
 	// Not mapped in the DB
 	public $comments = array();
@@ -40,6 +42,10 @@ class Post
 			? $db_object["inactive"] : null;
 		$this->zip = array_key_exists("zip", $db_object)
 			? $db_object["zip"] : null;
+		$this->lat = array_key_exists("lat", $db_object)
+			? $db_object["lat"] : null;
+		$this->lon = array_key_exists("lon", $db_object)
+			? $db_object["lon"] : null;
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
 

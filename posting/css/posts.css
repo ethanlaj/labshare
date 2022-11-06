@@ -1,9 +1,24 @@
+#addFilter {
+	margin-left: 0.2rem;
+}
+
+#createPostBtn {
+	align-self: end;
+}
+
 #flex-container {
 	margin-left: 25%;
 	display: flex;
 }
 
+form {
+	margin-left: auto;
+	display: flex;
+	align-items: end;
+}
+
 #postTable {
+	margin-top: 0.5rem;
 	width: 100%;
 	text-align: center;
 	border-left: 2px solid rgba(0, 0, 0, 0.1);
@@ -46,18 +61,8 @@
 	margin-right: auto;
 }
 
-header {
+header > div {
 	display: flex;
-	align-items: center;
-}
-
-header h2 {
-	margin-right: auto;
-	margin-left: 0;
-}
-
-header a {
-	margin-right: 0;
 }
 
 .user {
