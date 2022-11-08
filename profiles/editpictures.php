@@ -31,12 +31,12 @@
 
             <div>
                 <label for="profilepic" class="form-label">Please select a profile picture:</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                <!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000" /> -->
                 <input class="form-control" type="file" name="profilepic" id="profilePic" required capture="user" />
             </div>
             <div>
                 <label for="banner" class="form-label">Please select a picture for the profile banner:</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                <!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000" /> -->
                 <input class="form-control" type="file" name="banner" id="banner" required capture="user" />
             </div>
             <div>

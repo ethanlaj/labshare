@@ -15,15 +15,19 @@ $banner = array_key_exists("banner", $_FILES)
 
 try {
 
-    $image_dir = "~Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics/"; //also tried ../../../CS10/profilepics
-    // getting the tmp_name of the uploaded image
-    $temp_name = $_FILES["profilepic"]["full_path"];
 
-    // getting the name of the uploaded image
-    $name_of_file = basename($_FILES["profilepic"]["name"]);
-    echo $name_of_file;
+
+    //also tried ../../../CS10/profilepics
+    // getting the tmp_name of the uploaded image
+    $temp_name = $_FILES["profilepic"]["tmp_name"];
+    $file_name = $_FILES["profilepic"]["name"];
+    $image_dir = "/Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics/" . $file_name;
+
     // using the move_uploaded_file function
-    move_uploaded_file($temp_name, "$image_dir/$name_of_file");
+    if (move_uploaded_file($temp_name, $image_dir)) {
+        echo "success";
+    } else
+        echo "There was an error uploading file";
 
 
 
@@ -34,14 +38,14 @@ try {
 
 
 
-    // $target_dir = "~Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics";
-    // $target_file = $target_dir . basename($_FILES["profilepic"]["name"]);
+    //  $target_dir = "~Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics";
+    //  $target_file = $target_dir . basename($_FILES["profilepic"]["name"]);
     // if (move_uploaded_file(
     //     $_FILES["profilepic"]["tmp_name"],
-    //     $target_file
+    //      $target_file
     // )) {
-    //     echo "The file " . basename($_FILES["profilepic"]["name"])
-    //         . " has been uploaded.<br>";
+    //      echo "The file " . basename($_FILES["profilepic"]["name"])
+    // /        . " has been uploaded.<br>";
 
     //     // Moving file to New directory 
     //     if (rename($target_file, "New/" .
