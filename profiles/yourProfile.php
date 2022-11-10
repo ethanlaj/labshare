@@ -10,13 +10,13 @@ require_once("../database/accountFunctions.php");
 $profile = getprofile();
 $profpic = null;
 if ($profile->profilePic == null) {
-	$profpic = "../global/blank.jpg";
+	$profpic = "../global/noprofilepic.png";
 } else $profpic = $profile->profilePic;
 
 $ban = null;
 if ($profile->banner == null) {
-	$ban = "../global/blank.jpg";
-} else $ban = $profile->profilePic;
+	$ban = "../global/Labequipment.png";
+} else $ban = $profile->banner;
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +61,8 @@ if ($profile->banner == null) {
 	<main>
 		<section id="flexContainer">
 			<article id="picture">
-				<img id="background" src="<?PHP echo $profpic ?>" alt="Background photo" />
-				<img id="profile" src="<?PHP echo $ban ?>" alt="Name of User" />
+				<img id="background" src="<?PHP echo $ban ?>" alt="Background photo" />
+				<img id="profile" src="<?PHP echo $profpic ?>" alt="Name of User" />
 			</article>
 			<article>
 				<table class="table">

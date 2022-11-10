@@ -19,7 +19,7 @@ try {
     if (isset($_FILES['banner'])) {
         $temp_name2 = $_FILES["banner"]["tmp_name"];
         $file_name2 = $_FILES["banner"]["name"];
-        $image_dir2 = "/Applications/XAMPP/xamppfiles/htdocs/CS310/banners/$file_name";
+        $image_dir2 = "/Applications/XAMPP/xamppfiles/htdocs/CS310/banners/$file_name2";
         if (move_uploaded_file($temp_name2, $image_dir2)) {
             updatebanner("../../banners/$file_name2");
         } else

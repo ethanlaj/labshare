@@ -93,7 +93,7 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
 function getprofile()
 {
     $current_user_id = $_SESSION["user"];
-    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner FROM users
+    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner, firstName, lastName FROM users
     WHERE user_id = $current_user_id;";
 
 
