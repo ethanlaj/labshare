@@ -169,8 +169,8 @@ class User
 			? $db_object["achievements"] : null;
 		$this->age = array_key_exists("age", $db_object)
 			? $db_object["age"] : null;
-		$this->profilePic = array_key_exists("profilePic", $db_object)
-			? $db_object["profilePic"] : null;
+		$this->profilePic = array_key_exists("profilepic", $db_object)
+			? $db_object["profilepic"] : null;
 		$this->banner = array_key_exists("banner", $db_object)
 			? $db_object["banner"] : null;
 	}

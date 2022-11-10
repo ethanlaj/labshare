@@ -4,11 +4,19 @@ $profile = null;
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-if (isset($_GET["id"])) {
-	require_once("../database/accountFunctions.php");
 
-	$profile = getprofile();
-}
+require_once("../database/accountFunctions.php");
+
+$profile = getprofile();
+$profpic = null;
+if ($profile->profilePic == null) {
+	$profpic = "../global/blank.jpg";
+} else $profpic = $profile->profilePic;
+
+$ban = null;
+if ($profile->banner == null) {
+	$ban = "../global/blank.jpg";
+} else $ban = $profile->profilePic;
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +61,8 @@ if (isset($_GET["id"])) {
 	<main>
 		<section id="flexContainer">
 			<article id="picture">
-				<img id="background" src=<?PHP $profile->profilePic ?> alt="Background photo" />
-				<img id="profile" src="../global/etown-BlueJay.png" alt="Name of User" />
+				<img id="background" src="<?PHP echo $profpic ?>" alt="Background photo" />
+				<img id="profile" src="<?PHP echo $ban ?>" alt="Name of User" />
 			</article>
 			<article>
 				<table class="table">

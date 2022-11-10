@@ -63,29 +63,6 @@ function get_user_login($userName)
     }
 }
 
-function updatePictures($profilepic = null, $banner = null)
-{
-    $sql = "INSERT INTO users (profilepic, banner)
-          VALUES (:profilepic,
-		:banner
-	
-	)";
-
-
-    $params =
-        [
-            ":profilepic" => $profilepic,
-            ":banner" => $banner
-
-        ];
-
-    try {
-        postDataFromSQL($sql, $params);
-    } catch (Exception $e) {
-        header("HTTP/1.1 500 Fatal Error");
-    }
-}
-
 function createProfile($qualifications = null, $areaofstudy = null, $years = null, $secondarea = null, $summary = null, $achievements = null)
 {
     if (!isset($_SESSION["user"]))
@@ -116,7 +93,7 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
 function getprofile()
 {
     $current_user_id = $_SESSION["user"];
-    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements FROM users
+    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner FROM users
     WHERE user_id = $current_user_id;";
 
 
@@ -172,22 +149,19 @@ function editAccount($userName = null, $pwd = null, $email = null, $phoneNumber 
         header("HTTP/1.1 500 Fatal Error");
     }
 }
-function editPictures($profilepic = null, $banner = null)
+
+function updateprofilepic($profilepic)
 {
     if (!isset($_SESSION["user"]))
         return header("HTTP/1.1 401 Unauthorized");
-
     $current_user_id = $_SESSION["user"];
-    $sql = "UPDATE users SET profilepic= :profilepic, banner = :banner
+    $sql = "UPDATE users SET profilepic= :profilepic
     WHERE user_id = $current_user_id";
 
 
     $params =
         [
-            ":profilepic" => $profilepic,
-            ":banner" => $banner,
-
-
+            ":profilepic" => $profilepic
         ];
 
     try {
@@ -196,6 +170,23 @@ function editPictures($profilepic = null, $banner = null)
         header("HTTP/1.1 500 Fatal Error");
     }
 }
-function storePic()
+function updatebanner($banner)
 {
+    if (!isset($_SESSION["user"]))
+        return header("HTTP/1.1 401 Unauthorized");
+    $current_user_id = $_SESSION["user"];
+    $sql = "UPDATE users SET banner= :banner
+    WHERE user_id = $current_user_id";
+
+
+    $params =
+        [
+            ":banner" => $banner
+        ];
+
+    try {
+        postDataFromSQL($sql, $params);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
 }

@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <form id="form" enctype="multipart/form-data" action="./api/editpictures.php" method="post">
+    <form id="form" enctype="multipart/form-data" action="api/editpictures.php" method="post">
         <div>
             <h1>Edit Pictures</h1>
 
@@ -40,9 +40,39 @@
                 <input class="form-control" type="file" name="banner" id="banner" required capture="user" />
             </div>
             <div>
-                <input class="btn btn-primary" type="submit" value="Send File" id="submit" />
+                <input class="btn btn-primary" type="submit" value="Submit" name="submit" id="submit" />
             </div>
     </form>
+    <?PHP
+
+    require_once("../../database/accountFunctions.php");
+
+
+    // if (isset($_POST[''])) {
+    //     $profilepic = array_key_exists("profilepic", $_FILES)  // only for these you need to use that new file method instead of $_POST I think 
+    //         ? $_FILES["profilepic"]
+    //         : null;
+    //     print_r($profilepic);
+    //     $banner = array_key_exists("banner", $_FILES)
+    //         ? $_FILES["banner"]
+    //         : null;
+
+    //     try {
+
+    //         $temp_name = $_FILES["profilepic"]["tmp_name"];
+    //         $file_name = $_FILES["profilepic"]["name"];
+    //         $image_dir = "/Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics/" . $file_name;
+
+    //         // using the move_uploaded_file function
+    //         if (move_uploaded_file($temp_name, $image_dir)) {
+    //         } else
+    //             echo "There was an error uploading file";
+    //     } catch (Exception $e) {
+    //         echo $e;
+    //     }
+    // }
+    // 
+    ?>
 
 </body>
 
