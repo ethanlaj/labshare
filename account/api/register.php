@@ -34,3 +34,4 @@ try {
 } catch (Exception $e) {
     echo $e;
 }
+header("location: ../login.php");

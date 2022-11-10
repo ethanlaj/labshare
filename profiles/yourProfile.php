@@ -61,7 +61,7 @@ if ($profile->banner == null) {
 	<main>
 		<section id="flexContainer">
 			<article id="picture">
-				<img id="background" src="<?PHP echo $ban ?>" alt="Background photo" />
+				<a href="./editpictures.php"> <img id="background" src="<?PHP echo $ban ?>" alt="Background photo" /></a>
 				<img id="profile" src="<?PHP echo $profpic ?>" alt="Name of User" />
 			</article>
 			<article>

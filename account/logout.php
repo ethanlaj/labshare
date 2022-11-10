@@ -43,7 +43,7 @@ if (isset($_SESSION["user"])) {
 	?>
 		<h1>You have successfully logged out</h1>
 		<h4>Thank you for using Science Proposal</h4>
-		<a href="./login.html" class="btn btn-primary">Log Back In</a>
+		<a href="./login.php" class="btn btn-primary">Log Back In</a>
 	<?PHP } else {
 		header("Location: ../posting/posts.html");
 	} ?>

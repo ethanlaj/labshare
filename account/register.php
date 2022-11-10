@@ -63,7 +63,7 @@
 			</article>
 			<article>
 				<label for="birthday" class="form-label">Birthday</label>
-				<input type="date" value="2017-06-01" class="form-control" name="birthday" id="birthday" required />
+				<input type="date" class="form-control" name="birthday" id="birthday" required />
 			</article>
 			<article>
 				<input class="btn btn-primary" type="submit" value="Submit" id="submit" />

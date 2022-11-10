@@ -28,3 +28,4 @@ try {
 } catch (Exception $e) {
     echo $e;
 }
+header("Location: ../yourProfile.php");

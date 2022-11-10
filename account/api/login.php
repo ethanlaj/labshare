@@ -24,3 +24,5 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 } else {
     echo "WRONG PARAMS";
 }
+
+header("Location: ../../posting/posts.html");
