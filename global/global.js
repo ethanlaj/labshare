@@ -26,6 +26,7 @@
 			.catch(e => console.error(e));
 
 		document.addEventListener("keypress", handleEnterPress);
+
 		$("#footer").load("../global/footer.html");
 	}
 
@@ -77,10 +78,9 @@
 	 */
 	function handleEnterPress(event) {
 		if (event.which == '13') {
-			event.preventDefault();
-
 			let searchBarElement = document.getElementById("searchBarNav");
 			if (document.activeElement == searchBarElement) {
+				event.preventDefault();
 				searchBar(1);
 			}
 		}
