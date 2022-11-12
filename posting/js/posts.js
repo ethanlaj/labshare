@@ -28,6 +28,7 @@
 			let str = upperType + " Posts";
 			document.querySelector("header h2").innerText = str;
 			document.title = str;
+			document.querySelector("#zipCodeForm #type").value = type;
 		}
 	}
 

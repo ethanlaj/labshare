@@ -21,13 +21,18 @@
 				if (result.reload == true)
 					location.reload();
 
-				$("#navbar").load("../global/navbar.html", () => addNavbarListeners(result.logged_in == true));
+				$("#navbar").load("../global/navbar.html", () => addNavbarFunctionality(result.logged_in == true));
 			})
 			.catch(e => console.error(e));
 
 		document.addEventListener("keypress", handleEnterPress);
 
 		$("#footer").load("../global/footer.html");
+	}
+
+	async function loadNotifications() {
+		// Load notifications in #notificationsBody,
+		// if there are none, show a message "No new notifications to show"
 	}
 
 	/**
@@ -40,7 +45,7 @@
 	 * 				true if the user is logged in,
 	 * 				false if they are not logged in
 	 */
-	function addNavbarListeners(logged_in) {
+	async function addNavbarFunctionality(logged_in) {
 		// Navbar
 		let postSearch = document.getElementById("postSearch");
 		postSearch.addEventListener("click", function () { searchBar(1); });
@@ -49,6 +54,8 @@
 		userSearch.addEventListener("click", function () { searchBar(2); });
 
 		if (logged_in) {
+			await loadNotifications();
+
 			// Sidebar
 			let dismissButtons = document.querySelectorAll(".notification .actionButtons .dismiss");
 			for (let button of dismissButtons)
@@ -62,10 +69,13 @@
 			for (let button of declineButtons)
 				button.addEventListener('click', decline);
 
-			document.getElementById("notifications").hidden = false;
+			document.getElementById("sidebarButton").hidden = false;
 
-			// Logout button
+			// Other navbar buttons
 			document.getElementById("logoutBtn").hidden = false;
+			document.getElementById("myProfile").hidden = false;
+			document.getElementById("savedPosts").hidden = false;
+			document.getElementById("yourPosts").hidden = false;
 		} else {
 			document.getElementById("loginBtn").hidden = false;
 			document.getElementById("registerBtn").hidden = false;

@@ -311,8 +311,11 @@
 
 		let modalTextArea = document.getElementById("commentEditTextForm");
 		let innerText = comment.querySelector('.commentContent').innerText;
-		modalTextArea.value = innerText
-		modalTextArea.rows = innerText.length / 35;
+		modalTextArea.value = innerText;
+
+		// Update the size of the textarea based on the content:
+		let breaks = innerText.split("\n").length;
+		modalTextArea.rows = breaks + innerText.length / 35;
 
 		$("#editComment").modal("show");
 	}
@@ -321,24 +324,46 @@
 	 * Edits a comment
 	 */
 	function editComment() {
-		let commentToEdit = lastClickedComment;
-		let modalTextArea = document.getElementById("commentEditTextForm")
+		this.disabled = true;
 
-		commentToEdit.querySelector('.commentContent').innerText = modalTextArea.value;
-		console.log(`Edited ${commentToEdit.id} to ${modalTextArea.value}`)
-		$("#editComment").modal("hide");
+		let commentToEdit = lastClickedComment;
+		let modalTextArea = document.getElementById("commentEditTextForm");
+
+		let comment_id = commentToEdit.id.split("comment")[1];
+
+		let data = new FormData();
+		data.append("comment_id", comment_id);
+		data.append("content", modalTextArea.value);
+
+		fetch("api/editComment.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				commentToEdit.querySelector('.commentContent').innerText = modalTextArea.value;
+				$("#editComment").modal("hide");
+			}).catch((e) => {
+				showModal("Failed to Edit Comment", "Could not edit this comment, please try again later");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
 	 * Deletes a comment
 	 */
 	function deleteComment() {
+		this.disabled = true;
+
 		let comment = lastClickedComment;
+		let comment_id = comment.id.split("comment")[1];
 
-		console.log(`Deleted comment ${comment.id}`);
-		$("#deleteComment").modal("hide");
+		let data = new FormData();
+		data.append("comment_id", comment_id);
 
-		$("#commentDeleted").modal("show");
+		fetch("api/deleteComment.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				location.reload();
+			}).catch((e) => {
+				showModal("Failed to Delete Comment", "Could not delete this comment, please try again later");
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
