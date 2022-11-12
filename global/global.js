@@ -109,6 +109,9 @@
 		if (searchQuery != "") {
 			console.log(`User requested a ${kind == 1 ? "post" : "user"} search: ${searchQuery}`);
 			searchBarElement.value = "";
+
+			if (kind == 1)
+				location.href = '../posting/posts.html?search=' + searchQuery;
 		}
 	}
 

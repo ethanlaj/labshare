@@ -187,11 +187,11 @@ function deletePost($post_id)
 	}
 }
 
-function getPosts($type): array
+function getPosts($type, $search): array
 {
-	$sql = "SELECT post_id,creationDate,title,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0";
+	$sql = "SELECT post_id,creationDate,title,content,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0";
 
-	$params = null;
+	$params = array();
 
 	if ($type == "your") {
 		$sql = $sql . " AND author_id=:user_id";
@@ -199,13 +199,19 @@ function getPosts($type): array
 		$sql = $sql . " AND post_id IN (SELECT post_id FROM saves WHERE user_id=:user_id)";
 	else $type = null;
 
+	// If a search parameter is passed, find posts 
+	// where the title or content match the search query 
+	if ($search && strlen(trim($search)) > 0) {
+		$sql = $sql . " AND (title LIKE :search OR content LIKE :search)";
+
+		$params[":search"] = '%' . $search . '%';
+	}
+
 	$sql = $sql . " ORDER BY creationDate DESC";
 
 	if ($type) {
 		if (isset($_SESSION["user"]))
-			$params = [
-				":user_id" => $_SESSION["user"]
-			];
+			$params[":user_id"] = $_SESSION["user"];
 		else
 			return header("HTTP/1.1 401 Unauthorized");
 	}

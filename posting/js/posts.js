@@ -11,9 +11,17 @@
 		const urlParams = new URLSearchParams(window.location.search);
 
 		let type = urlParams.get("type");
+		let search = urlParams.get("search");
 		let zip = urlParams.get("zip");
 
-		fetch("./api/getAllPosts.php" + (type ? ("?type=" + type) : ""))
+		let extraParams = [];
+		if (type)
+			extraParams.push(`type=${type}`);
+		if (search)
+			extraParams.push(`search=${search}`);
+
+
+		fetch("./api/getAllPosts.php" + (extraParams.length > 0 ? "?" + extraParams.join("&") : ""))
 			.then(checkStatus)
 			.then((posts) => {
 				if (zip)
@@ -29,6 +37,12 @@
 			document.querySelector("header h2").innerText = str;
 			document.title = str;
 			document.querySelector("#zipCodeForm #type").value = type;
+		}
+
+		if (search) {
+			document.querySelector("header h2").innerText = "Search Results";
+			document.title = "Search Results";
+			document.querySelector("#zipCodeForm #search").value = search;
 		}
 	}
 
