@@ -15,7 +15,7 @@
 	function init() {
 		let data = new FormData();
 		data.append("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone);
-		fetch("../global/updateSession.php", { method: 'POST', body: data })
+		fetch("../global/api/updateSession.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then((result) => {
 				if (result.reload == true)
@@ -33,6 +33,173 @@
 	async function loadNotifications() {
 		// Load notifications in #notificationsBody,
 		// if there are none, show a message "No new notifications to show"
+
+		/*
+		<div id="notification1" class="notification">
+			<p>Username2 applied to post title!</p>
+
+			<div class="contact-info">
+				<p class="title">Contact Information</p>
+				<p class="email">Email: kennedym2@etown.edu</p>
+				<p class="phone">Phone: 572-733-8978</p>
+			</div>
+			<div class="actionButtons">
+				<button class="btn btn-outline-success accept">Accept</button>
+				<button class="btn btn-outline-danger decline">Decline</button>
+			</div>
+		</div>
+		<div id="notification2" class="notification">
+			<p>Username1 accepted your application for post title!</p>
+
+			<div class="contact-info">
+				<p class="title">Contact Information</p>
+				<p class="email">Email: lajeunessee@etown.edu</p>
+				<p class="phone">Phone: 267-743-9878</p>
+			</div>
+
+			<div class="actionButtons">
+				<button class="btn btn-secondary dismiss">Dismiss</button>
+			</div>
+		</div>
+		<div id="notification3" class="notification">
+			<p>Post title has been saved 100 times!</p>
+
+			<div class="actionButtons">
+				<button class="btn btn-secondary dismiss">Dismiss</button>
+			</div>
+		</div>
+		*/
+
+		fetch("../global/api/getNotifications.php")
+			.then(checkStatus)
+			.then((notifications) => {
+				let notiBody = document.querySelector("#notificationsBody");
+
+				for (let noti of notifications) {
+					let outerDiv = document.createElement("div");
+					outerDiv.id = "notification" + noti.notification_id;
+					outerDiv.classList.add("notification");
+
+					let date = document.createElement("p");
+					date.classList.add("date");
+					date.innerText = noti.notification_date;
+
+					let message = document.createElement("p");
+					message.classList.add("message");
+					let actionButtonsContainer = document.createElement("div");
+					actionButtonsContainer.classList.add("actionButtons");
+
+					let dismissButton = document.createElement("button");
+					dismissButton.classList.add("btn", "btn-secondary", "dismiss");
+					dismissButton.innerText = "Dismiss";
+
+					let contactInfo;
+
+					switch (noti.type) {
+						case "NEW_APP": {
+							let acceptButton = document.createElement("button");
+							acceptButton.classList.add("btn", "btn-outline-success", "accept");
+							acceptButton.innerText = "Accept";
+
+							let declineButton = document.createElement("button");
+							declineButton.classList.add("btn", "btn-outline-danger", "decline");
+							declineButton.innerText = "Decline";
+
+							actionButtonsContainer.appendChild(acceptButton);
+							actionButtonsContainer.appendChild(declineButton);
+
+							let username_link = `../profiles/profile.php?id=` + noti.applicant_id;
+							let post_link = `../posting/post.php?id=` + noti.post_id;
+							message.innerHTML =
+								`<a href="${username_link}">${noti.applicant_username}</a> applied to <a href="${post_link}">${noti.title}</a>`;
+
+							// Build contact info for applicant
+							contactInfo = document.createElement("div");
+							contactInfo.classList.add("contact-info");
+
+							let contactInfoTitle = document.createElement("p");
+							contactInfoTitle.classList.add("title");
+							contactInfoTitle.innerText = "Contact Information";
+							contactInfo.appendChild(contactInfoTitle);
+
+							if (noti.applicant_email) {
+								let applicantEmail = document.createElement("p");
+								applicantEmail.classList.add("email");
+								applicantEmail.innerText = `Email: ${noti.applicant_email}`;
+								contactInfo.appendChild(applicantEmail);
+							}
+
+							if (noti.applicant_phone) {
+								let applicantPhone = document.createElement("p");
+								applicantPhone.classList.add("phone");
+								applicantPhone.innerText = `Phone: ${noti.applicant_phone}`;
+								contactInfo.appendChild(applicantPhone);
+							}
+
+							break;
+						}
+						case "APP_ACCEPT": {
+							actionButtonsContainer.appendChild(dismissButton);
+
+							let username_link = `../profiles/profile.php?id=` + noti.poster_id;
+							let post_link = `../posting/post.php?id=` + noti.post_id;
+							message.innerHTML =
+								`<a href="${username_link}">${noti.poster_username}</a> accepted your application for <a href="${post_link}">${noti.title}</a>`;
+
+							// Build contact info for poster
+							contactInfo = document.createElement("div");
+							contactInfo.classList.add("contact-info");
+
+							let contactInfoTitle = document.createElement("p");
+							contactInfoTitle.classList.add("title");
+							contactInfoTitle.innerText = "Contact Information";
+							contactInfo.appendChild(contactInfoTitle);
+
+							if (noti.poster_email) {
+								let applicantEmail = document.createElement("p");
+								applicantEmail.classList.add("email");
+								applicantEmail.innerText = `Email: ${noti.poster_email}`;
+								contactInfo.appendChild(applicantEmail);
+							}
+
+							if (noti.poster_phone) {
+								let applicantPhone = document.createElement("p");
+								applicantPhone.classList.add("phone");
+								applicantPhone.innerText = `Phone: ${noti.poster_phone}`;
+								contactInfo.appendChild(applicantPhone);
+							}
+
+							break;
+						}
+						case "APP_DECLINE": {
+							actionButtonsContainer.appendChild(dismissButton);
+
+							let username_link = `../profiles/profile.php?id=` + noti.poster_id;
+							let post_link = `../posting/post.php?id=` + noti.post_id;
+							message.innerHTML =
+								`<a href="${username_link}">${noti.poster_username}</a> declined your application for <a href="${post_link}">${noti.title}</a>`;
+
+							break;
+						}
+						case "POST_SAVED": {
+							actionButtonsContainer.appendChild(dismissButton);
+
+							let post_link = `../posting/post.php?id=` + noti.post_id;
+							message.innerHTML = `<a href="${post_link}">${noti.title}</a> has been saved ${noti.count} times!`;
+
+							break;
+						}
+					}
+
+					outerDiv.appendChild(date);
+					outerDiv.appendChild(message);
+					if (contactInfo) outerDiv.appendChild(contactInfo);
+					outerDiv.appendChild(actionButtonsContainer);
+
+					notiBody.appendChild(outerDiv);
+				}
+			})
+			.catch(e => console.error(e));
 	}
 
 	/**
@@ -54,7 +221,7 @@
 		userSearch.addEventListener("click", function () { searchBar(2); });
 
 		if (logged_in) {
-			await loadNotifications();
+			await loadNotifications().catch(console.error);
 
 			// Sidebar
 			let dismissButtons = document.querySelectorAll(".notification .actionButtons .dismiss");
