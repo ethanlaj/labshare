@@ -20,8 +20,8 @@ function getDataFromSQL($sql, $params = null)
 	}
 
 	$stmt = $conn->prepare($sql);
-
 	$stmt->execute($params);
+	$stmt->execute();
 
 	// set the resulting array to associative
 	$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -39,12 +39,6 @@ function postDataFromSQL($sql, $params = null)
 		//echo "Connected successfully";
 	} catch (PDOException $e) {
 		echo "Connection failed: " . $e->getMessage();
-	}
-
-	// Prevent HTML/XML injection 
-	foreach ($params as $key => $value) {
-		if (gettype($value) == "string")
-			$params[$key] = htmlspecialchars($value, ENT_QUOTES);
 	}
 
 	$stmt = $conn->prepare($sql);
