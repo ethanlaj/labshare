@@ -130,7 +130,7 @@
 			// Post title table cell
 			let titleData = document.createElement("td");
 			tr.appendChild(titleData);
-			titleData.innerText = post.title;
+			titleData.innerHTML = post.title;
 
 			// Zip code table cell
 			let zipData = document.createElement("td");

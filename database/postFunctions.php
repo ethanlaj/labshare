@@ -113,7 +113,7 @@ function createPost($title, $content, $zip)
 	}
 
 	try {
-		postDataFromSQL($sql, $params);
+		return postDataFromSQL($sql, $params, true);
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}

@@ -29,7 +29,17 @@ function getDataFromSQL($sql, $params = null)
 	return $valuesArray;
 }
 
-function postDataFromSQL($sql, $params = null)
+
+/**
+ * @param string $sql - The sql to execute
+ * @param array $params - Optional, The parameters for the SQL statement
+ * @param boolean $get_inserted_id - Optional, if set to true, 
+ * will return the last inserted row's id. 
+ * 
+ * @return string|void returns void if get_inserted_id is false, 
+ * else returns the last inserted row's id;
+ */
+function postDataFromSQL($sql, $params = array(), $get_inserted_id = false)
 {
 	global $dns, $username, $password;
 	try {
@@ -49,6 +59,9 @@ function postDataFromSQL($sql, $params = null)
 
 	$stmt = $conn->prepare($sql);
 	$stmt->execute($params);
+
+	if ($get_inserted_id)
+		return $conn->lastInsertId();
 
 	return;
 }
