@@ -297,7 +297,7 @@
 				location.reload();
 			}).catch((e) => {
 				showModal("Failed to Add Comment", "Could not add comment, please try again later");
-			});
+			}).finally(() => this.disabled = false);
 	}
 
 	/**
@@ -367,7 +367,7 @@
 	}
 
 	/**
-	 * Helper function to return the response's result text if successful, otherwise
+	 * Helper function to return true if successful, otherwise
 	 * returns the rejected Promise result with an error status
 	 * @param {object} response - response to check for success/error
 	 * @returns {boolean} - true if response was successful, otherwise rejected

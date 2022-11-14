@@ -30,47 +30,12 @@
 		$("#footer").load("../global/footer.html");
 	}
 
+	/**
+	 * This function will fetch all the notifications
+	 * from the api and add them to the notification sidebar
+	 */
 	async function loadNotifications() {
-		// Load notifications in #notificationsBody,
-		// if there are none, show a message "No new notifications to show"
-
-		/*
-		<div id="notification1" class="notification">
-			<p>Username2 applied to post title!</p>
-
-			<div class="contact-info">
-				<p class="title">Contact Information</p>
-				<p class="email">Email: kennedym2@etown.edu</p>
-				<p class="phone">Phone: 572-733-8978</p>
-			</div>
-			<div class="actionButtons">
-				<button class="btn btn-outline-success accept">Accept</button>
-				<button class="btn btn-outline-danger decline">Decline</button>
-			</div>
-		</div>
-		<div id="notification2" class="notification">
-			<p>Username1 accepted your application for post title!</p>
-
-			<div class="contact-info">
-				<p class="title">Contact Information</p>
-				<p class="email">Email: lajeunessee@etown.edu</p>
-				<p class="phone">Phone: 267-743-9878</p>
-			</div>
-
-			<div class="actionButtons">
-				<button class="btn btn-secondary dismiss">Dismiss</button>
-			</div>
-		</div>
-		<div id="notification3" class="notification">
-			<p>Post title has been saved 100 times!</p>
-
-			<div class="actionButtons">
-				<button class="btn btn-secondary dismiss">Dismiss</button>
-			</div>
-		</div>
-		*/
-
-		fetch("../global/api/getNotifications.php")
+		await fetch("../global/api/getNotifications.php")
 			.then(checkStatus)
 			.then((notifications) => {
 				let notiBody = document.querySelector("#notificationsBody");
@@ -200,6 +165,24 @@
 				}
 			})
 			.catch(e => console.error(e));
+
+		return;
+	}
+
+	/**
+	 * Checks to see how many notifications are being displayed
+	 * If there are none, it will add a message to the sidebar instead.
+	 */
+	function checkNotiCount() {
+		let notiBody = document.querySelector("#notificationsBody");
+		let notis = notiBody.querySelectorAll(".notification");
+
+		if (notis.length == 0) {
+			let msg = document.createElement("p");
+			msg.innerText = "You're all caught up! Nothing to see here..."
+
+			notiBody.appendChild(msg);
+		}
 	}
 
 	/**
@@ -222,11 +205,12 @@
 
 		if (logged_in) {
 			await loadNotifications().catch(console.error);
+			checkNotiCount();
 
 			// Sidebar
 			let dismissButtons = document.querySelectorAll(".notification .actionButtons .dismiss");
 			for (let button of dismissButtons)
-				button.addEventListener('click', dismissButtonClick);
+				button.addEventListener('click', dismiss);
 
 			let acceptButtons = document.querySelectorAll(".notification .actionButtons .accept");
 			for (let button of acceptButtons)
@@ -283,50 +267,73 @@
 	}
 
 	/**
-	 * Handles the clicking of the dismiss button
+	 * Dismisses a notification
 	 */
-	function dismissButtonClick() {
+	function dismiss() {
+		this.disabled = true;
 		let notification = $(this.closest('.notification'))[0];
-		dismiss(notification);
+
+		let data = new FormData();
+		data.append("id", notification.id.split("notification")[1]);
+
+		fetch("../global/api/dismiss.php", { method: 'POST', body: data })
+			.then((resp) => checkStatus(resp, false))
+			.then(() => {
+				notification.remove();
+				checkNotiCount();
+			}).catch(console.error);
 	}
 
 	/**
-	 * Dismisses the notification
-	 * @param {HTMLElement} notification - The notification to be dismissed
-	 */
-	function dismiss(notification) {
-		console.log("Dismiss notification: " + notification.id);
-	}
-
-	/**
-	 * Accepts the application from the notification
+	 * Accepts the application from a notification
 	 */
 	function accept() {
+		this.disabled = true;
 		let notification = $(this.closest('.notification'))[0];
-		console.log("Accept notification: " + notification.id);
 
-		dismiss(notification);
+		let data = new FormData();
+		data.append("id", notification.id.split("notification")[1]);
+
+		fetch("../global/api/accept.php", { method: 'POST', body: data })
+			.then((resp) => checkStatus(resp, false))
+			.then(() => {
+				notification.remove();
+				checkNotiCount();
+			}).catch(console.error);
 	}
 
 	/**
-	 * Declines the application from the notification
+	 * Declines the application from a notification
 	 */
 	function decline() {
+		this.disabled = true;
 		let notification = $(this.closest('.notification'))[0];
-		console.log("Decline notification: " + notification.id);
 
-		dismiss(notification);
+		let data = new FormData();
+		data.append("id", notification.id.split("notification")[1]);
+
+		fetch("../global/api/decline.php", { method: 'POST', body: data })
+			.then((resp) => checkStatus(resp, false))
+			.then(() => {
+				notification.remove();
+				checkNotiCount();
+			}).catch(console.error);
 	}
 
 	/**
-	 * Helper function to return the response's result text if successful, otherwise
+	 * Helper function to return the response's result json if successful, otherwise
 	 * returns the rejected Promise result with an error status
 	 * @param {object} response - response to check for success/error
-	 * @returns {boolean} - true if response was successful, otherwise rejected Promise result                
+	 * @param {boolean} json - When set to false, it will return the boolean instead of the json
+	 * @returns {object} - json if response was successful, otherwise rejected Promise result
+	 * @returns {boolean} - true if successful, otherwise rejected Promise result
 	 */
-	function checkStatus(response) {
+	function checkStatus(response, json = true) {
 		if (response.ok) {
-			return response.json();
+			if (json)
+				return response.json();
+			else
+				return true;
 		} else {
 			return Promise.reject(new Error(response.status + ": " + response.statusText));
 		}
