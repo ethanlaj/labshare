@@ -104,7 +104,7 @@ $logged_in_user = isset($_SESSION["user"])
 				<?PHP } ?>
 				</div>
 			</div>
-			<p id="postText"><?PHP echo $post->content ?></p>
+			<p id="postText"><?PHP echo str_replace("\n", "<br />", $post->content) ?></p>
 		</main>
 
 		<hr />
@@ -145,7 +145,7 @@ $logged_in_user = isset($_SESSION["user"])
 										<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
 									</div>
 									<div class="contentAndReplyBox">
-										<div class="commentContent"><?PHP echo $comment->content ?></div>
+										<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
 
 										<textarea hidden class="replyBox form-control" maxlength="500"></textarea>
 										<div class="replyActionButtons">
@@ -205,7 +205,7 @@ $logged_in_user = isset($_SESSION["user"])
 											</div>
 											<div class="commentDate"><?PHP echo $child->creationDate ?></div>
 										</div>
-										<div class="replyText commentContent"><?PHP echo $child->content ?></div>
+										<div class="replyText commentContent"><?PHP echo str_replace("\n", "<br />", $child->content) ?></div>
 									</div>
 								</td>
 								<td>
@@ -403,25 +403,6 @@ $logged_in_user = isset($_SESSION["user"])
 						</button>
 						<button id="deleteCommentBtn" type="button" class="btn btn-danger">
 							Delete
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Comment Deletion Successful-->
-		<div class="modal fade" id="commentDeleted" tabindex="-1">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Comment Deleted</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						Successfully deleted comment
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-bs-dismiss="modal">
-							Close
 						</button>
 					</div>
 				</div>

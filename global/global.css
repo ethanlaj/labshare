@@ -1,5 +1,5 @@
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Montserrat", sans-serif;
 	background-color: rgb(246, 248, 250);
 	color: black;
 	margin: 70px 1.2em 1.2em 1.2em;
@@ -13,7 +13,6 @@ body {
 #footer {
 	margin-top: auto;
 }
-
 
 /* Nav and sidebar: */
 
@@ -68,8 +67,19 @@ body {
 	margin-right: 5px;
 }
 
-.notification p {
+.notification .date {
+	font-style: italic;
+	margin-bottom: 0.5rem;
+	font-size: 90%;
+}
+
+.notification a {
+	color: black;
+}
+
+.notification p:not(.notification p.date) {
 	margin: 0;
+	overflow-wrap: anywhere;
 }
 
 #searchContainer {
@@ -78,7 +88,7 @@ body {
 }
 
 #searchBarNav {
-	margin-right: 0!important;
+	margin-right: 0 !important;
 }
 
 #sidebarButton {

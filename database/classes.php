@@ -138,7 +138,6 @@ class User
 
 	function __construct($db_object)
 	{
-
 		$this->user_id = array_key_exists("user_id", $db_object)
 			? $db_object["user_id"] : null;
 		$this->username = array_key_exists("username", $db_object)
@@ -296,5 +295,69 @@ class Report
 		$this->reporter_id = $reporter_id;
 		$this->id = $id;
 		$this->type = $type;
+	}
+}
+
+class Notification
+{
+	public $notification_id;
+	public $notification_date;
+	public $type;
+	public $post_id;
+	public $count;
+	public $title;
+	public $poster_id;
+	public $poster_username;
+	public $poster_email;
+	public $poster_phone;
+	public $applicant_id;
+	public $applicant_username;
+	public $applicant_email;
+	public $applicant_phone;
+	public $inactive;
+
+	/**
+	 * Matches the Advanced Notifications view in the database
+	 * 
+	 * kinds:
+	 * NEW_APP = 'Application';
+	 * APP_ACCEPT = Application accepted;
+	 * APP_DECLINE = New comment on post;
+	 * POST_SAVED = New reply to comment;
+	 */
+
+	function __construct($db_object)
+	{
+		$this->notification_id = array_key_exists("notification_id", $db_object)
+			? $db_object["notification_id"] : null;
+		$this->notification_date = array_key_exists("notification_date", $db_object)
+			? convertToLocal($db_object["notification_date"])
+			: null;
+		$this->type = array_key_exists("type", $db_object)
+			? $db_object["type"] : null;
+		$this->count = array_key_exists("count", $db_object)
+			? $db_object["count"] : null;
+		$this->title = array_key_exists("title", $db_object)
+			? $db_object["title"] : null;
+		$this->post_id = array_key_exists("post_id", $db_object)
+			? $db_object["post_id"] : null;
+		$this->poster_id = array_key_exists("poster_id", $db_object)
+			? $db_object["poster_id"] : null;
+		$this->poster_username = array_key_exists("poster", $db_object)
+			? $db_object["poster"] : null;
+		$this->poster_email = array_key_exists("posterEmail", $db_object)
+			? $db_object["posterEmail"] : null;
+		$this->poster_phone = array_key_exists("posterPhone", $db_object)
+			? $db_object["posterPhone"] : null;
+		$this->applicant_id = array_key_exists("applicant_id", $db_object)
+			? $db_object["applicant_id"] : null;
+		$this->applicant_username = array_key_exists("applicant", $db_object)
+			? $db_object["applicant"] : null;
+		$this->applicant_email = array_key_exists("applicantEmail", $db_object)
+			? $db_object["applicantEmail"] : null;
+		$this->applicant_phone = array_key_exists("applicantPhone", $db_object)
+			? $db_object["applicantPhone"] : null;
+		$this->inactive = array_key_exists("inactive", $db_object)
+			? $db_object["inactive"] : null;
 	}
 }

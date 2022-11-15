@@ -113,7 +113,7 @@ function createPost($title, $content, $zip)
 	}
 
 	try {
-		postDataFromSQL($sql, $params);
+		return postDataFromSQL($sql, $params, true);
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}
@@ -187,11 +187,11 @@ function deletePost($post_id)
 	}
 }
 
-function getPosts($type): array
+function getPosts($type, $search): array
 {
-	$sql = "SELECT post_id,creationDate,title,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0 ORDER BY creationDate DESC";
+	$sql = "SELECT post_id,creationDate,title,content,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0";
 
-	$params = null;
+	$params = array();
 
 	if ($type == "your") {
 		$sql = $sql . " AND author_id=:user_id";
@@ -199,11 +199,19 @@ function getPosts($type): array
 		$sql = $sql . " AND post_id IN (SELECT post_id FROM saves WHERE user_id=:user_id)";
 	else $type = null;
 
+	// If a search parameter is passed, find posts 
+	// where the title or content match the search query 
+	if ($search && strlen(trim($search)) > 0) {
+		$sql = $sql . " AND (title LIKE :search OR content LIKE :search)";
+
+		$params[":search"] = '%' . $search . '%';
+	}
+
+	$sql = $sql . " ORDER BY creationDate DESC";
+
 	if ($type) {
 		if (isset($_SESSION["user"]))
-			$params = [
-				":user_id" => $_SESSION["user"]
-			];
+			$params[":user_id"] = $_SESSION["user"];
 		else
 			return header("HTTP/1.1 401 Unauthorized");
 	}
@@ -265,6 +273,55 @@ function addComment($post_id, $content, $parent_id = null)
 			":content" => $content,
 			":parent_id" => isset($parent_id) ? $parent_id : null,
 		];
+
+	try {
+		postDataFromSQL($sql, $params);
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
+function editComment($comment_id, $content)
+{
+	$actual_author = get_comment_author($comment_id);
+
+	if (!isset($_SESSION["user"]) || $_SESSION["user"] != $actual_author)
+		return header("HTTP/1.1 401 Unauthorized");
+
+	$sql = "UPDATE comments 
+			SET content=:content
+			WHERE comment_id=:comment_id AND author_id=:author_id";
+
+	$params = [
+		":comment_id" => $comment_id,
+		":author_id" => $actual_author,
+		":content" => $content
+	];
+
+	try {
+		postDataFromSQL($sql, $params);
+	} catch (Exception $e) {
+		header("HTTP/1.1 500 Fatal Error");
+	}
+}
+
+function deleteComment($comment_id)
+{
+	$actual_author = get_comment_author($comment_id);
+
+	if (!isset($_SESSION["user"]) || $_SESSION["user"] != $actual_author)
+		return header("HTTP/1.1 401 Unauthorized");
+
+	$sql = "UPDATE comments 
+	SET inactive=1
+	WHERE (comment_id=:comment_id 
+	AND author_id=:author_id)
+	OR parent_id=:comment_id";
+
+	$params = [
+		":comment_id" => $comment_id,
+		":author_id" => $actual_author
+	];
 
 	try {
 		postDataFromSQL($sql, $params);
