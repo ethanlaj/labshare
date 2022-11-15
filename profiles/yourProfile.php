@@ -25,8 +25,9 @@ if ($profile->banner == null) {
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--TODO: make title the user id of profile being viewed if it exists, otherwise give an error-->
 	<title>
-		<!--TODO: make title the user id of profile being viewed if it exists, otherwise give an error-->
+		Profile
 	</title>
 
 	<!-- Bootstrap -->

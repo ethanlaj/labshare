@@ -38,27 +38,27 @@
 				</p>
 			</article>
 			<article>
-				<label for="firstName" class="form-label">Enter your first name</label>
+				<label for="firstName" class="form-label">First Name</label>
 				<input type="text" class="form-control" name="firstName" id="firstName" required />
 			</article>
 			<article>
-				<label for="lastName" class="form-label">Enter your last name</label>
+				<label for="lastName" class="form-label">Last Name</label>
 				<input type="text" class="form-control" name="lastName" id="lastName" required />
 			</article>
 			<article>
-				<label for="email" class="form-label">Enter your email address</label>
+				<label for="email" class="form-label">Email Address</label>
 				<input type="email" class="form-control" name="email" id="email" required />
 			</article>
 			<article>
-				<label for="userName" class="form-label">Create your username</label>
+				<label for="userName" class="form-label">Username</label>
 				<input type="text" class="form-control" name="userName" id="userName" required />
 			</article>
 			<article>
-				<label for="password" class="form-label">Create your password</label>
+				<label for="password" class="form-label">Password</label>
 				<input type="text" class="form-control" name="password" id="password" required />
 			</article>
 			<article>
-				<label for="phone" class="form-label">Enter your phone number</label>
+				<label for="phone" class="form-label">Phone Number</label>
 				<input type="text" class="form-control" name="phone" id="phone" required />
 			</article>
 			<article>
