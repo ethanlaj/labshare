@@ -97,11 +97,11 @@ $logged_in_user = isset($_SESSION["user"])
 								<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
 									Report
 								</button>
-						</div>
-					<?PHP
+							<?PHP
 							}
-					?>
-				<?PHP } ?>
+							?>
+						</div>
+					<?PHP } ?>
 				</div>
 			</div>
 			<p id="postText"><?PHP echo str_replace("\n", "<br />", $post->content) ?></p>
