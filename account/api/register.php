@@ -31,7 +31,7 @@ try {
     $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
     createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+    header("location: ../login.php");
 } catch (Exception $e) {
     echo $e;
 }
-header("location: ../login.php");
