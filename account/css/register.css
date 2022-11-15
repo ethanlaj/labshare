@@ -9,17 +9,15 @@ body {
 
 .form-control {
     width: 500px;
-    margin: auto;
 
 }
 
 #registerform {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 1rem;
     margin: auto;
-    text-align: center;
-    display: table;
-    height: 80%;
-    box-shadow: 5px 10px 20px #888888;
-    border-radius: 30px
+
 }
 
 #submit {
