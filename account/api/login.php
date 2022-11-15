@@ -18,11 +18,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     if ($is_pwd_correct) {
         $_SESSION["user"] = $user["user_id"];
-        echo "RIGHT";
+        header("Location: ../../posting/posts.html");
     } else
-        echo "WRONG";
+        header("Location:../login.php");
 } else {
     echo "WRONG PARAMS";
 }
-
-header("Location: ../../posting/posts.html");
