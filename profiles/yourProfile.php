@@ -15,7 +15,7 @@ if ($profile->profilepic == null) {
 
 $ban = null;
 if ($profile->banner == null) {
-	$ban = "../global/Labequipment.png";
+	$ban = "../global/defaultbanner.png";
 } else $ban = $profile->banner;
 ?>
 
