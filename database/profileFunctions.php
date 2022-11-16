@@ -19,7 +19,7 @@ function createProfile(
     $achievements_interests = null,
     $fullName = null,
     $age = null,
-    $profilePic = null,
+    $profilepic = null,
     $banner = null
 ) {
     $sql = "INSERT INTO profiles (user_id,
@@ -31,7 +31,7 @@ function createProfile(
     achievements_interests,
     fullName,
     age,
-    profilePic,
+    profilepic,
     banner)
           VALUES (:user_id,
 		:quals_degrees,
@@ -42,7 +42,7 @@ function createProfile(
 		:achievements_interests,
         :fullName,
         :age,
-        :profilePic,
+        :profilepic,
         :banner)";
 
 
@@ -57,7 +57,7 @@ function createProfile(
             ":achievements_interests" => $achievements_interests,
             ":fullName" => $fullName,
             ":age" => $age,
-            ":profilePic" => $profilePic,
+            ":profilepic" => $profilepic,
             ":banner" => $banner
 
         ];
@@ -77,5 +77,5 @@ function fetchProfile()
     $prof = getDataFromSQL($sql)[0];
 
 
-    return new Profile(4, $prof["quals_degrees"], $prof["areaOfStudy"], $prof["yearsOfStudy"], $prof["secondaryAreaOfStudy"], $prof["about"], $prof["achievements_interests"], $prof["fullName"], $prof["age"], $prof["profilePic"], $prof["banner"]);
+    return new Profile(4, $prof["quals_degrees"], $prof["areaOfStudy"], $prof["yearsOfStudy"], $prof["secondaryAreaOfStudy"], $prof["about"], $prof["achievements_interests"], $prof["fullName"], $prof["age"], $prof["profilepic"], $prof["banner"]);
 }

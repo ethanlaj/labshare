@@ -9,9 +9,9 @@ require_once("../database/accountFunctions.php");
 
 $profile = getprofile();
 $profpic = null;
-if ($profile->profilePic == null) {
+if ($profile->profilepic == null) {
 	$profpic = "../global/noprofilepic.png";
-} else $profpic = $profile->profilePic;
+} else $profpic = $profile->profilepic;
 
 $ban = null;
 if ($profile->banner == null) {
