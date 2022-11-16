@@ -162,13 +162,14 @@ img {
 
 #commentTable .reply td:first-child {
 	padding-bottom: 1rem;
+	margin-left: 2rem;
 }
 
 .commentDate {
 	font-weight: bold;
 	margin-bottom: 10px;
 	margin-left: auto;
-	margin-right: 25%;
+	margin-right: 10%;
 }
 
 .commentUnameDate {
