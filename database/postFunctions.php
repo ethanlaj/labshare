@@ -48,7 +48,7 @@ function get_comment_author($comment_id)
 
 function getPost($post_id, $includeExtraData = false)
 {
-	$sql = "SELECT post_id,creationDate,title,content,username,author_id,zip FROM post_with_username WHERE inactive=0 AND post_id=:id";
+	$sql = "SELECT post_id,creationDate,title,content,fullName,username,profilepic,author_id,zip FROM post_with_username WHERE inactive=0 AND post_id=:id";
 	$params = [":id" => $post_id];
 
 	$posts = getDataFromSQL($sql, $params);
@@ -189,7 +189,7 @@ function deletePost($post_id)
 
 function getPosts($type, $search): array
 {
-	$sql = "SELECT post_id,creationDate,title,content,username,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0";
+	$sql = "SELECT post_id,creationDate,title,content,username,fullName,profilepic,author_id,zip,lat,lon FROM post_with_username WHERE inactive=0";
 
 	$params = array();
 
@@ -228,7 +228,7 @@ function getPosts($type, $search): array
 
 function getCommentsForPost($post_id): array
 {
-	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username FROM comment_with_username WHERE inactive=0 AND post_id=:id AND parent_id IS NULL";
+	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username,fullName,profilepic FROM comment_with_username WHERE inactive=0 AND post_id=:id AND parent_id IS NULL";
 	$params = [":id" => $post_id];
 
 	$comments = getDataFromSQL($sql, $params);
@@ -243,7 +243,7 @@ function getCommentsForPost($post_id): array
 
 function getRepliesToComment($comment_id): array
 {
-	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username FROM comment_with_username WHERE inactive=0 AND parent_id=:id";
+	$sql = "SELECT comment_id,author_id,creationDate,parent_id,content,username,fullName,profilepic FROM comment_with_username WHERE inactive=0 AND parent_id=:id";
 	$params = [":id" => $comment_id];
 
 	$comments = getDataFromSQL($sql, $params);

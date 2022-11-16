@@ -50,11 +50,11 @@ $logged_in_user = isset($_SESSION["user"])
 	<?PHP if ($post) { ?>
 		<main id="post">
 			<div id="postHeader">
-				<img src="../global/etown-BlueJay.png" alt="<?PHP echo $post->username ?>">
+				<img src="../global/etown-BlueJay.png" alt="<?PHP echo $post->fullName ?>">
 
 				<div id="nextToProfilePic">
 					<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
-						<?PHP echo $post->username ?>
+						<?PHP echo $post->fullName ?>
 					</a>
 					<p><?PHP echo $post->creationDate ?></p>
 
@@ -136,11 +136,11 @@ $logged_in_user = isset($_SESSION["user"])
 					?>
 						<tr id=<?PHP echo "comment" . $comment->comment_id ?> class="comment">
 							<td>
-								<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $comment->username ?>" />
+								<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $comment->fullName ?>" />
 								<div class="nextToCommentProfilePic">
 									<div class="commentUnameDate">
 										<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $comment->author_id ?>">
-											<?PHP echo $comment->username ?>
+											<?PHP echo $comment->fullName ?>
 										</a>
 										<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
 									</div>
@@ -194,14 +194,14 @@ $logged_in_user = isset($_SESSION["user"])
 						?>
 							<tr id="<?PHP echo "reply{$i}comment{$child->comment_id}" ?>" class="comment reply">
 								<td>
-									<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $child->username ?>" />
+									<img class="commentProfilePic" src="../global/blank.jpg" alt="<?PHP echo $child->fullName ?>" />
 									<div class="nextToCommentProfilePic">
 										<div class="commentUnameDate">
 											<div>
 												<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $child->author_id ?>">
-													<?PHP echo $child->username ?>
+													<?PHP echo $child->fullName ?>
 												</a>
-												<div><i>Replying to <?PHP echo $comment->username ?></i></div>
+												<div><i>Replying to <?PHP echo $comment->fullName ?></i></div>
 											</div>
 											<div class="commentDate"><?PHP echo $child->creationDate ?></div>
 										</div>

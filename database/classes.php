@@ -13,6 +13,8 @@ class Post
 	public $reports;
 	public $inactive;
 	public $username;
+	public $fullName;
+	public $profilePic;
 	public $zip;
 	public $lat;
 	public $lon;
@@ -48,6 +50,10 @@ class Post
 			? $db_object["lon"] : null;
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
+		$this->fullName = array_key_exists("fullName", $db_object)
+			? $db_object["fullName"] : null;
+		$this->profilePic = array_key_exists("profilePic", $db_object)
+			? $db_object["profilePic"] : null;
 
 		if ($includeExtraData) {
 			$this->comments = getCommentsForPost($this->post_id);
@@ -68,9 +74,11 @@ class Comment
 	public $creationDate;
 	public $parent_id;
 	public $content;
-	public $reports;
 	public $inactive;
 	public $username;
+	public $fullName;
+	public $profilePic;
+	public $reports;
 
 	// Not mapped in the DB
 	public $children = array();
@@ -96,6 +104,10 @@ class Comment
 			? $db_object["inactive"] : null;
 		$this->username = array_key_exists("username", $db_object)
 			? $db_object["username"] : null;
+		$this->fullName = array_key_exists("fullName", $db_object)
+			? $db_object["fullName"] : null;
+		$this->profilePic = array_key_exists("profilePic", $db_object)
+			? $db_object["profilePic"] : null;
 
 		if ($includeChildren)
 			$this->children = getRepliesToComment($this->comment_id);
