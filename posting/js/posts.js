@@ -113,8 +113,9 @@
 			userData.appendChild(innerDiv);
 
 			let userImg = document.createElement("img");
-			userImg.src = post.profilePic && File.exists(post.profilePic)
-				? post.profilePic : "../global/noprofilepic.png";
+			console.log(post);
+			userImg.src = post.profilepic && File.exists(post.profilepic)
+				? post.profilepic : "../global/noprofilepic.png";
 			userImg.alt = post.username;
 			innerDiv.appendChild(userImg);
 

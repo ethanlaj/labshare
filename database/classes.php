@@ -14,7 +14,7 @@ class Post
 	public $inactive;
 	public $username;
 	public $fullName;
-	public $profilePic;
+	public $profilepic;
 	public $zip;
 	public $lat;
 	public $lon;
@@ -52,8 +52,8 @@ class Post
 			? $db_object["username"] : null;
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
-		$this->profilePic = array_key_exists("profilePic", $db_object)
-			? $db_object["profilePic"] : null;
+		$this->profilepic = array_key_exists("profilepic", $db_object)
+			? $db_object["profilepic"] : null;
 
 		if ($includeExtraData) {
 			$this->comments = getCommentsForPost($this->post_id);
@@ -77,7 +77,7 @@ class Comment
 	public $inactive;
 	public $username;
 	public $fullName;
-	public $profilePic;
+	public $profilepic;
 	public $reports;
 
 	// Not mapped in the DB
@@ -106,8 +106,8 @@ class Comment
 			? $db_object["username"] : null;
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
-		$this->profilePic = array_key_exists("profilePic", $db_object)
-			? $db_object["profilePic"] : null;
+		$this->profilepic = array_key_exists("profilepic", $db_object)
+			? $db_object["profilepic"] : null;
 
 		if ($includeChildren)
 			$this->children = getRepliesToComment($this->comment_id);
@@ -131,7 +131,7 @@ class User
 	public $summary;
 	public $achievements;
 	public $age;
-	public $profilePic;
+	public $profilepic;
 	public $banner;
 
 	public $inactive;
@@ -180,7 +180,7 @@ class User
 			? $db_object["achievements"] : null;
 		$this->age = array_key_exists("age", $db_object)
 			? $db_object["age"] : null;
-		$this->profilePic = array_key_exists("profilepic", $db_object)
+		$this->profilepic = array_key_exists("profilepic", $db_object)
 			? $db_object["profilepic"] : null;
 		$this->banner = array_key_exists("banner", $db_object)
 			? $db_object["banner"] : null;
@@ -198,7 +198,7 @@ class Profile
 	public $achievements_interests;
 	public $fullName;
 	public $age;
-	public $profilePic;
+	public $profilepic;
 	public $banner;
 
 	public $user;
@@ -225,7 +225,7 @@ class Profile
 		$achievements_interests,
 		$fullName,
 		$age,
-		$profilePic,
+		$profilepic,
 		$banner
 
 	) {
@@ -239,7 +239,7 @@ class Profile
 		$this->achievements_interests = $achievements_interests;
 		$this->fullName = $fullName;
 		$this->age = $age;
-		$this->profilePic = $profilePic;
+		$this->profilepic = $profilepic;
 		$this->banner = $banner;
 	}
 }
