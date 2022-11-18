@@ -2,6 +2,11 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
+//
+require_once('../../global/patterns.php');
+var_dump($patterns);
+//
+
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $current_user_id = isset($_SESSION["user"])
         ? $_SESSION["user"] : null;
