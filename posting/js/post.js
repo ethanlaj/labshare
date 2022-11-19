@@ -305,7 +305,7 @@
 	function addComment() {
 		event.preventDefault();
 
-		addCommentBtn = document.querySelector("#addCommentBtn");
+		let addCommentBtn = document.querySelector("#addCommentBtn");
 		addCommentBtn.disabled = true;
 
 		let modalTextArea = document.getElementById("commentAddTextForm");
