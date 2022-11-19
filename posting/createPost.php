@@ -1,5 +1,15 @@
 <?PHP
-require_once('../global/validation.php');
+session_start();
+
+$logged_in_user = isset($_SESSION["user"])
+	? $_SESSION["user"] : null;
+
+if (!$logged_in_user) {
+	header("Location: ../account/login.php");
+	die();
+}
+
+require_once("../global/validation.php");
 ?>
 
 <!DOCTYPE html>

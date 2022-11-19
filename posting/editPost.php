@@ -1,10 +1,17 @@
 <?PHP
+session_start();
+
+$logged_in_user = isset($_SESSION["user"])
+	? $_SESSION["user"] : null;
+
+if (!$logged_in_user) {
+	header("Location: ../account/login.php");
+	die();
+}
+
 require_once("../global/validation.php");
 
 $post = null;
-
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
 
 if (isset($_GET["id"])) {
 	require_once("../database/postFunctions.php");
