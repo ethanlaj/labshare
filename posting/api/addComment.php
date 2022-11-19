@@ -1,8 +1,7 @@
 <?PHP
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+require_once('../../global/validation.php');
 
-if (isset($_POST["post_id"]) && isset($_POST["content"])) {
+if (isset($_POST["post_id"]) && isset($_POST["content"]) && validateInput($patterns["comment"], $_POST["content"])) {
 	require_once("../../database/postFunctions.php");
 
 	$post_id = $_POST["post_id"];

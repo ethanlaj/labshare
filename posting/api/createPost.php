@@ -1,8 +1,5 @@
 <?PHP
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
-header("Location: ../posts.html");
+require_once('../../global/validation.php');
 
 if (isset($_POST["title"]) && isset($_POST["content"])) {
 	require_once("../../database/postFunctions.php");
@@ -11,10 +8,14 @@ if (isset($_POST["title"]) && isset($_POST["content"])) {
 	$content = $_POST["content"];
 	$zip = array_key_exists("zip", $_POST) ? (int) $_POST["zip"] : null;
 
-	$new_post_id = createPost($title, $content, $zip ? $zip : null);
+	if (validateInput($patterns["postTitle"], $title) && validateInput($patterns["postContent"], $content) && validateInput($patterns["zip"], $zip)) {
+		$new_post_id = createPost($title, $content, $zip ? $zip : null);
 
-	if ($new_post_id)
-		header("Location: ../post.php?id=$new_post_id");
+		if ($new_post_id)
+			header("Location: ../post.php?id=$new_post_id");
+		else
+			header("Location: ../posts.html");
+	} else header("Location: ../posts.html");
 } else {
 	header("HTTP/1.1 400 Invalid parameters");
 }

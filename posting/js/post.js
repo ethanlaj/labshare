@@ -19,7 +19,6 @@
 		else
 			savePostBtn?.addEventListener("click", unsavePost);
 
-
 		let applyToPostBtn = document.getElementById("applyToPostBtn");
 		applyToPostBtn?.addEventListener("click", applyToPost);
 
@@ -352,7 +351,7 @@
 	function editComment() {
 		event.preventDefault();
 
-		editCommentBtn = document.querySelector("#editCommentBtn");
+		let editCommentBtn = document.querySelector("#editCommentBtn");
 		editCommentBtn.disabled = true;
 
 		let commentToEdit = lastClickedComment;

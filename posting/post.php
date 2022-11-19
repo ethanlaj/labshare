@@ -150,7 +150,7 @@ $logged_in_user = isset($_SESSION["user"])
 										<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
 
 										<form class="replyForm">
-											<textarea <?php echo convertToHTML($patterns["comment"]); ?> hidden class="replyBox form-control" maxlength="500"></textarea>
+											<textarea <?php echo convertToHTML($patterns["comment"]); ?> hidden class="replyBox form-control"></textarea>
 											<div class="replyActionButtons">
 												<button type="button" class="replyButton btn btn-sm btn-secondary">
 													Reply

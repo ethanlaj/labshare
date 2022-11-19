@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 //
-require_once('../../global/patterns.php');
+require_once('../../global/validation.php');
 var_dump($patterns);
 //
 
