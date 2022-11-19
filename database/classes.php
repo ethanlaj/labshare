@@ -373,3 +373,33 @@ class Notification
 			? $db_object["inactive"] : null;
 	}
 }
+
+class Collabs
+{
+	public $status;
+	public $applicant_id;
+	public $applicant_username;
+	public $applicant_pic;
+	public $poster_id;
+	public $poster_username;
+	public $posterpic;
+
+	function __construct($db_object)
+	{
+
+		$this->status = array_key_exists("status", $db_object)
+			? $db_object["status"] : null;
+		$this->applicant_id = array_key_exists("applicant_id", $db_object)
+			? $db_object["applicant_id"] : null;
+		$this->applicant_username = array_key_exists("applicant_username", $db_object)
+			? $db_object["applicant_username"] : null;
+		$this->applicant_pic = array_key_exists("applicant_pic", $db_object)
+			? $db_object["applicant_pic"] : null;
+		$this->poster_id = array_key_exists("poster_id", $db_object)
+			? $db_object["poster_id"] : null;
+		$this->poster_username = array_key_exists("poster_username", $db_object)
+			? $db_object["poster_username"] : null;
+		$this->posterpic = array_key_exists("posterpic", $db_object)
+			? $db_object["posterpic"] : null;
+	}
+}

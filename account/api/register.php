@@ -26,12 +26,15 @@ $birthday = array_key_exists("birthday", $_POST)
     ? $_POST["birthday"]
     : null;
 
+if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $birthday) {
+    try {
+        $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-try {
-    $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-    createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
-    header("location: ../login.php");
-} catch (Exception $e) {
-    echo $e;
+        createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+        header("location: ../login.php");
+    } catch (Exception $e) {
+        echo $e;
+    }
+} else {
+    header("HTTP/1.1 400 Missing Parameters");
 }

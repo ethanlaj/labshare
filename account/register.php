@@ -55,12 +55,17 @@
 			</article>
 			<article>
 				<label for="password" class="form-label">Password</label>
-				<input type="text" class="form-control" name="password" id="password" required />
+				<input type="password" class="form-control" name="password" id="password" required />
+			</article>
+			<article>
+				<label for="password2" class="form-label">Enter Password Again</label>
+				<input type="password" class="form-control" name="password2" id="password2" required />
 			</article>
 			<article>
 				<label for="phone" class="form-label">Phone Number</label>
-				<input type="text" class="form-control" name="phone" id="phone" required />
+				<input type="tel" class="form-control" name="phone" id="phone" />
 			</article>
+			<!-- pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" -->
 			<article>
 				<label for="birthday" class="form-label">Birthday</label>
 				<input type="date" class="form-control" name="birthday" id="birthday" required />

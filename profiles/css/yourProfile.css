@@ -102,3 +102,13 @@ header {
 h4 {
     padding: 15px;
 }
+
+img.collabs {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5em;
+    margin: auto;
+}

@@ -12,11 +12,20 @@ $profpic = null;
 if ($profile->profilepic == null) {
 	$profpic = "../global/noprofilepic.png";
 } else $profpic = $profile->profilepic;
-
+$collabs = getCollabs(); //this is only giving you the first entry in database. need $collabs to be an object or array with the first 3 entries
 $ban = null;
 if ($profile->banner == null) {
 	$ban = "../global/defaultbanner.png";
 } else $ban = $profile->banner;
+
+$current_user_id = $_SESSION["user"];
+
+if ($current_user_id == $collabs->applicant_id) {
+	$pic = $collabs->posterpic;
+} else if ($current_user_id == $collabs->poster_id) {
+	$pic = $collabs->applicant_pic;
+} else
+	$pic = null;
 ?>
 
 <!DOCTYPE html>
@@ -107,17 +116,12 @@ if ($profile->banner == null) {
 			</article>
 		</section>
 		<aside id="topSideBar">
-			<h5>My Recent Posts</h5>
-			<table id="recentposts">
+			<h5>Recent Collaborators</h5>
+			<table id="collabs">
 				<tr>
-					<td><a href="#">Postname</a></td>
+					<td><a href="#"> <img class="collabs" src="<?PHP echo $pic ?>"></a></td>
 				</tr>
-				<tr>
-					<td><a href="#">Postname</a></td>
-				</tr>
-				<tr>
-					<td><a href="#">Postname</a></td>
-				</tr>
+
 			</table>
 		</aside>
 	</main>
