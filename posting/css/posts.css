@@ -74,6 +74,8 @@ header > div {
 .user img {
 	width: 50px;
 	height: 50px;
+	min-width: 50px;
+	min-height: 50px;
 	border: 2px solid black;
 	border-radius: 50%;
 	object-fit: cover;
