@@ -1,4 +1,6 @@
 <?PHP
+require_once("../global/validation.php");
+
 session_start();
 
 $post = null;
@@ -147,15 +149,17 @@ $logged_in_user = isset($_SESSION["user"])
 									<div class="contentAndReplyBox">
 										<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
 
-										<textarea hidden class="replyBox form-control" maxlength="500"></textarea>
-										<div class="replyActionButtons">
-											<button class="replyButton btn btn-sm btn-secondary">
-												Reply
-											</button>
-											<button hidden class="cancelReply btn btn-sm btn-secondary">
-												Cancel
-											</button>
-										</div>
+										<form class="replyForm">
+											<textarea <?php echo convertToHTML($patterns["comment"]); ?> hidden class="replyBox form-control" maxlength="500"></textarea>
+											<div class="replyActionButtons">
+												<button type="button" class="replyButton btn btn-sm btn-secondary">
+													Reply
+												</button>
+												<button hidden type="button" class="cancelReply btn btn-sm btn-secondary">
+													Cancel
+												</button>
+											</div>
+										</form>
 									</div>
 								</div>
 							</td>
@@ -343,16 +347,16 @@ $logged_in_user = isset($_SESSION["user"])
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form id="addCommentForm">
 							<label class="form-label">Comment</label>
-							<textarea id="commentAddTextForm" class="form-control" rows="5"></textarea>
+							<textarea <?php echo convertToHTML($patterns["comment"]); ?> id="commentAddTextForm" class="form-control" rows="5"></textarea>
 						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 							Cancel
 						</button>
-						<button id="addCommentBtn" type="button" class="btn btn-success">
+						<button id="addCommentBtn" type="submit" form="addCommentForm" class="btn btn-success">
 							Comment
 						</button>
 					</div>
@@ -371,14 +375,14 @@ $logged_in_user = isset($_SESSION["user"])
 					<div class="modal-body">
 						<form id="editForm">
 							<label class="form-label">Comment</label>
-							<textarea id="commentEditTextForm" class="form-control"></textarea>
+							<textarea <?php echo convertToHTML($patterns["comment"]); ?> id="commentEditTextForm" class="form-control"></textarea>
 						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 							Cancel
 						</button>
-						<button id="editCommentBtn" type="button" class="btn btn-success">
+						<button id="editCommentBtn" type="submit" form="editForm" class="btn btn-success">
 							Save
 						</button>
 					</div>

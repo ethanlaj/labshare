@@ -34,6 +34,10 @@
 		for (let replyButton of replyButtons)
 			replyButton.addEventListener("click", startReply);
 
+		let replyForms = document.getElementsByClassName("replyForm");
+		for (let replyForm of replyForms)
+			replyForm.addEventListener("submit", addReply);
+
 		let cancelReplyButtons = document.getElementsByClassName("cancelReply");
 		for (let cancelReplyButton of cancelReplyButtons)
 			cancelReplyButton.addEventListener("click", cancelReply);
@@ -54,11 +58,11 @@
 		let reportCommentBtn = document.getElementById("reportCommentBtn");
 		reportCommentBtn?.addEventListener("click", reportComment);
 
-		let addCommentBtn = document.getElementById("addCommentBtn");
-		addCommentBtn?.addEventListener("click", addComment);
+		let addCommentForm = document.getElementById("addCommentForm");
+		addCommentForm?.addEventListener("submit", addComment);
 
-		let editCommentBtn = document.getElementById("editCommentBtn");
-		editCommentBtn?.addEventListener("click", editComment);
+		let editForm = document.getElementById("editForm");
+		editForm?.addEventListener("submit", editComment);
 
 		let deleteCommentBtn = document.getElementById("deleteCommentBtn");
 		deleteCommentBtn?.addEventListener("click", deleteComment);
@@ -92,7 +96,7 @@
 	/**
 	 * Checks to see whether a reply has been started or not.
 	 * If it has been started, then add the reply
-	 * If not, then setup the view to start the reply
+	 * If not, then ignore
 	 */
 	function startReply() {
 		let comment = $(this.closest('.comment'))[0];
@@ -102,33 +106,46 @@
 		if (replyStatus == false) {
 			comment.classList.add('replying');
 
-			comment.querySelector(".replyButton").classList.replace("btn-secondary", "btn-primary")
+			comment.querySelector(".replyButton").classList.replace("btn-secondary", "btn-primary");
 			comment.querySelector(".cancelReply").hidden = false;
 			comment.querySelector(".replyBox").hidden = false;
-		} else {
-			this.disabled = true;
 
-			let reply = comment.querySelector('.replyBox');
-			if (reply.value.trim() == "") {
-				noReplyView(comment);
-				return;
-			}
-
-			const urlParams = new URLSearchParams(window.location.search);
-
-			let data = new FormData();
-			data.append("post_id", urlParams.get("id"));
-			data.append("content", reply.value);
-			data.append("parent_id", comment.id.split("comment")[1]);
-
-			fetch("api/addComment.php", { method: 'POST', body: data })
-				.then(checkStatus)
-				.then(() => {
-					location.reload();
-				}).catch((e) => {
-					showModal("Failed to Add Comment", "Could not reply to comment, please try again later");
-				});
+			setTimeout(() => {
+				comment.querySelector(".replyButton").type = "submit";
+			}, 500);
 		}
+	}
+
+	/**
+	 * Adds a reply to a comment after form submission
+	 */
+	function addReply() {
+		event.preventDefault();
+
+		let comment = $(this.closest('.comment'))[0];
+		let replyButton = comment.querySelector(".replyButton");
+		replyButton.disabled = true;
+
+		let reply = comment.querySelector('.replyBox');
+		if (reply.value.trim() == "") {
+			noReplyView(comment);
+			return;
+		}
+
+		const urlParams = new URLSearchParams(window.location.search);
+
+		let data = new FormData();
+		data.append("post_id", urlParams.get("id"));
+		data.append("content", reply.value);
+		data.append("parent_id", comment.id.split("comment")[1]);
+
+		fetch("api/addComment.php", { method: 'POST', body: data })
+			.then(checkStatus)
+			.then(() => {
+				location.reload();
+			}).catch((e) => {
+				showModal("Failed to Add Comment", "Could not reply to comment, please try again later");
+			});
 	}
 
 	/**
@@ -146,11 +163,17 @@
 	 */
 	function noReplyView(comment) {
 		comment.classList.remove('replying');
-		this.disabled = false;
 
-		comment.querySelector(".replyButton").classList.replace("btn-primary", "btn-secondary")
+		let replyButton = comment.querySelector(".replyButton");
+
+		replyButton.classList.replace("btn-primary", "btn-secondary");
+		replyButton.disabled = false;
 		comment.querySelector(".cancelReply").hidden = true;
 		comment.querySelector(".replyBox").hidden = true;
+
+		setTimeout(() => {
+			replyButton.type = "button";
+		}, 500);
 	}
 
 	/**
@@ -278,10 +301,13 @@
 	}
 
 	/**
-	 * Adds a comment to the post
+	 * Adds a comment to the post after form submission
 	 */
 	function addComment() {
-		this.disabled = true;
+		event.preventDefault();
+
+		addCommentBtn = document.querySelector("#addCommentBtn");
+		addCommentBtn.disabled = true;
 
 		let modalTextArea = document.getElementById("commentAddTextForm");
 
@@ -297,7 +323,7 @@
 				location.reload();
 			}).catch((e) => {
 				showModal("Failed to Add Comment", "Could not add comment, please try again later");
-			}).finally(() => this.disabled = false);
+			}).finally(() => addCommentBtn.disabled = false);
 	}
 
 	/**
@@ -324,7 +350,10 @@
 	 * Edits a comment
 	 */
 	function editComment() {
-		this.disabled = true;
+		event.preventDefault();
+
+		editCommentBtn = document.querySelector("#editCommentBtn");
+		editCommentBtn.disabled = true;
 
 		let commentToEdit = lastClickedComment;
 		let modalTextArea = document.getElementById("commentEditTextForm");
@@ -341,8 +370,8 @@
 				commentToEdit.querySelector('.commentContent').innerText = modalTextArea.value;
 				$("#editComment").modal("hide");
 			}).catch((e) => {
-				showModal("Failed to Edit Comment", "Could not edit this comment, please try again later");
-			}).finally(() => this.disabled = false);
+				showModal("Failed to Edit Comment", "Could not edit comment, please try again later");
+			}).finally(() => editCommentBtn.disabled = false);
 	}
 
 	/**

@@ -1,4 +1,6 @@
 <?PHP
+require_once("../global/validation.php");
+
 $post = null;
 
 ini_set("display_errors", 1);
@@ -51,15 +53,15 @@ if (isset($_GET["id"])) {
 			<input type="hidden" name="post_id" value="<?PHP echo $post->post_id ?>">
 			<div class="inputContainer">
 				<label class="form-label" for="title">Post Title</label>
-				<input required minlength="10" maxlength="50" id="title" name="title" class="form-control" type="text" value="<?PHP echo $post->title ?>" />
+				<input <?php echo convertToHTML($patterns["postTitle"]); ?> id="title" name="title" class="form-control" type="text" value="<?PHP echo $post->title ?>" />
 			</div>
 			<div class="inputContainer">
 				<label class="form-label" for="zip">Zip Code</label>
-				<input class="form-control" id="zip" name="zip" maxlength="10" type="text" pattern="[0-9]*" value="<?PHP echo $post->zip ?>" />
+				<input <?php echo convertToHTML($patterns["zip"]); ?> class="form-control" id="zip" name="zip" type="text" value="<?PHP echo $post->zip ?>" />
 			</div>
 			<div class="inputContainer">
 				<label class="form-label" for="content">Content</label>
-				<textarea required minlength="50" maxlength="2000" id="content" name="content" class="form-control" rows="15"><?PHP echo $post->content ?></textarea>
+				<textarea <?php echo convertToHTML($patterns["postContent"]); ?> id="content" name="content" class="form-control" rows="15"><?PHP echo $post->content ?></textarea>
 			</div>
 
 			<div>
