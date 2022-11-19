@@ -93,13 +93,12 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
 function getCollabs()
 {
     $current_user_id = $_SESSION["user"];
-    $sql = "SELECT status, applicant_id, applicant_username, applicant_pic, poster_id, poster_username, posterpic FROM advanced_application WHERE status != 'DECLINE' AND (poster_id= $current_user_id OR applicant_id = $current_user_id)";
+    $sql = "SELECT status, post_id, applicant_id, applicant_username, applicant_pic, poster_id, poster_username, posterpic FROM advanced_application WHERE status = 'ACCEPT' AND (poster_id= $current_user_id OR applicant_id = $current_user_id) ORDER BY post_id";
     $collabposts = getDataFromSQL($sql);
     if (count($collabposts) == 0)
         return null;
-    $collabs = $collabposts[0];
-    if ($collabs) {
-        return new Collabs($collabs);
+    if ($collabposts) {
+        return $collabposts;
     } else return null;
 }
 

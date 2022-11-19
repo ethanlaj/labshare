@@ -12,7 +12,7 @@ $profpic = null;
 if ($profile->profilepic == null) {
 	$profpic = "../global/noprofilepic.png";
 } else $profpic = $profile->profilepic;
-$collabs = getCollabs(); //this is only giving you the first entry in database. need $collabs to be an object or array with the first 3 entries
+$collabs = getCollabs();
 $ban = null;
 if ($profile->banner == null) {
 	$ban = "../global/defaultbanner.png";
@@ -20,12 +20,6 @@ if ($profile->banner == null) {
 
 $current_user_id = $_SESSION["user"];
 
-if ($current_user_id == $collabs->applicant_id) {
-	$pic = $collabs->posterpic;
-} else if ($current_user_id == $collabs->poster_id) {
-	$pic = $collabs->applicant_pic;
-} else
-	$pic = null;
 ?>
 
 <!DOCTYPE html>
@@ -117,10 +111,25 @@ if ($current_user_id == $collabs->applicant_id) {
 		</section>
 		<aside id="topSideBar">
 			<h5>Recent Collaborators</h5>
-			<table id="collabs">
-				<tr>
-					<td><a href="#"> <img class="collabs" src="<?PHP echo $pic ?>"></a></td>
-				</tr>
+			<table id="collabstable">
+				<?PHP
+				$i = 0;
+				while ($i < 4) {
+					if (!$collabs) return;
+					if (!array_key_exists($i, $collabs)) return;
+					if ($current_user_id == $collabs[$i]["applicant_id"]) {
+						$pic = $collabs[$i]["posterpic"];
+					} else if ($current_user_id == $collabs[$i]["poster_id"]) {
+						$pic = $collabs[$i]["applicant_pic"];
+					} else
+						$pic = null;
+					echo "<tr>
+					<td><a href='#'> <img class='collabs' src='$pic'></a></td>
+				</tr>";
+					$i++;
+				}
+
+				?>
 
 			</table>
 		</aside>
