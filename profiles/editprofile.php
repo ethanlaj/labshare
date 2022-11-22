@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 require_once("../database/accountFunctions.php");
 
-$profile = getprofile();
+$profile = get_profile();
 
 ?>
 

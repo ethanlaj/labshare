@@ -50,8 +50,12 @@ header {
 
 }
 
+#footer {
+    width: 82%;
+}
+
 #topSideBar {
-    max-height: 80%;
+    max-height: 90vh;
     min-height: 61.5%;
     width: 15%;
     position: fixed;
@@ -59,15 +63,15 @@ header {
     top: 40px;
     right: 0;
     overflow-x: hidden;
+    overflow-y: scroll;
     padding-top: 25px;
     padding: 5px;
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     padding: 20px;
+    padding-bottom: 0;
     margin: 20px;
     text-align: center;
-
-
 
 }
 
@@ -116,7 +120,7 @@ img.collabs {
     border-radius: 50%;
     object-fit: cover;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 #collabstable {

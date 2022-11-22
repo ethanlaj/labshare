@@ -20,7 +20,6 @@ function getDataFromSQL($sql, $params = null)
 	}
 
 	$stmt = $conn->prepare($sql);
-
 	$stmt->execute($params);
 
 	// set the resulting array to associative

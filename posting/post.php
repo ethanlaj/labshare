@@ -55,7 +55,7 @@ $logged_in_user = isset($_SESSION["user"])
 				<img src="<?PHP echo $post->profilepic && file_exists($post->profilepic) ? $post->profilepic : "../global/noprofilepic.png" ?>" alt="<?PHP echo $post->username ?>">
 
 				<div id="nextToProfilePic">
-					<a <?PHP echo "href=\"../profiles/yourProfile.html?id={$post->author_id}\"" ?>>
+					<a <?PHP echo "href=\"../profiles/profile.php?id={$post->author_id}\"" ?>>
 						<?PHP echo $post->fullName ?>
 					</a>
 					<p><?PHP echo $post->creationDate ?></p>
@@ -141,7 +141,7 @@ $logged_in_user = isset($_SESSION["user"])
 								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic && file_exists($comment->profilepic) ? $comment->profilepic : "../global/noprofilepic.png" ?>" alt="<?PHP echo $comment->username ?>" />
 								<div class="nextToCommentProfilePic">
 									<div class="commentUnameDate">
-										<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $comment->author_id ?>">
+										<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $comment->author_id ?>">
 											<?PHP echo $comment->fullName ?>
 										</a>
 										<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
@@ -202,7 +202,7 @@ $logged_in_user = isset($_SESSION["user"])
 									<div class="nextToCommentProfilePic">
 										<div class="commentUnameDate">
 											<div>
-												<a class="username" href="<?PHP echo "../profiles/yourProfile.php?id=" . $child->author_id ?>">
+												<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $child->author_id ?>">
 													<?PHP echo $child->fullName ?>
 												</a>
 												<div><i>Replying to <?PHP echo $comment->fullName ?></i></div>

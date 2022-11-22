@@ -90,26 +90,48 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
     }
 }
 
-function getCollabs()
+function getCollabs($profile_id)
 {
-    $current_user_id = $_SESSION["user"];
-    $sql = "SELECT status, post_id, applicant_id, applicant_username, applicant_pic, poster_id, poster_username, posterpic FROM advanced_application WHERE status = 'ACCEPT' AND (poster_id= $current_user_id OR applicant_id = $current_user_id) ORDER BY post_id";
-    $collabposts = getDataFromSQL($sql);
-    if (count($collabposts) == 0)
-        return null;
-    if ($collabposts) {
-        return $collabposts;
-    } else return null;
+    $sql = "SELECT status, post_id, applicant_id, applicant_username, 
+    applicant_pic, poster_id, poster_username, posterpic 
+    FROM advanced_application 
+    WHERE status = 'ACCEPT' 
+    AND (poster_id = :profile_id 
+    OR applicant_id = :profile_id) 
+    ORDER BY post_id";
+
+    $params = [
+        ":profile_id" => $profile_id,
+    ];
+
+    $collabs = getDataFromSQL($sql, $params);
+
+    $collabs_array = array();
+
+    foreach ($collabs as $collab)
+        array_push($collabs_array, new Collab($collab));
+
+    return $collabs_array;
 }
 
-function getprofile()
+function get_profile($id = null)
 {
-    $current_user_id = $_SESSION["user"];
-    $sql = "SELECT qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner, firstName, lastName FROM users
-    WHERE user_id = $current_user_id;";
+    $current_user_id = isset($_SESSION["user"])
+        ? $_SESSION["user"] : null;
+
+    if ($id) {
+        $profile_id = $id;
+    } else $profile_id = $_SESSION["user"];
+
+    $sql = "SELECT user_id, qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner, firstName, lastName FROM users
+    WHERE user_id = :profile_id;";
 
 
-    $prof = getDataFromSQL($sql);
+    $params = [
+        ":profile_id" => $profile_id,
+    ];
+
+    $prof = getDataFromSQL($sql, $params);
 
     if (count($prof) == 0)
         return null;

@@ -119,7 +119,7 @@
 			innerDiv.appendChild(userImg);
 
 			linkToProfile = document.createElement("a");
-			linkToProfile.href = "../profiles/yourProfile.php?id=" + post.author_id;
+			linkToProfile.href = "../profiles/profile.php?id=" + post.author_id;
 			linkToProfile.innerText = post.username;
 			innerDiv.appendChild(linkToProfile);
 

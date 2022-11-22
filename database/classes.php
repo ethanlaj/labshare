@@ -374,7 +374,7 @@ class Notification
 	}
 }
 
-class Collabs
+class Collab
 {
 	public $status;
 	public $applicant_id;
