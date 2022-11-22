@@ -1,6 +1,8 @@
 <?PHP
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
+
+session_start();
 require_once("../../database/accountFunctions.php");
 
 
@@ -30,8 +32,15 @@ if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $b
     try {
         $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-        createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
-        header("location: ../login.php");
+        $id = createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+        if ($id) {
+            $_SESSION["user"] = $id;
+
+            header("location: ../profile.php");
+            return;
+        }
+        var_dump($id);
+        // header("location: ../login.php");
     } catch (Exception $e) {
         echo $e;
     }
