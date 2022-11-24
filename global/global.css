@@ -77,6 +77,23 @@ body {
 	color: black;
 }
 
+/* Notification badge */
+#notiBadge {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	top: 1px;
+	right: 15px;
+	padding: 5px 10px;
+	border-radius: 50%;
+	background: red;
+	color: white;
+	width: 25px;
+	height: 25px;
+	min-width: 25px;
+	min-height: 25px;
+}
+
 .notification p:not(.notification p.date) {
 	margin: 0;
 	overflow-wrap: anywhere;
