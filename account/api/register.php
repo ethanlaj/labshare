@@ -5,7 +5,8 @@ error_reporting(E_ALL);
 session_start();
 require_once("../../database/accountFunctions.php");
 
-
+var_dump($_POST);
+die();
 $firstName = array_key_exists("firstName", $_POST)
     ? $_POST["firstName"]
     : null;
@@ -36,10 +37,10 @@ if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $b
         if ($id) {
             $_SESSION["user"] = $id;
 
-            header("location: ../profile.php");
+            // header("location: ../../profiles/profile.php");
             return;
         }
-        var_dump($id);
+
         // header("location: ../login.php");
     } catch (Exception $e) {
         echo $e;

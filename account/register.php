@@ -28,6 +28,7 @@
 </head>
 
 <body>
+
 	<main id="registerform">
 		<form id="form" action="./api/register.php" method="post">
 			<article>

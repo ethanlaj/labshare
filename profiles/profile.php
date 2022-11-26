@@ -120,7 +120,9 @@ if ($profile) {
 					<?PHP
 
 					// TODO: Check if pic exists using file_exists function
+					$i = 0;
 					foreach ($collabs as $collab) {
+						if (++$i > 4) break;
 						if ($profile->user_id == $collab->applicant_id) {
 							$pic = $collab->posterpic;
 							$collaborator_id = $collab->poster_id;

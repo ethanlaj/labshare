@@ -8,15 +8,36 @@
      */
     function init() {
         let form = document.getElementById("form");
-        form.addEventListener("submit", link);
+        form.addEventListener("submit", checkForm);
     }
     /**
      * 
      * @param {SubmitEvent} event 
      */
-    function link(event) {
-        window.location.href = "../posting/posts.html";
+    function checkForm(event) {
+        event.preventDefault();
+        let form = document.getElementById('form');
+        fetch("./api/register.php", {
+            method: 'post', body: new FormData(this), headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+        })
+            .then(checkStatus)
+            .then((response) => {
+                console.log(response)
+            })
 
+
+
+
+
+    }
+    function checkStatus(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return Promise.reject(new Error(response.status + ": " + response.statusText));
+        }
     }
 
 })();

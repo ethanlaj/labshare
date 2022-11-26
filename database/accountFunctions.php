@@ -92,7 +92,7 @@ function createProfile($qualifications = null, $areaofstudy = null, $years = nul
 
 function getCollabs($profile_id)
 {
-    $sql = "SELECT status, post_id, applicant_id, applicant_username, 
+    $sql = "SELECT DISTINCT status, post_id, applicant_id, applicant_username, 
     applicant_pic, poster_id, poster_username, posterpic 
     FROM advanced_application 
     WHERE status = 'ACCEPT' 
