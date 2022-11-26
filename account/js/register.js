@@ -18,9 +18,8 @@
         event.preventDefault();
         let form = document.getElementById('form');
         fetch("./api/register.php", {
-            method: 'post', body: new FormData(this), headers: {
-                'Content-Type': 'multipart/form-data'
-            },
+            method: 'post',
+            body: new FormData(this),
         })
             .then(checkStatus)
             .then((response) => {
