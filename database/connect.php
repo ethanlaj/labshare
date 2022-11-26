@@ -7,7 +7,15 @@ $password = getenv("SP_PASSWORD");
 $dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=25060";
 $dbconnection = new PDO($dns, $username, $password);
 
-function getDataFromSQL($sql, $params = null)
+
+/**
+ * @param string $sql The sql to execute
+ * @param array $params Optional, The parameters for the SQL statement
+ * @param array $safe_keys Optional, the array of keys not to prevent HTML/XML injection for
+ * 
+ * @return array Returns the data from the database after calling the SQL.
+ */
+function getDataFromSQL($sql, $params = null, $safe_keys = array())
 {
 	global $dns, $username, $password;
 	try {
@@ -24,15 +32,28 @@ function getDataFromSQL($sql, $params = null)
 
 	// set the resulting array to associative
 	$stmt->setFetchMode(PDO::FETCH_ASSOC);
-	$valuesArray = $stmt->fetchAll();
-	return $valuesArray;
+	$rows = $stmt->fetchAll();
+
+
+	// Prevent HTML/XML injection
+	$output = array();
+	foreach ($rows as $row) {
+		foreach ($row as $key => $value) {
+			if (gettype($value) == "string" && array_search($key, $safe_keys) === false)
+				$row[$key] = htmlspecialchars($value, ENT_QUOTES);
+		}
+
+		array_push($output, $row);
+	}
+
+	return $output;
 }
 
 
 /**
- * @param string $sql - The sql to execute
- * @param array $params - Optional, The parameters for the SQL statement
- * @param boolean $get_inserted_id - Optional, if set to true, 
+ * @param string $sql The sql to execute
+ * @param array $params Optional, The parameters for the SQL statement
+ * @param boolean $get_inserted_id Optional, if set to true, 
  * will return the last inserted row's id. 
  * 
  * @return string|void returns void if get_inserted_id is false, 
@@ -48,12 +69,6 @@ function postDataFromSQL($sql, $params = array(), $get_inserted_id = false)
 		//echo "Connected successfully";
 	} catch (PDOException $e) {
 		echo "Connection failed: " . $e->getMessage();
-	}
-
-	// Prevent HTML/XML injection 
-	foreach ($params as $key => $value) {
-		if (gettype($value) == "string")
-			$params[$key] = htmlspecialchars($value, ENT_QUOTES);
 	}
 
 	$stmt = $conn->prepare($sql);
