@@ -172,10 +172,15 @@
 	/**
 	 * Checks to see how many notifications are being displayed
 	 * If there are none, it will add a message to the sidebar instead.
+	 * Also updates the badge for new notifictions
 	 */
 	function checkNotiCount() {
 		let notiBody = document.querySelector("#notificationsBody");
 		let notis = notiBody.querySelectorAll(".notification");
+		let badge = document.querySelector("#notiBadge");
+
+		badge.innerText = notis.length;
+		badge.hidden = notis.length == 0;
 
 		if (notis.length == 0) {
 			let msg = document.createElement("p");
@@ -186,7 +191,7 @@
 	}
 
 	/**
-	 * Function that runs after the init function
+	 * Function that runs after notifications are loaded
 	 * Adds event listeners to navbar buttons
 	 * and shows certains part of the navbar
 	 * depending on if the user is logged in or out
