@@ -5,8 +5,7 @@ require_once "classes.php";
 require_once "userFunctions.php";
 
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+
 
 
 function createProfile(

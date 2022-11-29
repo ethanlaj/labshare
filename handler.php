@@ -1,7 +1,5 @@
 <?php
 // ini_set('allow_url_fopen');
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
 
 $path_to_require = substr(@parse_url($_SERVER['REQUEST_URI'])['path'], 1);
 switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {

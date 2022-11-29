@@ -1,6 +1,7 @@
 (function () {
     "use strict";
 
+
     window.addEventListener("load", init);
 
     /**
@@ -15,21 +16,24 @@
      * @param {SubmitEvent} event 
      */
     function checkForm(event) {
+        let form = new FormData(this);
+        let message = document.getElementById("alert");
+        let message2 = document.getElementById("alert2");
+        if (form.get('password') != form.get('password2')) {
+            event.preventDefault();
+            message.innerText = "Your passwords do not match!";
+        }
         event.preventDefault();
-        let form = document.getElementById('form');
         fetch("../api/account/register.php", {
             method: 'post',
-            body: new FormData(this),
+            body: form,
         })
             .then(checkStatus)
-            .then((response) => {
-                console.log(response)
-            })
+            .then(checkusername)
+    }
 
-
-
-
-
+    function checkusername(responseData) {
+        console.log(responseData);
     }
     function checkStatus(response) {
         if (response.ok) {

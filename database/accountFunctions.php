@@ -5,8 +5,7 @@ require_once "classes.php";
 require_once "userFunctions.php";
 
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+
 
 
 function createUser(
@@ -42,6 +41,33 @@ function createUser(
 
     try {
         return postDataFromSQL($sql, $params, true);
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+function getUser(
+    $firstName,
+    $lastName,
+    $email,
+    $userName,
+    $pwd,
+    $phoneNumber,
+    $birthday,
+    $user_id
+) {
+    $sql = "SELECT firstName,lastName, email, username, pwd, phoneNumber, birthday
+            FROM users 
+            WHERE user_id = :user_id";
+
+
+    $params =
+        [
+            ":user_id" => $user_id,
+
+        ];
+
+    try {
+        return getDataFromSQL($sql, $params);
     } catch (Exception $e) {
         header("HTTP/1.1 500 Fatal Error");
     }
@@ -223,4 +249,19 @@ function updatebanner($banner)
     } catch (Exception $e) {
         header("HTTP/1.1 500 Fatal Error");
     }
+}
+function check_matching_username($usrname)
+{
+    $sql = "SELECT username FROM users
+    WHERE username = :username";
+
+    $params = [
+        ":username" => $usrname,
+    ];
+
+
+
+    $data = getDataFromSQL($sql, $params);
+
+    return count($data) > 0;
 }

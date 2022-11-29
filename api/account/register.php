@@ -1,12 +1,10 @@
 <?PHP
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+header("Content-type: application/json");
 
 session_start();
 require_once(__DIR__ . "/../../database/accountFunctions.php");
 
-var_dump($_POST);
-die();
+
 $firstName = array_key_exists("firstName", $_POST)
     ? $_POST["firstName"]
     : null;
@@ -29,22 +27,26 @@ $birthday = array_key_exists("birthday", $_POST)
     ? $_POST["birthday"]
     : null;
 
-if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $birthday) {
-    try {
-        $pwd = password_hash($pwd, PASSWORD_DEFAULT);
+$output = array("creation_successful" => false);
 
-        $id = createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
-        if ($id) {
-            $_SESSION["user"] = $id;
+$output["username_taken"] = check_matching_username($userName);
 
-            // header("location: ../../profiles/profile.php");
-            return;
+if (!$output["username_taken"]) {
+    if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $birthday) {
+        try {
+            $pwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+            $id = createUser($firstName, $lastName, $email, $userName, $pwd, $phoneNumber, $birthday);
+            if ($id)
+                $_SESSION["user"] = $id;
+
+            $output["creation_successful"] = $id != null;
+        } catch (Exception $e) {
+            echo $e;
         }
-
-        // header("location: ../login.php");
-    } catch (Exception $e) {
-        echo $e;
+    } else {
+        header("HTTP/1.1 400 Missing Parameters");
     }
-} else {
-    header("HTTP/1.1 400 Missing Parameters");
 }
+
+echo json_encode($output);

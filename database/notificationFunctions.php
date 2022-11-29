@@ -4,8 +4,7 @@
 require_once "connect.php";
 require_once "classes.php";
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+
 
 function get_notification($noti_id)
 {

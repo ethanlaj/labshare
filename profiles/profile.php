@@ -14,13 +14,13 @@ if (isset($_GET["id"])) {
 
 
 if ($profile) {
-	if ($profile->profilepic == null)
+	if ($profile->profilepic == null || !file_exists($profile->profilepic))
 		$profpic = "../images/noprofilepic.png";
 	else $profpic = $profile->profilepic;
 	$collabs = getCollabs($profile->user_id);
 
 	$ban = null;
-	if ($profile->banner == null)
+	if ($profile->banner == null || !file_exists($profile->banner))
 		$ban = "../images/defaultbanner.png";
 	else $ban = $profile->banner;
 }
@@ -130,6 +130,9 @@ if ($profile) {
 							$pic = $collab->applicant_pic;
 							$collaborator_id = $collab->applicant_id;
 						}
+
+						if (!$pic || !file_exists($pic))
+							$pic = "../images/noprofilepic.png";
 					?>
 						<tr>
 							<td><a href="<?php echo "./profile.php?id=$collaborator_id"; ?>"> <img class='collabs' src="<?php echo $pic ?>"></a></td>

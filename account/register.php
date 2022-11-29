@@ -37,6 +37,8 @@
 					Don't have an account? Don't worry, registering will
 					only take a minute
 				</p>
+				<span id="alert" style="color:red"></span>
+				<span id="alert2" style="color:red"></span>
 			</article>
 			<article>
 				<label for="firstName" class="form-label">First Name</label>

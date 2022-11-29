@@ -38,3 +38,9 @@ p {
 #form div {
     margin: 1em;
 }
+
+#alert {
+    text-align: center;
+    margin-bottom: 15 px;
+    color: red;
+}
