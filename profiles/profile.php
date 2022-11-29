@@ -4,7 +4,7 @@ session_start();
 $current_user_id = isset($_SESSION["user"])
 	? $_SESSION["user"] : null;
 
-require_once("../database/accountFunctions.php");
+require_once(__DIR__ . "/../database/accountFunctions.php");
 
 
 $profile = null;

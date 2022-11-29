@@ -1,12 +1,12 @@
 <?PHP
-require_once("../global/validation.php");
+require_once(__DIR__ . "/../global/validation.php");
 
 session_start();
 
 $post = null;
 
 if (isset($_GET["id"])) {
-	require_once("../database/postFunctions.php");
+	require_once(__DIR__ . "/../database/postFunctions.php");
 
 	$post = getPost($_GET["id"], true);
 }

@@ -45,7 +45,7 @@
     </form>
     <?PHP
 
-    require_once("../../database/accountFunctions.php");
+    require_once(__DIR__ . "/../../database/accountFunctions.php");
 
 
     // if (isset($_POST[''])) {

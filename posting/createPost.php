@@ -9,7 +9,7 @@ if (!$logged_in_user) {
 	die();
 }
 
-require_once("../global/validation.php");
+require_once(__DIR__ . "/../global/validation.php");
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +28,8 @@ require_once("../global/validation.php");
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-	<script type="module" src="../scripts/postForms.js"></script>
-	<link rel="stylesheet" href="../stylesheets/postForms.css" />
+	<script src="../scripts/posting/postForms.js"></script>
+	<link rel="stylesheet" href="../stylesheets/posting/postForms.css" />
 
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 if (isset($_POST["post_id"])) {
-	require_once("../../database/postFunctions.php");
+	require_once(__DIR__ . "/../../database/postFunctions.php");
 
 	$post_id = $_POST["post_id"];
 

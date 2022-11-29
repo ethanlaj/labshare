@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 header("Content-Type: application/json");
 
-require_once("../../database/notificationFunctions.php");
+require_once(__DIR__ . "/../../database/notificationFunctions.php");
 
 $notifications = get_notifications();
 

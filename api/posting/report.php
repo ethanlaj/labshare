@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $VALID_TYPES = array(1, 2);
 
 if (isset($_POST["id"]) && isset($_POST["type"])) {
-	require_once("../../database/postFunctions.php");
+	require_once(__DIR__ . "/../../database/postFunctions.php");
 
 	$post_id = $_POST["id"];
 	$type = (int) $_POST["type"];
