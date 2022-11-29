@@ -21,7 +21,7 @@
 			extraParams.push(`search=${search}`);
 
 
-		fetch("./api/getAllPosts.php" + (extraParams.length > 0 ? "?" + extraParams.join("&") : ""))
+		fetch("../api/posting/getAllPosts.php" + (extraParams.length > 0 ? "?" + extraParams.join("&") : ""))
 			.then(checkStatus)
 			.then((posts) => {
 				if (zip)
@@ -114,7 +114,7 @@
 
 			let userImg = document.createElement("img");
 			userImg.src = post.profilepic && fileExists(post.profilepic)
-				? post.profilepic : "../global/noprofilepic.png";
+				? post.profilepic : "../images/noprofilepic.png";
 			userImg.alt = post.username;
 			innerDiv.appendChild(userImg);
 

@@ -138,7 +138,7 @@
 		data.append("content", reply.value);
 		data.append("parent_id", comment.id.split("comment")[1]);
 
-		fetch("api/addComment.php", { method: 'POST', body: data })
+		fetch("../api/posting/addComment.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				location.reload();
@@ -186,7 +186,7 @@
 		let data = new FormData();
 		data.append("post_id", urlParams.get("id"));
 
-		fetch("api/save.php", { method: 'POST', body: data })
+		fetch("../api/posting/save.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Saved", "You have successfully saved this post");
@@ -206,7 +206,7 @@
 		let data = new FormData();
 		data.append("post_id", urlParams.get("id"));
 
-		fetch("api/unsave.php", { method: 'POST', body: data })
+		fetch("../api/posting/unsave.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Unsaved", "You have successfully unsaved this post");
@@ -226,7 +226,7 @@
 		let data = new FormData();
 		data.append("post_id", urlParams.get("id"));
 
-		fetch("api/apply.php", { method: 'POST', body: data })
+		fetch("../api/posting/apply.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Applied", "You have successfully applied to this project");
@@ -247,7 +247,7 @@
 		data.append("id", urlParams.get("id"));
 		data.append("type", 1);
 
-		fetch("api/report.php", { method: 'POST', body: data })
+		fetch("../api/posting/report.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				$("#reportPost").modal("hide");
@@ -268,7 +268,7 @@
 		let data = new FormData();
 		data.append("post_id", urlParams.get("id"));
 
-		fetch("api/deletePost.php", { method: 'POST', body: data })
+		fetch("../api/posting/deletePost.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				window.location = "posts.html"
@@ -289,7 +289,7 @@
 		data.append("id", comment.id.split("comment")[1]);
 		data.append("type", 2);
 
-		fetch("api/report.php", { method: 'POST', body: data })
+		fetch("../api/posting/report.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				$("#reportComment").modal("hide");
@@ -316,7 +316,7 @@
 		data.append("post_id", urlParams.get("id"));
 		data.append("content", modalTextArea.value);
 
-		fetch("api/addComment.php", { method: 'POST', body: data })
+		fetch("../api/posting/addComment.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				location.reload();
@@ -363,7 +363,7 @@
 		data.append("comment_id", comment_id);
 		data.append("content", modalTextArea.value);
 
-		fetch("api/editComment.php", { method: 'POST', body: data })
+		fetch("../api/posting/editComment.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				commentToEdit.querySelector('.commentContent').innerText = modalTextArea.value;
@@ -385,7 +385,7 @@
 		let data = new FormData();
 		data.append("comment_id", comment_id);
 
-		fetch("api/deleteComment.php", { method: 'POST', body: data })
+		fetch("../api/posting/deleteComment.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then(() => {
 				location.reload();

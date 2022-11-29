@@ -28,14 +28,14 @@ $account = accountinfo();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!--Global CSS and JS-->
-    <link rel="stylesheet" href="../global/global.css" />
-    <script src="../global/global.js"></script>
+    <link rel="stylesheet" href="../stylesheets/global/global.css" />
+    <script src="../scripts/global/global.js"></script>
 
-    <link rel="stylesheet" href="./css/createprofile.css" />
-    <script src="./js/createprofile.js"></script>
+    <link rel="stylesheet" href="../stylesheets/createprofile.css" />
+    <script src="../scripts/createprofile.js"></script>
 
     <!--favicon-->
-    <link rel="icon" type="image/x-icon" href="../global/LabShareLogo.png" />
+    <link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
 </head>
 
 <body>

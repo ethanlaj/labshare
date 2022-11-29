@@ -27,14 +27,14 @@ if (isset($_SESSION["user"])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 	<!--Global CSS and JS-->
-	<link rel="stylesheet" href="../global/global.css" />
-	<script src="../global/global.js"></script>
+	<link rel="stylesheet" href="../stylesheets/global/global.css" />
+	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="./css/logout.css" />
-	<script src="./js/logout.js"></script>
+	<link rel="stylesheet" href="../stylesheets/logout.css" />
+	<script src="../scripts/logout.js"></script>
 
 	<!--favicon-->
-	<link rel="icon" type="image/x-icon" href="../global/LabShareLogo.png" />
+	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
 </head>
 
 <body>

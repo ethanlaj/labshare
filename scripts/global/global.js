@@ -15,7 +15,7 @@
 	function init() {
 		let data = new FormData();
 		data.append("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone);
-		fetch("../global/api/updateSession.php", { method: 'POST', body: data })
+		fetch("../api/global/updateSession.php", { method: 'POST', body: data })
 			.then(checkStatus)
 			.then((result) => {
 				if (result.reload == true)

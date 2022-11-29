@@ -8,7 +8,7 @@
 }
 
 body {
-	background-image: url("../global/science.png");
+	background-image: url("../../images/science.png");
 	background-size: 100px;
 	overflow-y: hidden;
 }
