@@ -41,7 +41,7 @@ $account = accountinfo();
 <body>
     <div id="navbar"></div>
 
-    <form id="form" action="api/editaccountinfo.php" method="post">
+    <form id="form" action="../api/profiles/editaccountinfo.php" method="post">
         <div>
             <h1>Edit Account</h1>
         </div>

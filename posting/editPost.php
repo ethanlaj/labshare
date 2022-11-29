@@ -36,8 +36,8 @@ if (isset($_GET["id"])) {
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-	<script type="module" src="../scripts/postForms.js"></script>
-	<link rel="stylesheet" href="../stylesheets/postForms.css" />
+	<script type="module" src="../scripts/posting/postForms.js"></script>
+	<link rel="stylesheet" href="../stylesheets/posting/postForms.css" />
 
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -56,7 +56,7 @@ if (isset($_GET["id"])) {
 	<?PHP if ($post) { ?>
 
 		<h1>Edit Post</h1>
-		<form id="postForm" action="./api/editPost.php" method="post">
+		<form id="postForm" action="../api/posting/editPost.php" method="post">
 			<input type="hidden" name="post_id" value="<?PHP echo $post->post_id ?>">
 			<div class="inputContainer">
 				<label class="form-label" for="title">Post Title</label>

@@ -12,7 +12,7 @@ if (isset($_POST["post_id"]) && isset($_POST["title"]) && isset($_POST["content"
 	if (validateInput($patterns["postTitle"], $title) && validateInput($patterns["postContent"], $content) && validateInput($patterns["zip"], $zip))
 		editPost($post_id, $title, $content, $zip ? $zip : null);
 
-	header("Location: ../post.php?id=$post_id");
+	header("Location: ../../posting/post.php?id=$post_id");
 	die();
 } else {
 	header("HTTP/1.1 400 Invalid parameters");

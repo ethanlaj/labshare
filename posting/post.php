@@ -1,7 +1,4 @@
 <?PHP
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
 require_once("../global/validation.php");
 
 session_start();
@@ -34,7 +31,7 @@ $logged_in_user = isset($_SESSION["user"])
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-	<link rel="stylesheet" href="../stylesheets/post.css" />
+	<link rel="stylesheet" href="../stylesheets/posting/post.css" />
 
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -43,7 +40,7 @@ $logged_in_user = isset($_SESSION["user"])
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<script src="../scripts/post.js"></script>
+	<script src="../scripts/posting/post.js"></script>
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
@@ -55,7 +52,7 @@ $logged_in_user = isset($_SESSION["user"])
 	<?PHP if ($post) { ?>
 		<main id="post">
 			<div id="postHeader">
-				<img src="<?PHP echo $post->profilepic && file_exists($post->profilepic) ? $post->profilepic : "../global/noprofilepic.png" ?>" alt="<?PHP echo $post->username ?>">
+				<img src="<?PHP echo $post->profilepic && file_exists($post->profilepic) ? $post->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $post->username ?>">
 
 				<div id="nextToProfilePic">
 					<a <?PHP echo "href=\"../profiles/profile.php?id={$post->author_id}\"" ?>>
@@ -141,7 +138,7 @@ $logged_in_user = isset($_SESSION["user"])
 					?>
 						<tr id=<?PHP echo "comment" . $comment->comment_id ?> class="comment">
 							<td>
-								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic && file_exists($comment->profilepic) ? $comment->profilepic : "../global/noprofilepic.png" ?>" alt="<?PHP echo $comment->username ?>" />
+								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic && file_exists($comment->profilepic) ? $comment->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $comment->username ?>" />
 								<div class="nextToCommentProfilePic">
 									<div class="commentUnameDate">
 										<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $comment->author_id ?>">
@@ -201,7 +198,7 @@ $logged_in_user = isset($_SESSION["user"])
 						?>
 							<tr id="<?PHP echo "reply{$i}comment{$child->comment_id}" ?>" class="comment reply">
 								<td>
-									<img class="commentProfilePic" src="<?PHP echo $child->profilepic && file_exists($child->profilepic) ? $child->profilepic : "../global/noprofilepic.png" ?>" alt="<?PHP echo $child->username ?>" />
+									<img class="commentProfilePic" src="<?PHP echo $child->profilepic && file_exists($child->profilepic) ? $child->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $child->username ?>" />
 									<div class="nextToCommentProfilePic">
 										<div class="commentUnameDate">
 											<div>

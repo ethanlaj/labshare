@@ -17,7 +17,7 @@
     function checkForm(event) {
         event.preventDefault();
         let form = document.getElementById('form');
-        fetch("../account/api/register.php", {
+        fetch("../api/account/register.php", {
             method: 'post',
             body: new FormData(this),
         })

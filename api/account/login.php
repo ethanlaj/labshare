@@ -25,7 +25,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $_SESSION["user"] = $user["user_id"];
         header("Location: ../../posting/posts.html");
     } else
-        header("Location:../login.php");
+        header("Location: ../../account/login.php");
 } else {
     echo "WRONG PARAMS";
 }

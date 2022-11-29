@@ -15,13 +15,13 @@ if (isset($_GET["id"])) {
 
 if ($profile) {
 	if ($profile->profilepic == null)
-		$profpic = "../global/noprofilepic.png";
+		$profpic = "../images/noprofilepic.png";
 	else $profpic = $profile->profilepic;
 	$collabs = getCollabs($profile->user_id);
 
 	$ban = null;
 	if ($profile->banner == null)
-		$ban = "../global/defaultbanner.png";
+		$ban = "../images/defaultbanner.png";
 	else $ban = $profile->banner;
 }
 ?>
@@ -52,8 +52,8 @@ if ($profile) {
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="../stylesheets/yourProfile.css" />
-	<script src="../scripts/yourProfile.js"></script>
+	<link rel="stylesheet" href="../stylesheets/profiles/yourProfile.css" />
+	<script src="../scripts/profiles/yourProfile.js"></script>
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />

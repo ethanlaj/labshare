@@ -30,8 +30,8 @@ if (isset($_SESSION["user"])) {
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="../stylesheets/login.css" />
-	<script src="../scripts/login.js"></script>
+	<link rel="stylesheet" href="../stylesheets/account/login.css" />
+	<script src="../scripts/account/login.js"></script>
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
@@ -41,7 +41,7 @@ if (isset($_SESSION["user"])) {
 	<?PHP if (!$user_id) { ?>
 		<main class="row justify-content-center align-items-center my-row" id="row">
 			<section class="col-med-4 col-sm-12 my-col" id="leftside">
-				<form action="./api/login.php" method="post">
+				<form action="../api/account/login.php" method="post">
 					<article>
 						<h1>Login</h1>
 					</article>

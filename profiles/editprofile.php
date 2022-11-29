@@ -33,8 +33,8 @@ $profile = get_profile();
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="../stylesheets/createprofile.css" />
-	<script src="../scripts/createprofile.js"></script>
+	<link rel="stylesheet" href="../stylesheets/profiles/createprofile.css" />
+	<script src="../scripts/profiles/createprofile.js"></script>
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
@@ -43,7 +43,7 @@ $profile = get_profile();
 <body>
 	<div id="navbar"></div>
 
-	<form id="form" action="./api/editProfile.php" method="post">
+	<form id="form" action="../api/profiles/editProfile.php" method="post">
 		<div>
 			<h1>Edit Profile</h1>
 		</div>

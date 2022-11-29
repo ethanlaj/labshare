@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <form id="form" enctype="multipart/form-data" action="api/editpictures.php" method="post">
+    <form id="form" enctype="multipart/form-data" action="api/profiles/editpictures.php" method="post">
         <div>
             <h1>Edit Pictures</h1>
 

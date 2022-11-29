@@ -46,7 +46,7 @@ require_once("../global/validation.php");
 	<div id="navbar"></div>
 
 	<h1>Create Post</h1>
-	<form id="postForm" action="./api/createPost.php" method="post">
+	<form id="postForm" action="../api/posting/createPost.php" method="post">
 		<div class="inputContainer">
 			<label class="form-label" for="title">Post Title</label>
 			<input <?php echo convertToHTML($patterns["postTitle"]); ?> id="title" name="title" class="form-control" type="text" />

@@ -30,8 +30,7 @@ if (isset($_SESSION["user"])) {
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="../stylesheets/logout.css" />
-	<script src="../scripts/logout.js"></script>
+	<link rel="stylesheet" href="../stylesheets/account/logout.css" />
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />

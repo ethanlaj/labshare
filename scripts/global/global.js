@@ -35,7 +35,7 @@
 	 * from the api and add them to the notification sidebar
 	 */
 	async function loadNotifications() {
-		await fetch("../global/api/getNotifications.php")
+		await fetch("../api/global/getNotifications.php")
 			.then(checkStatus)
 			.then((notifications) => {
 				let notiBody = document.querySelector("#notificationsBody");
@@ -281,7 +281,7 @@
 		let data = new FormData();
 		data.append("id", notification.id.split("notification")[1]);
 
-		fetch("../global/api/dismiss.php", { method: 'POST', body: data })
+		fetch("../api/global/dismiss.php", { method: 'POST', body: data })
 			.then((resp) => checkStatus(resp, false))
 			.then(() => {
 				notification.remove();
@@ -299,7 +299,7 @@
 		let data = new FormData();
 		data.append("id", notification.id.split("notification")[1]);
 
-		fetch("../global/api/accept.php", { method: 'POST', body: data })
+		fetch("../api/global/accept.php", { method: 'POST', body: data })
 			.then((resp) => checkStatus(resp, false))
 			.then(() => {
 				notification.remove();
@@ -317,7 +317,7 @@
 		let data = new FormData();
 		data.append("id", notification.id.split("notification")[1]);
 
-		fetch("../global/api/decline.php", { method: 'POST', body: data })
+		fetch("../api/global/decline.php", { method: 'POST', body: data })
 			.then((resp) => checkStatus(resp, false))
 			.then(() => {
 				notification.remove();

@@ -20,8 +20,8 @@
 	<link rel="stylesheet" href="../stylesheets/global/global.css" />
 	<script src="../scripts/global/global.js"></script>
 
-	<link rel="stylesheet" href="../stylesheets/register.css" />
-	<script src="../scripts/register.js"></script>
+	<link rel="stylesheet" href="../stylesheets/account/register.css" />
+	<script src="../scripts/account/register.js"></script>
 
 	<!--favicon-->
 	<link rel="icon" type="image/x-icon" href="../images/LabShareLogo.png" />
@@ -30,7 +30,7 @@
 <body>
 
 	<main id="registerform">
-		<form id="form" action="./api/register.php" method="post">
+		<form id="form" action="../api/account/register.php" method="post">
 			<article>
 				<h1>Register</h1>
 				<p>
