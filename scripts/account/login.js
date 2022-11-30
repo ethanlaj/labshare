@@ -6,6 +6,9 @@
     function init() {
         let form = document.getElementById("form");
         form.addEventListener("submit", checkForm);
+
+        let register = document.getElementById('register');
+        register.addEventListener('click', registerlink);
     }
 
     function checkForm(event) {
@@ -28,24 +31,23 @@
     }
 
     function checkcredentials(responseData) {
-        let passwordalert = document.getElementById("passwordalert");
         let usernamealert = document.getElementById("usernamealert");
         usernamealert.innerText = "";
-        passwordalert.innerText = ""
         document.getElementById("username").classList.remove('marginless');
 
 
-        if (!responseData.user_verify) {
-            usernamealert.innerText = "Username is not recognized";
+        if (!responseData.user_verify || !responseData.password_verify) {
+            usernamealert.innerText = "Incorrect Username or Password";
             document.getElementById("username").classList.add('marginless');
 
-        } else if (!responseData.password_verify) {
-            passwordalert.innerText = "Incorrect Password!"
-
         } else if (responseData.user_verify && responseData.password_verify) {
-            window.location.href = "../home";
+            window.location.href = "../posting";
         }
 
+    }
+
+    function registerlink() {
+        document.location.href = "./register.php";
     }
 
 

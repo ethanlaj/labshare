@@ -37,8 +37,6 @@
 					Don't have an account? Don't worry, registering will
 					only take a minute
 				</p>
-				<div id="alert"></div>
-				<div id="alert2"></div>
 			</article>
 			<article>
 				<label for="firstName" class="form-label">First Name</label>
@@ -55,14 +53,17 @@
 			<article>
 				<label for="userName" class="form-label">Username</label>
 				<input type="text" class="form-control" name="userName" id="userName" required />
+				<p class="alert" id="usernamealert"></p>
 			</article>
 			<article>
 				<label for="password" class="form-label">Password</label>
 				<input type="password" class="form-control" name="password" id="password" required />
+				<p class="alert" id="passwordalert1"></p>
 			</article>
 			<article>
 				<label for="password2" class="form-label">Enter Password Again</label>
 				<input type="password" class="form-control" name="password2" id="password2" required />
+				<p class="alert" id="passwordalert2"></p>
 			</article>
 			<article>
 				<label for="phone" class="form-label">Phone Number</label>

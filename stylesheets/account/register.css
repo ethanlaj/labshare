@@ -36,9 +36,12 @@ p {
 }
 
 
-#alert,
-#alert2 {
-    margin-bottom: 1em;
-    margin-left: 0;
+.alert {
+    margin: 0;
+    padding: 0;
     color: red;
+}
+
+.margin {
+    margin-bottom: 5px;
 }

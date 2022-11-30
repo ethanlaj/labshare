@@ -16,18 +16,26 @@
      * @param {SubmitEvent} event 
      */
     function checkForm(event) {
+        event.preventDefault();
         let form = new FormData(this);
-        let message = document.getElementById("alert");
-        let message2 = document.getElementById("alert2");
-        message2.innerText = "";
+        let password1 = document.getElementById("passwordalert1");
+        let password2 = document.getElementById("passwordalert2");
+
+        password1.innerText = "";
+        password2.innerText = "";
+        password1.classList.remove('margin');
+        password2.classList.remove('margin');
 
         if (form.get('password') != form.get('password2')) {
-            event.preventDefault();
-            message.innerText = "Your passwords do not match!";
+            password1.innerText = "Passwords do not match!";
+            password2.innerText = "Passwords do not match!";
+            password1.classList.add('margin');
+            password2.classList.add('margin');
         }
         else if (form.get('password') == form.get('password2')) {
-            message.innerText = "";
-            event.preventDefault();
+            password1.innerText = "";
+            password2.innerText = "";
+
             fetch("../api/account/register.php", {
                 method: 'post',
                 body: form,
@@ -39,12 +47,13 @@
     }
 
     function checkusername(responseData) {
-        let message2 = document.getElementById("alert2");
+        let useralert = document.getElementById("usernamealert");
+        useralert.innerText = "";
         console.log(responseData.username_taken);
         if (responseData.username_taken) {
-            message2.innerText = "Username is already taken!";
+            useralert.innerText = "Username is already taken!";
         } else if (!responseData.creation_successful) {
-            message2.innerText = "Something went wrong. Please try different credentials";
+            useralert.innerText = "Something went wrong. Please try different credentials";
         } else if (responseData.creation_successful && !responseData.username_taken) {
             document.location.href = '../profiles/profile.php';
         }
