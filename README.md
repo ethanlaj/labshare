@@ -6,7 +6,7 @@ Labshare is a web application which allows scientists and science enthusiasts to
 
 The following request formats begin with `api/posting/`
 
-#### Add Comment
+### Add Comment
 
 Request Type: `POST`
 
@@ -16,7 +16,7 @@ Returned Data: None
 
 Description: Adds a comment or a reply to the specified post as the currently logged in user.
 
-#### Apply
+### Apply
 
 Request Type: `POST`
 
@@ -26,7 +26,7 @@ Returned Data: None
 
 Description: Applies to the specified post as the currently logged in user.
 
-#### Create Post
+### Create Post
 
 Request Type: `POST`
 
@@ -36,7 +36,7 @@ Returned Data: None
 
 Description: Creates a new post as the currently logged in user.
 
-#### Delete Comment
+### Delete Comment
 
 Request Type: `POST`
 
@@ -46,7 +46,7 @@ Returned Data: None
 
 Description: Deletes a comment and its replies if it was created by the currently logged in user.
 
-#### Delete Post
+### Delete Post
 
 Request Type: `POST`
 
@@ -56,7 +56,7 @@ Returned Data: None
 
 Description: Deletes a post if it was created by the currently logged in user.
 
-#### Edit Comment
+### Edit Comment
 
 Request Type: `POST`
 
@@ -66,7 +66,7 @@ Returned Data: None
 
 Description: Edits a comment if it was created by the currently logged in user.
 
-#### Edit Post
+### Edit Post
 
 Request Type: `POST`
 
@@ -76,7 +76,7 @@ Returned Data: None
 
 Description: Edits a post if it was created by the currently logged in user.
 
-#### Get All Posts
+### Get All Posts
 
 Request Type: `GET`
 
@@ -91,7 +91,7 @@ Returned Data: JSON Format
 
 Description: The returned JSON data returns the `post_id`, `creationDate`, `title`, `content`, `username`, `fullName`,`profilepic`, `author_id`, `zip`, `lat`, and `lon` of all of the posts in the database, ordered by creation date descending.
 
-#### Report
+### Report
 
 Request Type: `POST`
 
@@ -106,7 +106,7 @@ Returned Data: None
 
 Description: Reports the post or comment with the specified id.
 
-#### Save
+### Save
 
 Request Type: `POST`
 
@@ -116,7 +116,7 @@ Returned Data: None
 
 Description: Saves the post as the currently logged in user.
 
-#### Unsave
+### Unsave
 
 Request Type: `POST`
 
