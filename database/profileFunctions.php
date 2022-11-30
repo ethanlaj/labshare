@@ -2,7 +2,6 @@
 // Include connection
 require_once "connect.php";
 require_once "classes.php";
-require_once "userFunctions.php";
 
 
 

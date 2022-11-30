@@ -1,6 +1,6 @@
 <?PHP
+require_once("sharedFunctions.php");
 require_once("postFunctions.php");
-require_once("userFunctions.php");
 
 class Post
 {
