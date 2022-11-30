@@ -43,7 +43,7 @@
             passwordalert.innerText = "Incorrect Password!"
 
         } else if (responseData.user_verify && responseData.password_verify) {
-            window.location.href = "../home/";
+            window.location.href = "../home";
         }
 
     }
