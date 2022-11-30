@@ -52,7 +52,7 @@ $logged_in_user = isset($_SESSION["user"])
 	<?PHP if ($post) { ?>
 		<main id="post">
 			<div id="postHeader">
-				<img src="<?PHP echo $post->profilepic && file_exists($post->profilepic) ? $post->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $post->username ?>">
+				<img src="<?PHP echo $post->profilepic ?>" alt="<?PHP echo $post->username ?>">
 
 				<div id="nextToProfilePic">
 					<a <?PHP echo "href=\"../profiles/profile.php?id={$post->author_id}\"" ?>>
@@ -138,7 +138,7 @@ $logged_in_user = isset($_SESSION["user"])
 					?>
 						<tr id=<?PHP echo "comment" . $comment->comment_id ?> class="comment">
 							<td>
-								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic && file_exists($comment->profilepic) ? $comment->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $comment->username ?>" />
+								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic ?>" alt="<?PHP echo $comment->username ?>" />
 								<div class="nextToCommentProfilePic">
 									<div class="commentUnameDate">
 										<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $comment->author_id ?>">
@@ -198,7 +198,7 @@ $logged_in_user = isset($_SESSION["user"])
 						?>
 							<tr id="<?PHP echo "reply{$i}comment{$child->comment_id}" ?>" class="comment reply">
 								<td>
-									<img class="commentProfilePic" src="<?PHP echo $child->profilepic && file_exists($child->profilepic) ? $child->profilepic : "../images/noprofilepic.png" ?>" alt="<?PHP echo $child->username ?>" />
+									<img class="commentProfilePic" src="<?PHP echo $child->profilepic ?>" alt="<?PHP echo $child->username ?>" />
 									<div class="nextToCommentProfilePic">
 										<div class="commentUnameDate">
 											<div>

@@ -52,8 +52,9 @@ class Post
 			? $db_object["username"] : null;
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
-		$this->profilepic = array_key_exists("profilepic", $db_object)
-			? $db_object["profilepic"] : null;
+		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
+			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			: "../images/noprofilepic.png";
 
 		if ($includeExtraData) {
 			$this->comments = getCommentsForPost($this->post_id);
@@ -106,8 +107,9 @@ class Comment
 			? $db_object["username"] : null;
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
-		$this->profilepic = array_key_exists("profilepic", $db_object)
-			? $db_object["profilepic"] : null;
+		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
+			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			: "../images/noprofilepic.png";
 
 		if ($includeChildren)
 			$this->children = getRepliesToComment($this->comment_id);

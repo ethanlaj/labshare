@@ -1,5 +1,8 @@
 <?PHP
 
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+
 header("Content-Type: application/json");
 
 require_once(__DIR__ . "/../../database/postFunctions.php");

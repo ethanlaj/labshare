@@ -113,8 +113,7 @@
 			userData.appendChild(innerDiv);
 
 			let userImg = document.createElement("img");
-			userImg.src = post.profilepic && fileExists(post.profilepic)
-				? post.profilepic : "../images/noprofilepic.png";
+			userImg.src = post.profilepic;
 			userImg.alt = post.username;
 			innerDiv.appendChild(userImg);
 
@@ -218,17 +217,17 @@
 	};
 
 
-	/**
-	 * Helper function to determine whether or not a file exists
-	 * @param {url} file 
-	 * @returns boolean true if file exists, false if it does not
-	 */
-	function fileExists(file) {
-		var http = new XMLHttpRequest();
-		http.open('HEAD', file, false);
-		http.send();
-		return http.status == 200;
-	}
+	// /**
+	//  * Helper function to determine whether or not a file exists
+	//  * @param {url} file 
+	//  * @returns boolean true if file exists, false if it does not
+	//  */
+	// function fileExists(file) {
+	// 	var http = new XMLHttpRequest();
+	// 	http.open('HEAD', file, false);
+	// 	http.send();
+	// 	return http.status == 200;
+	// }
 
 	/**
 	 * Helper function to return the response's result text if successful, otherwise
