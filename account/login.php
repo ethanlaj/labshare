@@ -41,15 +41,17 @@ if (isset($_SESSION["user"])) {
 	<?PHP if (!$user_id) { ?>
 		<main class="row justify-content-center align-items-center my-row" id="row">
 			<section class="col-med-4 col-sm-12 my-col" id="leftside">
-				<form action="../api/account/login.php" method="post">
+				<form id="form" action="../api/account/login.php" method="post">
 					<article>
 						<h1>Login</h1>
+						<p id="usernamealert"></p>
 					</article>
 					<article>
 						<label for="username" class="form-label">Username or Email Address</label>
 						<input type="text" class="form-control" name="username" id="username" required />
 					</article>
 					<article>
+						<p id="passwordalert"></p>
 						<label for="password" class="form-label">Password</label>
 						<input type="password" class="form-control" name="password" id="password" required />
 					</article>

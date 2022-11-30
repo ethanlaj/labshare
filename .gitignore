@@ -2,3 +2,5 @@
 .DS_Store
 .vscode
 app.yaml
+profilepics/*
+banners/*

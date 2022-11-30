@@ -19,13 +19,15 @@
     <link rel="stylesheet" href="../stylesheets/global/global.css" />
     <script src="../scripts/global/global.js"></script>
 
-    <link rel="stylesheet" href="../stylesheets/createprofile.css" />
-    <script src="../scripts/createprofile.js"></script>
+    <link rel="stylesheet" href="../stylesheets/profiles/createProfile.css" />
+    <script src="../scripts/profiles/createProfile.js"></script>
     <title>Edit Pictures</title>
 </head>
 
 <body>
-    <form id="form" enctype="multipart/form-data" action="api/profiles/editpictures.php" method="post">
+    <div id="navbar"></div>
+
+    <form id="form" enctype="multipart/form-data" action="../api/profiles/editpictures.php" method="post">
         <div>
             <h1>Edit Pictures</h1>
 
@@ -42,38 +44,9 @@
             <div>
                 <input class="btn btn-primary" type="submit" value="Submit" name="submit" id="submit" />
             </div>
+        </div>
     </form>
-    <?PHP
-
-    require_once(__DIR__ . "/../../database/accountFunctions.php");
-
-
-    // if (isset($_POST[''])) {
-    //     $profilepic = array_key_exists("profilepic", $_FILES)  // only for these you need to use that new file method instead of $_POST I think 
-    //         ? $_FILES["profilepic"]
-    //         : null;
-    //     print_r($profilepic);
-    //     $banner = array_key_exists("banner", $_FILES)
-    //         ? $_FILES["banner"]
-    //         : null;
-
-    //     try {
-
-    //         $temp_name = $_FILES["profilepic"]["tmp_name"];
-    //         $file_name = $_FILES["profilepic"]["name"];
-    //         $image_dir = "/Applications/XAMPP/xamppfiles/htdocs/CS310/profilepics/" . $file_name;
-
-    //         // using the move_uploaded_file function
-    //         if (move_uploaded_file($temp_name, $image_dir)) {
-    //         } else
-    //             echo "There was an error uploading file";
-    //     } catch (Exception $e) {
-    //         echo $e;
-    //     }
-    // }
-    // 
-    ?>
-
+    <div id="footer"></div>
 </body>
 
 </html>

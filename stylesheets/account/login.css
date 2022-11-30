@@ -87,3 +87,14 @@ h1 {
     margin-top: 40px;
     width: 150px;
 }
+
+#passwordalert,
+#usernamealert {
+    text-align: center;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.marginless {
+    margin-bottom: 0;
+}
