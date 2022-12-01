@@ -217,8 +217,6 @@ function set_image_path($picture, $type)
         $current_user_id = $_SESSION["user"];
         $sql = "UPDATE users SET $type = :picture WHERE user_id = :user_id";
 
-        echo $sql;
-
         $params =
             [
                 ":user_id" => $current_user_id,

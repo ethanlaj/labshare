@@ -39,13 +39,12 @@ if (isset($_SESSION["user"])) {
 <body>
 	<?PHP if ($user_id) {
 		unset($_SESSION["user"]);
+	}
 	?>
-		<h1>You have successfully logged out</h1>
-		<h4>Thank you for using Science Proposal</h4>
-		<a href="./login.php" class="btn btn-primary">Log Back In</a>
-	<?PHP } else {
-		header("Location: ../posting/posts.html");
-	} ?>
+
+	<h1>You have successfully logged out</h1>
+	<h4>Thank you for using Science Proposal</h4>
+	<a href="./login.php" class="btn btn-primary">Log Back In</a>
 </body>
 
 </html>

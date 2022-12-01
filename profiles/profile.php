@@ -14,15 +14,9 @@ if (isset($_GET["id"])) {
 
 
 if ($profile) {
-	if ($profile->profilepic == null || !file_exists($profile->profilepic))
-		$profpic = "../images/noprofilepic.png";
-	else $profpic = $profile->profilepic;
+	$profpic = $profile->profilepic;
+	$ban = $profile->banner;
 	$collabs = getCollabs($profile->user_id);
-
-	$ban = null;
-	if ($profile->banner == null || !file_exists($profile->banner))
-		$ban = "../images/defaultbanner.png";
-	else $ban = $profile->banner;
 }
 ?>
 

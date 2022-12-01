@@ -185,8 +185,9 @@ class User
 		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
 			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
 			: "../images/noprofilepic.png";
-		$this->banner = array_key_exists("banner", $db_object)
-			? $db_object["banner"] : null;
+		$this->banner = array_key_exists("banner", $db_object) && $db_object["banner"]
+			? "https://storage.googleapis.com/user_pictures_folder/banners/" . $db_object["banner"]
+			: "../images/defaultbanner.png";
 	}
 }
 

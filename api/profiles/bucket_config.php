@@ -2,7 +2,7 @@
 // Credit: Rajesh Kumar Sahanee on https://zatackcoder.com/upload-file-to-google-cloud-storage-using-php/
 
 // load GCS library
-require_once '../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
 

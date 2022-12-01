@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 require_once(__DIR__ . "/../../database/accountFunctions.php");
 require_once('bucket_config.php');
 
+$valid_types = array("image/png");
+
 try {
     if (isset($_FILES['profilepic']))
         call_upload_function('profilepic');
@@ -18,6 +20,11 @@ try {
 
 function call_upload_function($type)
 {
+    global $valid_types;
+    if (filesize > max || array_search($filetype, $valid_types) === FALSE) {
+        return // error page?
+    }
+
     // Credit: Rajesh Kumar Sahanee on https://zatackcoder.com/upload-file-to-google-cloud-storage-using-php/ 
 
     if ($_FILES[$type]['error'] != 4) {
