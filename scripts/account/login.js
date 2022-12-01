@@ -41,7 +41,7 @@
             document.getElementById("username").classList.add('marginless');
 
         } else if (responseData.user_verify && responseData.password_verify) {
-            window.location.href = "../posting";
+            window.location.href = "../posting/posts.html";
         }
 
     }

@@ -113,23 +113,30 @@ if ($profile) {
 				<table id="collabstable">
 					<?PHP
 
-					// TODO: Check if pic exists using file_exists function
 					$i = 0;
+					$collab_usernames = array();
 					foreach ($collabs as $collab) {
 						if (++$i > 4) break;
 						if ($profile->user_id == $collab->applicant_id) {
 							$pic = $collab->posterpic;
+							$username = $collab->poster_username;
 							$collaborator_id = $collab->poster_id;
 						} else if ($profile->user_id == $collab->poster_id) {
 							$pic = $collab->applicant_pic;
+							$username = $collab->applicant_username;
 							$collaborator_id = $collab->applicant_id;
 						}
 
-						if (!$pic || !file_exists($pic))
-							$pic = "../images/noprofilepic.png";
+						if (array_search($username, $collab_usernames) === false)
+							array_push($collab_usernames, $username);
+						else break;
 					?>
 						<tr>
-							<td><a href="<?php echo "./profile.php?id=$collaborator_id"; ?>"> <img class='collabs' src="<?php echo $pic ?>"></a></td>
+							<td>
+								<a href="<?php echo "./profile.php?id=$collaborator_id"; ?>">
+									<img class='collabs' src="<?php echo $pic ?>" alt="<?php echo $username ?>" title=" <?php echo $username ?>">
+								</a>
+							</td>
 						</tr>
 					<?PHP
 					}

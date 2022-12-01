@@ -397,13 +397,15 @@ class Collab
 			? $db_object["applicant_id"] : null;
 		$this->applicant_username = array_key_exists("applicant_username", $db_object)
 			? $db_object["applicant_username"] : null;
-		$this->applicant_pic = array_key_exists("applicant_pic", $db_object)
-			? $db_object["applicant_pic"] : null;
+		$this->applicant_pic = array_key_exists("applicant_pic", $db_object) && $db_object["applicant_pic"]
+			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["applicant_pic"]
+			: "../images/noprofilepic.png";
 		$this->poster_id = array_key_exists("poster_id", $db_object)
 			? $db_object["poster_id"] : null;
 		$this->poster_username = array_key_exists("poster_username", $db_object)
 			? $db_object["poster_username"] : null;
-		$this->posterpic = array_key_exists("posterpic", $db_object)
-			? $db_object["posterpic"] : null;
+		$this->posterpic = array_key_exists("posterpic", $db_object) && $db_object["posterpic"]
+			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["posterpic"]
+			: "../images/noprofilepic.png";
 	}
 }
