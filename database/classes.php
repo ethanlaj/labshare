@@ -182,8 +182,9 @@ class User
 			? $db_object["achievements"] : null;
 		$this->age = array_key_exists("age", $db_object)
 			? $db_object["age"] : null;
-		$this->profilepic = array_key_exists("profilepic", $db_object)
-			? $db_object["profilepic"] : null;
+		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
+			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			: "../images/noprofilepic.png";
 		$this->banner = array_key_exists("banner", $db_object)
 			? $db_object["banner"] : null;
 	}
