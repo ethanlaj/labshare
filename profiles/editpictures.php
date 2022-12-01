@@ -1,3 +1,11 @@
+<?PHP
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: ../account/login.php");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

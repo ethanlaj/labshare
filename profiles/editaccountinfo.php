@@ -1,7 +1,9 @@
 <?PHP
-$account = null;
-
-
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: ../account/login.php");
+    die();
+}
 
 require_once(__DIR__ . "/../database/accountFunctions.php");
 
