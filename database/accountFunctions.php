@@ -3,6 +3,8 @@
 require_once "connect.php";
 require_once "classes.php";
 
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
 
 function createUser(
     $firstName,
@@ -206,46 +208,33 @@ function editAccount($userName = null, $pwd = null, $email = null, $phoneNumber 
     }
 }
 
-function updateprofilepic($profilepic)
+function set_image_path($picture, $type)
 {
     if (!isset($_SESSION["user"]))
         return header("HTTP/1.1 401 Unauthorized");
-    $current_user_id = $_SESSION["user"];
-    $sql = "UPDATE users SET profilepic= :profilepic
-    WHERE user_id = $current_user_id";
 
+    if ($type == "profilepic" || $type == "banner") {
+        $current_user_id = $_SESSION["user"];
+        $sql = "UPDATE users SET $type = :picture WHERE user_id = :user_id";
 
-    $params =
-        [
-            ":profilepic" => $profilepic
-        ];
+        echo $sql;
 
-    try {
-        postDataFromSQL($sql, $params);
-    } catch (Exception $e) {
-        header("HTTP/1.1 500 Fatal Error");
+        $params =
+            [
+                ":user_id" => $current_user_id,
+                ":picture" => $picture
+            ];
+
+        try {
+            postDataFromSQL($sql, $params);
+        } catch (Exception $e) {
+            header("HTTP/1.1 500 Fatal Error");
+        }
+    } else {
+        return header("HTTP/1.1 500 Fatal Error");
     }
 }
-function updatebanner($banner)
-{
-    if (!isset($_SESSION["user"]))
-        return header("HTTP/1.1 401 Unauthorized");
-    $current_user_id = $_SESSION["user"];
-    $sql = "UPDATE users SET banner= :banner
-    WHERE user_id = $current_user_id";
 
-
-    $params =
-        [
-            ":banner" => $banner
-        ];
-
-    try {
-        postDataFromSQL($sql, $params);
-    } catch (Exception $e) {
-        header("HTTP/1.1 500 Fatal Error");
-    }
-}
 function check_matching_username($usrname)
 {
     $sql = "SELECT username FROM users

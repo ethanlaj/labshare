@@ -3,28 +3,40 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 require_once(__DIR__ . "/../../database/accountFunctions.php");
+require_once('bucket_config.php');
 
 try {
+    if (isset($_FILES['profilepic']))
+        call_upload_function('profilepic');
+    if (isset($_FILES['banner']))
+        call_upload_function('banner');
 
-    if (isset($_FILES['profilepic'])) {
-        $temp_name = $_FILES["profilepic"]["tmp_name"];
-        $file_name = $_FILES["profilepic"]["name"];
-        $image_dir = __DIR__ . "/../../profilepics/$file_name";
-        if (move_uploaded_file($temp_name, $image_dir)) {
-            updateprofilepic(__DIR__ . "/../../profilepics/$file_name");
-        } else
-            echo "There was an error uploading file";
-    }
-    if (isset($_FILES['banner'])) {
-        $temp_name2 = $_FILES["banner"]["tmp_name"];
-        $file_name2 = $_FILES["banner"]["name"];
-        $image_dir2 = __DIR__ . "/../../banners/$file_name2";
-        if (move_uploaded_file($temp_name2, $image_dir2)) {
-            updatebanner(__DIR__ . "/../../banners/$file_name2");
-        } else
-            echo "There was an error uploading file";
-    }
+    header("Location: ../../profiles/profile.php");
 } catch (Exception $e) {
     echo $e;
 }
-header("Location: ../../profiles/profile.php");
+
+function call_upload_function($type)
+{
+    // Credit: Rajesh Kumar Sahanee on https://zatackcoder.com/upload-file-to-google-cloud-storage-using-php/ 
+
+    if ($_FILES[$type]['error'] != 4) {
+        //set which bucket to work in
+        $bucketName = "user_pictures_folder";
+        // get local file for upload testing
+        $fileContent = file_get_contents($_FILES[$type]["tmp_name"]);
+        // NOTE: if 'folder' or 'tree' is not exist then it will be automatically created !
+        $exploded = explode(".", $_FILES[$type]["name"]);
+
+        $file_extension = "." . $exploded[count($exploded) - 1];
+        $new_name =  $_SESSION["user"] . $file_extension;
+        $cloudPath = "{$type}s/" . $_SESSION["user"] . $file_extension;
+
+        $isSucceed = uploadFile($bucketName, $fileContent, $cloudPath);
+
+        if ($isSucceed == true)
+            set_image_path($new_name, $type);
+
+        return $isSucceed;
+    }
+}
