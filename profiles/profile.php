@@ -77,7 +77,8 @@ if ($profile->user_id == $_SESSION["user"]) {
 		<main>
 			<section id="flexContainer">
 				<article id="picture">
-					<a href="./editpictures.php"> <img id="background" src="<?PHP echo $ban ?>" alt="Background photo" /></a>
+					<a <?PHP if ($profile->user_id == $_SESSION["user"]) {
+						?>href="./editpictures.php" <?PHP } ?>> <img id="background" src="<?PHP echo $ban ?>" alt="Background photo" /></a>
 					<img id="profile" src="<?PHP echo $profpic ?>" alt="Name of User" />
 				</article>
 				<article>

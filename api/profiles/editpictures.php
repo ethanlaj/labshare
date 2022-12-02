@@ -6,7 +6,7 @@ if (!isset($_SESSION["user"]))
 require_once(__DIR__ . "/../../database/accountFunctions.php");
 require_once('bucket_config.php');
 
-$valid_types = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
+$valid_types = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG", ".webp");
 
 try {
     if (isset($_FILES['profilepic']))
