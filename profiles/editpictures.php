@@ -37,7 +37,7 @@ if (!isset($_SESSION["user"])) {
     <header>
         <div>
             <h1>Edit Pictures</h1>
-            <p>(Max size for images is 8MB)</p>
+            <p>Max Size: 8MB</p>
         </div>
     </header>
 
@@ -46,12 +46,12 @@ if (!isset($_SESSION["user"])) {
 
             <div>
                 <label for="profilepic" class="form-label">Please select a profile picture:</label>
-                <input class="form-control" type="file" name="profilepic" id="profilepic" required capture="user" />
+                <input class="form-control" type="file" name="profilepic" id="profilepic" capture="user" />
                 <p id="profpicalert"></p>
             </div>
             <div>
                 <label for="banner" class="form-label">Please select a picture for the profile banner:</label>
-                <input class="form-control" type="file" name="banner" id="banner" required capture="user" />
+                <input class="form-control" type="file" name="banner" id="banner" capture="user" />
                 <p id="banneralert"></p>
             </div>
             <div>

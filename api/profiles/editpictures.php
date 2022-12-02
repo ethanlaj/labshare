@@ -44,8 +44,7 @@ function call_upload_function($type)
 
         $isSucceed = uploadFile($bucketName, $fileContent, $cloudPath);
 
-        if ($isSucceed == true)
-            set_image_path($new_name, $type);
+        set_image_path($isSucceed ? $new_name : null, $type);
 
         return $isSucceed;
     }

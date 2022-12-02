@@ -43,5 +43,8 @@ function uploadFile($bucketName, $fileContent, $cloudPath)
 		// a. do not put prefix '/', '/' is a separate folder name  !!
 		// b. private key MUST have 'storage.objects.delete' permission if want to replace file !
 	);
-	$uploader->upload();
+
+	$result = $uploader->upload();
+
+	return $result["size"] > 0;
 }
