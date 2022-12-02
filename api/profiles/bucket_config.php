@@ -35,7 +35,7 @@ function uploadFile($bucketName, $fileContent, $cloudPath)
 	$bucket = $storage->bucket($bucketName);
 
 	// upload/replace file 
-	$storageObject = $bucket->upload(
+	$uploader = $bucket->getStreamableUploader(
 		$fileContent,
 		['name' => $cloudPath]
 		// if $cloudPath is existed then will be overwrite without confirmation
@@ -43,7 +43,5 @@ function uploadFile($bucketName, $fileContent, $cloudPath)
 		// a. do not put prefix '/', '/' is a separate folder name  !!
 		// b. private key MUST have 'storage.objects.delete' permission if want to replace file !
 	);
-
-	// is it succeed ?
-	return $storageObject != null;
+	$uploader->upload();
 }
