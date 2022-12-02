@@ -13,3 +13,21 @@
 .form-control:not(#searchBarNav) {
     width: 50%;
 }
+
+#profpicalert,
+#banneralert {
+    color: red;
+    margin-left: 0px;
+    margin-top: 10px;
+
+}
+
+p {
+    margin-top: 10px;
+}
+
+header {
+    margin-left: 2em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}

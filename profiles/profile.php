@@ -1,6 +1,7 @@
 <?PHP
 session_start();
 
+
 $current_user_id = isset($_SESSION["user"])
 	? $_SESSION["user"] : null;
 

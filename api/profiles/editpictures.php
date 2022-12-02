@@ -6,7 +6,7 @@ if (!isset($_SESSION["user"]))
 require_once(__DIR__ . "/../../database/accountFunctions.php");
 require_once('bucket_config.php');
 
-$valid_types = array("image/png");
+$valid_types = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 try {
     if (isset($_FILES['profilepic']))
@@ -21,10 +21,14 @@ try {
 
 function call_upload_function($type)
 {
-    /*global $valid_types;
-    if (filesize > max || array_search($filetype, $valid_types) === FALSE) {
-        return // error page?
-    }*/
+    $exploded = explode(".", $_FILES[$type]["name"]);
+    $file_extension = "." . $exploded[count($exploded) - 1];
+    $max_size = 8388608;
+
+    global $valid_types;
+    if ($_FILES['name']['size'] > $max_size || array_search($file_extension, $valid_types) === FALSE) {
+        return; // error page?
+    }
 
     // Credit: Rajesh Kumar Sahanee on https://zatackcoder.com/upload-file-to-google-cloud-storage-using-php/ 
 
@@ -34,9 +38,7 @@ function call_upload_function($type)
         // get local file for upload testing
         $fileContent = file_get_contents($_FILES[$type]["tmp_name"]);
         // NOTE: if 'folder' or 'tree' is not exist then it will be automatically created !
-        $exploded = explode(".", $_FILES[$type]["name"]);
 
-        $file_extension = "." . $exploded[count($exploded) - 1];
         $new_name =  $_SESSION["user"] . $file_extension;
         $cloudPath = "{$type}s/" . $_SESSION["user"] . $file_extension;
 

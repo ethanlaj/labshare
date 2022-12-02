@@ -28,24 +28,31 @@ if (!isset($_SESSION["user"])) {
     <script src="../scripts/global/global.js"></script>
 
     <link rel="stylesheet" href="../stylesheets/profiles/createProfile.css" />
-    <script src="../scripts/profiles/createProfile.js"></script>
+    <script src="../scripts/profiles/editPictures.js"></script>
     <title>Edit Pictures</title>
 </head>
 
 <body>
     <div id="navbar"></div>
+    <header>
+        <div>
+            <h1>Edit Pictures</h1>
+            <p>(Max size for images is 8MB)</p>
+        </div>
+    </header>
 
     <form id="form" enctype="multipart/form-data" action="../api/profiles/editpictures.php" method="post">
         <div>
-            <h1>Edit Pictures</h1>
 
             <div>
                 <label for="profilepic" class="form-label">Please select a profile picture:</label>
                 <input class="form-control" type="file" name="profilepic" id="profilepic" required capture="user" />
+                <p id="profpicalert"></p>
             </div>
             <div>
                 <label for="banner" class="form-label">Please select a picture for the profile banner:</label>
                 <input class="form-control" type="file" name="banner" id="banner" required capture="user" />
+                <p id="banneralert"></p>
             </div>
             <div>
                 <input class="btn btn-primary" type="submit" value="Submit" name="submit" id="submit" />
