@@ -9,9 +9,12 @@ require_once(__DIR__ . "/../database/accountFunctions.php");
 
 
 $profile = null;
-if (isset($_GET["id"])) {
-	$profile = get_profile($_GET["id"]);
-} else if ($current_user_id) $profile = get_profile();
+if (isset($_GET["id"])) $profile = get_profile($_GET["id"]);
+else if ($current_user_id) $profile = get_profile();
+else {
+	header("Location: ../account/login.php");
+	die();
+}
 
 
 if ($profile) {
