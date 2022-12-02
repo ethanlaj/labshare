@@ -12,14 +12,14 @@
         var submitbutton = document.getElementById("submit");
 
         uploadbanner.onchange = function () {
-            if (this.files[0].size > 3000000) {//8388608
+            if (this.files[0].size > 8388608) {//8388608
                 document.getElementById("banneralert").innerText = "Image is too big";
                 submitbutton.disabled = true;
             } else submitbutton.disabled = false;
 
         };
         uploadprofile.onchange = function () {
-            if (this.files[0].size > 3000000) {//8388608
+            if (this.files[0].size > 8388608) {//8388608
                 document.getElementById("profpicalert").innerText = "Image is too big";
                 submitbutton.disabled = true;
             } else submitbutton.disabled = false;
