@@ -19,6 +19,10 @@ if ($profile) {
 	$ban = $profile->banner;
 	$collabs = getCollabs($profile->user_id);
 }
+if ($profile->user_id == $_SESSION["user"]) {
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +64,15 @@ if ($profile) {
 	<?PHP if ($profile) { ?>
 		<header>
 			<h1><?PHP echo $profile->fullName ?></h1>
-			<button class="btn btn-primary" type="button" id="edit">
-				Edit Profile
-			</button>
+			<?PHP if ($profile->user_id == $_SESSION["user"]) {
+			?>
+
+				<button class="btn btn-primary" type="button" id="edit">
+					Edit Profile
+				</button>
+			<?PHP
+			}
+			?>
 		</header>
 		<main>
 			<section id="flexContainer">
