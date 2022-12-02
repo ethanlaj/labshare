@@ -26,7 +26,7 @@ function call_upload_function($type)
     $max_size = 8388608;
 
     global $valid_types;
-    if ($_FILES['name']['size'] > $max_size || array_search($file_extension, $valid_types) === FALSE) {
+    if ($_FILES[$type]['size'] > $max_size || array_search($file_extension, $valid_types) === FALSE) {
         return; // error page?
     }
 
