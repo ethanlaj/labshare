@@ -32,7 +32,7 @@ $output = array("creation_successful" => false);
 $output["username_taken"] = check_matching_username($userName);
 
 if (!$output["username_taken"]) {
-    if ($firstName && $lastName && $email && $userName && $pwd && $phoneNumber && $birthday) {
+    if ($firstName && $lastName && $email && $userName && $pwd && $birthday) {
         try {
             $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
