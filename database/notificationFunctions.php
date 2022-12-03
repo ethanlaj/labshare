@@ -44,7 +44,9 @@ function get_notifications(): array
 
 	$user_id = $_SESSION["user"];
 
-	$sql = "SELECT notification_id,notification_date,type,post_id,count,title,poster_id,poster,posterEmail,posterPhone,applicant_id,applicant,applicantEmail,applicantPhone 
+	$sql = "SELECT notification_id,notification_date,type,post_id,
+	count,title,poster_id,poster,posterEmail,posterPhone,
+	applicant_id,applicant,applicantEmail,applicantPhone 
 	FROM advanced_notification 
 	WHERE inactive=0 
 	AND (

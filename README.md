@@ -2,6 +2,68 @@
 
 Labshare is a web application which allows scientists and science enthusiasts to get help with their projects.
 
+## Global API
+
+The following request formats begin with `api/global/`
+
+### Update Session
+
+Request Type: `POST`
+
+Request Format: `updateSession.php` with optional POST parameter `timezone`.
+
+Returned Data: JSON Format
+
+Description: If timezone is provided, it updates the user's timezone session data. Returns json data of whether the user is currently logged in and if the current page needs to be reloaded.
+
+---
+
+## Notifications API
+
+The following request formats begin with `api/notifications/`
+
+### Accept
+
+Request Type: `POST`
+
+Request Format: `accept.php` with POST parameter `id` (notification id).
+
+Returned Data: None
+
+Description: If notification is a new application, it accepts the applicant if the currently logged in user owns the notification provided.
+
+### Decline
+
+Request Type: `POST`
+
+Request Format: `decline.php` with POST parameter `id` (notification id).
+
+Returned Data: None
+
+Description: If notification is a new application, it declines the applicant if the currently logged in user owns the notification provided.
+
+### Dismiss
+
+Request Type: `POST`
+
+Request Format: `dismiss.php` with POST parameter `id` (notification id).
+
+Returned Data: None
+
+Description: Dismisses a notification if the currently logged in user owns the notification provided.
+
+### Get Notifications
+
+Request Type: `GET`
+
+Request Format: `getNotifications.php`
+
+Returned Data: JSON Format
+
+Description: The returned JSON data returns the `notification_id`, `notification_date`, `type`, `post_id`, `count`, `title`, `poster_id`, `poster`, `posterEmail`, `posterPhone`, `applicant_id`, `applicant`, `applicantEmail`, `applicantPhone` of all of the active notifications in the database for the currently logged in user, ordered by notification date descending.
+
+---
+
 ## Posting API
 
 The following request formats begin with `api/posting/`
@@ -89,7 +151,7 @@ Valid Types:
 
 Returned Data: JSON Format
 
-Description: The returned JSON data returns the `post_id`, `creationDate`, `title`, `content`, `username`, `fullName`,`profilepic`, `author_id`, `zip`, `lat`, and `lon` of all of the posts in the database, ordered by creation date descending.
+Description: The returned JSON data returns the `post_id`, `creationDate`, `title`, `content`, `username`, `fullName`,`profilepic`, `author_id`, `zip`, `lat`, and `lon` of all of the active posts in the database, ordered by creation date descending.
 
 ### Report
 

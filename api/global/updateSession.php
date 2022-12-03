@@ -6,11 +6,11 @@ session_start();
 $reload_required = false;
 $logged_in = false;
 
-foreach ($_POST as $key => $value) {
-	if (!isset($_SESSION[$key]))
+if (array_key_exists('timezone', $_POST)) {
+	if (!isset($_SESSION['timezone']))
 		$reload_required = true;
 
-	$_SESSION[$key] = $value;
+	$_SESSION['timezone'] = $_POST['timezone'];
 }
 
 if (isset($_SESSION["user"]))
