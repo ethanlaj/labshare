@@ -1,0 +1,55 @@
+#usersTable {
+	margin-top: 0.5rem;
+	width: 100%;
+	text-align: center;
+	border-left: 2px solid rgba(0, 0, 0, 0.1);
+	border-top: 2px solid rgba(0, 0, 0, 0.1);
+	border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#usersTable thead {
+	background-color: #468d7cc0;
+	color: white;
+}
+
+#usersTable tbody {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#usersTable tbody tr {
+	height: 6em;
+}
+
+#usersTable tbody tr:nth-child(even) {
+	background-color: #bcefe374;
+}
+
+#usersTable tbody tr:nth-child(odd) {
+	background-color: #bcefe374;
+}
+
+#usersTable tbody tr:last-child {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#usersTable td {
+	vertical-align: middle;
+}
+
+#users {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.profilePic img {
+	width: 50px;
+	height: 50px;
+	min-width: 50px;
+	min-height: 50px;
+	border: 2px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+	justify-self: flex-start;
+	margin-right: 10px;
+}

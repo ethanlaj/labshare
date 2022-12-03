@@ -40,8 +40,8 @@
 		}
 
 		if (search) {
-			document.querySelector("header h2").innerText = "Search Results";
-			document.title = "Search Results";
+			document.querySelector("header h2").innerText = "Post Search Results";
+			document.title = "Post Search Results";
 			document.querySelector("#zipCodeForm #search").value = search;
 		}
 	}
