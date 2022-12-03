@@ -1,3 +1,5 @@
+<?PHP require_once(__DIR__ . "/../global/validation.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,39 +42,38 @@
 			</article>
 			<article>
 				<label for="firstName" class="form-label">First Name</label>
-				<input type="text" class="form-control" name="firstName" id="firstName" required />
+				<input <?PHP echo convertToHTML($patterns["firstName"]); ?> type="text" class="form-control" name="firstName" id="firstName" />
 			</article>
 			<article>
 				<label for="lastName" class="form-label">Last Name</label>
-				<input type="text" class="form-control" name="lastName" id="lastName" required />
+				<input <?PHP echo convertToHTML($patterns["lastName"]); ?> type="text" class="form-control" name="lastName" id="lastName" required />
 			</article>
 			<article>
 				<label for="email" class="form-label">Email Address</label>
-				<input type="email" class="form-control" name="email" id="email" required />
+				<input <?PHP echo convertToHTML($patterns["email"]); ?> type="email" class="form-control" name="email" id="email" required />
 			</article>
 			<article>
 				<label for="userName" class="form-label">Username</label>
-				<input type="text" class="form-control" name="userName" id="userName" required />
+				<input <?PHP echo convertToHTML($patterns["username"]); ?> type="text" class="form-control" name="userName" id="userName" required />
 				<p class="alert" id="usernamealert"></p>
 			</article>
 			<article>
 				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" name="password" id="password" required />
+				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password" id="password" required />
 				<p class="alert" id="passwordalert1"></p>
 			</article>
 			<article>
 				<label for="password2" class="form-label">Enter Password Again</label>
-				<input type="password" class="form-control" name="password2" id="password2" required />
+				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password2" id="password2" required />
 				<p class="alert" id="passwordalert2"></p>
 			</article>
 			<article>
 				<label for="phone" class="form-label">Phone Number</label>
-				<input type="tel" class="form-control" name="phone" id="phone" />
+				<input <?PHP echo convertToHTML($patterns["phone"]); ?> type="tel" class="form-control" name="phone" id="phone" />
 			</article>
-			<!-- pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" -->
 			<article>
 				<label for="birthday" class="form-label">Birthday</label>
-				<input type="date" class="form-control" name="birthday" id="birthday" required />
+				<input <?PHP echo convertToHTML($patterns["birthday"]); ?> type="date" class="form-control" name="birthday" id="birthday" required />
 			</article>
 			<article>
 				<input class="btn btn-primary" type="submit" value="Submit" id="submit" />

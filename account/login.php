@@ -1,4 +1,6 @@
 <?PHP
+require_once(__DIR__ . "/../global/validation.php");
+
 session_start();
 
 $user_id = null;
