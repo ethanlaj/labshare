@@ -180,73 +180,75 @@ class User
 			? $db_object["summary"] : null;
 		$this->achievements = array_key_exists("achievements", $db_object)
 			? $db_object["achievements"] : null;
-		$this->age = array_key_exists("age", $db_object)
-			? $db_object["age"] : null;
 		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
 			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
 			: "../images/noprofilepic.png";
 		$this->banner = array_key_exists("banner", $db_object) && $db_object["banner"]
 			? "https://storage.googleapis.com/user_pictures_folder/banners/" . $db_object["banner"]
 			: "../images/defaultbanner.png";
+
+		if ($this->birthday) {
+			$this->age = date_diff(date_create($this->birthday), date_create('now'))->y;
+		}
 	}
 }
 
-class Profile
-{
-	public $user_id;
-	public $quals_degrees;
-	public $areaOfStudy;
-	public $yearsOfStudy;
-	public $secondaryAreaOfStudy;
-	public $about;
-	public $achievements_interests;
-	public $fullName;
-	public $age;
-	public $profilepic;
-	public $banner;
+// class Profile
+// {
+// 	public $user_id;
+// 	public $quals_degrees;
+// 	public $areaOfStudy;
+// 	public $yearsOfStudy;
+// 	public $secondaryAreaOfStudy;
+// 	public $about;
+// 	public $achievements_interests;
+// 	public $fullName;
+// 	public $age;
+// 	public $profilepic;
+// 	public $banner;
 
-	public $user;
+// 	public $user;
 
 
-	/**
-	 * Matches the profiles table in the database
-	 * @param {int} user_id
-	 * @param {string} quals_degrees
-	 * @param {string} areaOfStudy
-	 * @param {string} yearsOfStudy
-	 * @param {string} secondaryAreaOfStudy
-	 * @param {string} about 
-	 * @param {string} achievements_interests
-	 * 
-	 */
-	function __construct(
-		$user_id,
-		$quals_degrees,
-		$areaOfStudy,
-		$yearsOfStudy,
-		$secondaryAreaOfStudy,
-		$about,
-		$achievements_interests,
-		$fullName,
-		$age,
-		$profilepic,
-		$banner
+// 	/**
+// 	 * Matches the profiles table in the database
+// 	 * @param {int} user_id
+// 	 * @param {string} quals_degrees
+// 	 * @param {string} areaOfStudy
+// 	 * @param {string} yearsOfStudy
+// 	 * @param {string} secondaryAreaOfStudy
+// 	 * @param {string} about 
+// 	 * @param {string} achievements_interests
+// 	 * 
+// 	 */
+// 	function __construct(
+// 		$user_id,
+// 		$quals_degrees,
+// 		$areaOfStudy,
+// 		$yearsOfStudy,
+// 		$secondaryAreaOfStudy,
+// 		$about,
+// 		$achievements_interests,
+// 		$fullName,
+// 		$age,
+// 		$profilepic,
+// 		$banner
 
-	) {
+// 	) {
 
-		$this->user_id = $user_id;
-		$this->quals_degrees = $quals_degrees;
-		$this->areaOfStudy = $areaOfStudy;
-		$this->yearsOfStudy = $yearsOfStudy;
-		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
-		$this->about = $about;
-		$this->achievements_interests = $achievements_interests;
-		$this->fullName = $fullName;
-		$this->age = $age;
-		$this->profilepic = $profilepic;
-		$this->banner = $banner;
-	}
-}
+// 		$this->user_id = $user_id;
+// 		$this->quals_degrees = $quals_degrees;
+// 		$this->areaOfStudy = $areaOfStudy;
+// 		$this->yearsOfStudy = $yearsOfStudy;
+// 		$this->secondaryAreaOfStudy = $secondaryAreaOfStudy;
+// 		$this->about = $about;
+// 		$this->achievements_interests = $achievements_interests;
+// 		$this->fullName = $fullName;
+// 		$this->age = $age;
+// 		$this->profilepic = $profilepic;
+// 		$this->banner = $banner;
+// 	}
+// }
 
 class Save
 {

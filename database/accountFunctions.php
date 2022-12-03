@@ -144,7 +144,7 @@ function get_profile($id = null)
         $profile_id = $id;
     } else $profile_id = $_SESSION["user"];
 
-    $sql = "SELECT user_id, qualifications, areaofstudy, years, secondarea, summary, achievements, profilepic, banner, firstName, lastName FROM users
+    $sql = "SELECT user_id, qualifications, areaofstudy, years, secondarea, summary, achievements, birthday, profilepic, banner, firstName, lastName FROM users
     WHERE user_id = :profile_id;";
 
 
