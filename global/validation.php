@@ -10,7 +10,7 @@ $patterns = array(
 	"postContent" => generateValidationArray(true, null, 50, 2000),
 	"comment" => generateValidationArray(true, null, 10, 500),
 
-	"username" => generateValidationArray(true, "/^[A-Za-z\d?=']+$/", 3, 20),
+	"username" => generateValidationArray(true, "/^[A-Za-z\d]+$/", 3, 20),
 	"password" => generateValidationArray(true, "/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/", 8),
 	"firstName" => generateValidationArray(true, "/^[A-Za-z\d?=']+$/", 1, 20),
 	"lastName" => generateValidationArray(true, "/^[A-Za-z\d?=']+$/", 1, 30),

@@ -45,3 +45,29 @@ p {
 .margin {
     margin-bottom: 5px;
 }
+
+input {
+    display: inline-block;
+}
+
+span {
+    font-size: 9.5pt;
+    opacity: .5;
+}
+
+label {
+    display: block;
+}
+
+#passwordlabel,
+#password2label,
+#usernamelabel {
+    margin-bottom: 0px;
+}
+
+.asterik {
+    color: red;
+    opacity: 1;
+    float: left;
+    font-size: 12pt;
+}

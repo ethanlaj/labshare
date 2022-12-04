@@ -41,29 +41,37 @@
 				</p>
 			</article>
 			<article>
+				<span class="asterik">*</span>
 				<label for="firstName" class="form-label">First Name</label>
 				<input <?PHP echo convertToHTML($patterns["firstName"]); ?> type="text" class="form-control" name="firstName" id="firstName" />
 			</article>
 			<article>
+				<span class="asterik">*</span>
 				<label for="lastName" class="form-label">Last Name</label>
 				<input <?PHP echo convertToHTML($patterns["lastName"]); ?> type="text" class="form-control" name="lastName" id="lastName" required />
 			</article>
 			<article>
+				<span class="asterik">*</span>
 				<label for="email" class="form-label">Email Address</label>
 				<input <?PHP echo convertToHTML($patterns["email"]); ?> type="email" class="form-control" name="email" id="email" required />
 			</article>
 			<article>
-				<label for="userName" class="form-label">Username</label>
+				<span class="asterik">*</span>
+				<label id="usernamelabel" for="userName" class="form-label">Username</label>
+				<span> May only contain letters and numbers</span>
 				<input <?PHP echo convertToHTML($patterns["username"]); ?> type="text" class="form-control" name="userName" id="userName" required />
 				<p class="alert" id="usernamealert"></p>
 			</article>
 			<article>
-				<label for="password" class="form-label">Password</label>
+				<span class="asterik">*</span>
+				<label id="passwordlabel" for="password" class="form-label">Password</label>
+				<span>Must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character</span>
 				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password" id="password" required />
 				<p class="alert" id="passwordalert1"></p>
 			</article>
 			<article>
-				<label for="password2" class="form-label">Enter Password Again</label>
+				<span class="asterik">*</span>
+				<label id="password2label" for="password2" class="form-label">Enter Password Again</label>
 				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password2" id="password2" required />
 				<p class="alert" id="passwordalert2"></p>
 			</article>
@@ -72,6 +80,7 @@
 				<input <?PHP echo convertToHTML($patterns["phone"]); ?> type="tel" class="form-control" name="phone" id="phone" />
 			</article>
 			<article>
+				<span class="asterik">*</span>
 				<label for="birthday" class="form-label">Birthday</label>
 				<input <?PHP echo convertToHTML($patterns["birthday"]); ?> type="date" class="form-control" name="birthday" id="birthday" required />
 			</article>
