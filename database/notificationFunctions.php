@@ -12,6 +12,7 @@ function get_notification($noti_id)
 		return null;
 
 	$user_id = $_SESSION["user"];
+	echo $user_id;
 
 	$sql = "SELECT post_id,applicant_id 
 	FROM advanced_notification
@@ -29,9 +30,12 @@ function get_notification($noti_id)
 		];
 
 	try {
-		$resp = getDataFromSQL($sql, $params)[0];
+		$resp = getDataFromSQL($sql, $params);
 
-		return new Notification($resp);
+		if (count($resp) == 0)
+			return null;
+
+		return new Notification($resp[0]);
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}

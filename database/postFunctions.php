@@ -11,7 +11,9 @@ function get_post_author($post_id)
 	$params = [":post_id" => $post_id];
 
 	try {
-		return getDataFromSQL($sql, $params)[0]["author_id"];
+		$resp = getDataFromSQL($sql, $params);
+
+		return count($resp) > 0 ? $resp[0]["author_id"] : null;
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}
@@ -23,7 +25,9 @@ function get_comment_author($comment_id)
 	$params = [":comment_id" => $comment_id];
 
 	try {
-		return getDataFromSQL($sql, $params)[0]["author_id"];
+		$resp = getDataFromSQL($sql, $params);
+
+		return count($resp) > 0 ? $resp[0]["author_id"] : null;
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}
@@ -330,9 +334,9 @@ function applicationExists($post_id)
 		];
 
 	try {
-		$resp = getDataFromSQL($sql, $params)[0];
+		$resp = getDataFromSQL($sql, $params);
 
-		return $resp["count"] > 0;
+		return count($resp) > 0 ? $resp[0]["count"] > 0 : false;
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}
@@ -384,9 +388,9 @@ function saveExists($post_id)
 		];
 
 	try {
-		$resp = getDataFromSQL($sql, $params)[0];
+		$resp = getDataFromSQL($sql, $params);
 
-		return $resp["count"] > 0;
+		return count($resp) > 0 ? $resp[0]["count"] > 0 : false;
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}
@@ -468,9 +472,9 @@ function reportExists($id, $type)
 		];
 
 	try {
-		$resp = getDataFromSQL($sql, $params)[0];
+		$resp = getDataFromSQL($sql, $params);
 
-		return $resp["count"] > 0;
+		return count($resp) > 0 ? $resp[0]["count"] > 0 : false;
 	} catch (Exception $e) {
 		header("HTTP/1.1 500 Fatal Error");
 	}

@@ -78,7 +78,9 @@ function get_user_login($userName)
         ];
 
     try {
-        return getDataFromSQL($sql, $params)[0];
+        $resp = getDataFromSQL($sql, $params);
+
+        return count($resp) > 0 ? $resp[0] : null;
     } catch (Exception $e) {
         header("HTTP/1.1 500 Fatal Error");
     }
