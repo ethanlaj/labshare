@@ -3,13 +3,15 @@
 require_once "connect.php";
 require_once "classes.php";
 
-function getUsers($searchQuery)
+function search($searchQuery)
 {
     $sql = "SELECT user_id, profilepic, username, firstName, lastName
             FROM users
-            WHERE username LIKE :q
+            WHERE inactive = 0 
+            AND (username LIKE :q
             OR firstName LIKE :q
-            OR lastName LIKE :q";
+            OR lastName LIKE :q
+            OR CONCAT(firstName, ' ', lastName) LIKE :q)";
 
     $params =
         [
@@ -30,73 +32,73 @@ function getUsers($searchQuery)
     }
 }
 
-function createProfile(
-    $user_id,
-    $quals_degrees = null,
-    $areaOfStudy = null,
-    $yearsOfStudy = null,
-    $secondaryAreaOfStudy = null,
-    $about = null,
-    $achievements_interests = null,
-    $fullName = null,
-    $age = null,
-    $profilepic = null,
-    $banner = null
-) {
-    $sql = "INSERT INTO profiles (user_id,
-    quals_degrees,
-    areaOfStudy,
-    yearsOfStudy,
-    secondaryAreaOfStudy,
-    about,
-    achievements_interests,
-    fullName,
-    age,
-    profilepic,
-    banner)
-          VALUES (:user_id,
-		:quals_degrees,
-		:areaOfStudy,
-		:yearsOfStudy,
-		:secondaryAreaOfStudy,
-		:about,
-		:achievements_interests,
-        :fullName,
-        :age,
-        :profilepic,
-        :banner)";
+// function createProfile(
+//     $user_id,
+//     $quals_degrees = null,
+//     $areaOfStudy = null,
+//     $yearsOfStudy = null,
+//     $secondaryAreaOfStudy = null,
+//     $about = null,
+//     $achievements_interests = null,
+//     $fullName = null,
+//     $age = null,
+//     $profilepic = null,
+//     $banner = null
+// ) {
+//     $sql = "INSERT INTO profiles (user_id,
+//     quals_degrees,
+//     areaOfStudy,
+//     yearsOfStudy,
+//     secondaryAreaOfStudy,
+//     about,
+//     achievements_interests,
+//     fullName,
+//     age,
+//     profilepic,
+//     banner)
+//           VALUES (:user_id,
+// 		:quals_degrees,
+// 		:areaOfStudy,
+// 		:yearsOfStudy,
+// 		:secondaryAreaOfStudy,
+// 		:about,
+// 		:achievements_interests,
+//         :fullName,
+//         :age,
+//         :profilepic,
+//         :banner)";
 
 
-    $params =
-        [
-            ":user_id" => $user_id,
-            ":quals_degrees" => $quals_degrees,
-            ":areaOfStudy" => $areaOfStudy,
-            ":yearsOfStudy" => $yearsOfStudy,
-            ":secondaryAreaOfStudy" => $secondaryAreaOfStudy,
-            ":about" => $about,
-            ":achievements_interests" => $achievements_interests,
-            ":fullName" => $fullName,
-            ":age" => $age,
-            ":profilepic" => $profilepic,
-            ":banner" => $banner
+//     $params =
+//         [
+//             ":user_id" => $user_id,
+//             ":quals_degrees" => $quals_degrees,
+//             ":areaOfStudy" => $areaOfStudy,
+//             ":yearsOfStudy" => $yearsOfStudy,
+//             ":secondaryAreaOfStudy" => $secondaryAreaOfStudy,
+//             ":about" => $about,
+//             ":achievements_interests" => $achievements_interests,
+//             ":fullName" => $fullName,
+//             ":age" => $age,
+//             ":profilepic" => $profilepic,
+//             ":banner" => $banner
 
-        ];
+//         ];
 
-    try {
-        postDataFromSQL($sql, $params);
-    } catch (Exception $e) {
-        header("HTTP/1.1 500 Fatal Error");
-    }
-}
-
-
-function fetchProfile()
-{
-    $sql = "SELECT * FROM profiles;";
-
-    $prof = getDataFromSQL($sql)[0];
+//     try {
+//         postDataFromSQL($sql, $params);
+//     } catch (Exception $e) {
+//         header("HTTP/1.1 500 Fatal Error");
+//     }
+// }
 
 
-    return new Profile(4, $prof["quals_degrees"], $prof["areaOfStudy"], $prof["yearsOfStudy"], $prof["secondaryAreaOfStudy"], $prof["about"], $prof["achievements_interests"], $prof["fullName"], $prof["age"], $prof["profilepic"], $prof["banner"]);
-}
+// function fetchProfile()
+// {
+//     $sql = "SELECT * FROM profiles;";
+
+//     $prof = getDataFromSQL($sql)[0];
+
+
+//     return new Profile(4, $prof["quals_degrees"], $prof["areaOfStudy"], $prof["yearsOfStudy"], $prof["secondaryAreaOfStudy"], $prof["about"], $prof["achievements_interests"], $prof["fullName"], $prof["age"], $prof["profilepic"], $prof["banner"]);
+// }

@@ -151,7 +151,7 @@ Valid Types:
 
 Returned Data: JSON Format
 
-Description: The returned JSON data returns the `post_id`, `creationDate`, `title`, `content`, `username`, `fullName`,`profilepic`, `author_id`, `zip`, `lat`, and `lon` of all of the active posts in the database, ordered by creation date descending.
+Description: The returned JSON data returns the `post_id`, `creationDate`, `title`, `content`, `username`, `fullName`,`profilepic`, `author_id`, `zip`, `lat`, and `lon` of all of the matched active posts in the database, ordered by creation date descending.
 
 ### Report
 
@@ -187,3 +187,19 @@ Request Format: `unsave.php` with POST parameter `post_id`.
 Returned Data: None
 
 Description: Unsaves the post as the currently logged in user.
+
+---
+
+## Profiles API
+
+The following request formats begin with `api/profiles/`
+
+### Search
+
+Request Type: `GET`
+
+Request Format: `search.php?search=bill nye`
+
+Returned Data: JSON Format
+
+Description: The returned JSON data returns the `user_id`, `profilepic`, `username`, `firstName`, and `lastName` of the matched active user(s).

@@ -10,7 +10,7 @@
 
 		let search = urlParams.get("search");
 
-		fetch("../api/profiles/users.php?search=" + (search ? search : ""))
+		fetch("../api/profiles/search.php?search=" + (search ? search : ""))
 			.then(checkStatus)
 			.then((users) => {
 				addUsersToView(users);
