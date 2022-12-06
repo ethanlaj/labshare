@@ -14,10 +14,7 @@
 	function init() {
 		// Post buttons
 		let savePostBtn = document.getElementById("savePostBtn");
-		if (savePostBtn?.innerText == "Save")
-			savePostBtn.addEventListener("click", savePost);
-		else
-			savePostBtn?.addEventListener("click", unsavePost);
+		savePostBtn?.addEventListener("click", saveUnsavePost);
 
 		let applyToPostBtn = document.getElementById("applyToPostBtn");
 		applyToPostBtn?.addEventListener("click", applyToPost);
@@ -175,11 +172,24 @@
 		}, 500);
 	}
 
+
+	/**
+	 * Determines which function needs to be run after
+	 * the save/unsave button is clicked, either savePost() or unsavePost()
+	 */
+	function saveUnsavePost() {
+		if (savePostBtn?.innerText == "Save")
+			savePost(this);
+		else
+			unsavePost(this);
+	}
+
 	/**
 	 * Saves the current post
+	 * @param {HTMLElement} btn The button that was clicked
 	 */
-	function savePost() {
-		this.disabled = true;
+	function savePost(btn) {
+		btn.disabled = true;
 
 		const urlParams = new URLSearchParams(window.location.search);
 
@@ -190,16 +200,20 @@
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Saved", "You have successfully saved this post");
+				btn.innerText = "Unsave";
 			}).catch((e) => {
 				showModal("Failed to Save", "Could not save this post, please try again later");
-			});
+			}).finally(() => {
+				btn.disabled = false;
+			})
 	}
 
 	/**
-	 * Saves the current post
+	 * Unsaves the current post
+	 * @param {HTMLElement} btn The button that was clicked
 	 */
-	function unsavePost() {
-		this.disabled = true;
+	function unsavePost(btn) {
+		btn.disabled = true;
 
 		const urlParams = new URLSearchParams(window.location.search);
 
@@ -210,9 +224,12 @@
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Unsaved", "You have successfully unsaved this post");
+				btn.innerText = "Save";
 			}).catch((e) => {
 				showModal("Failed to Unsave", "Could not unsave this post, please try again later");
-			});
+			}).finally(() => {
+				btn.disabled = false;
+			})
 	}
 
 	/**
@@ -230,8 +247,10 @@
 			.then(checkStatus)
 			.then(() => {
 				showModal("Successfully Applied", "You have successfully applied to this project");
+				this.innerText = "Applied";
 			}).catch((e) => {
 				showModal("Failed to Apply", "Could not apply to this project, please try again later");
+				this.disabled = false;
 			});
 	}
 
@@ -252,6 +271,7 @@
 			.then(() => {
 				$("#reportPost").modal("hide");
 				showModal("Report Received", "Thank you for your report");
+				document.querySelector("#initReportBtn").remove();
 			}).catch((e) => {
 				showModal("Failed to Report Post", "Could not report post, please try again later");
 			}).finally(() => this.disabled = false);
@@ -294,6 +314,7 @@
 			.then(() => {
 				$("#reportComment").modal("hide");
 				showModal("Report Received", "Thank you for your report");
+				comment.querySelector(".dropdown-center").hidden = true;
 			}).catch((e) => {
 				showModal("Failed to Report Comment", "Could not report comment, please try again later");
 			}).finally(() => this.disabled = false)

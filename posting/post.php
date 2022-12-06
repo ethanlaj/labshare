@@ -96,7 +96,7 @@ $logged_in_user = isset($_SESSION["user"])
 							<?PHP
 							if ($post->hasReported == false) {
 							?>
-								<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
+								<button id="initReportBtn" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
 									Report
 								</button>
 							<?PHP
