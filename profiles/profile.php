@@ -144,7 +144,7 @@ if ($profile->user_id == $_SESSION["user"]) {
 
 						if (array_search($username, $collab_usernames) === false)
 							array_push($collab_usernames, $username);
-						else break;
+						else continue;
 					?>
 						<tr>
 							<td>
