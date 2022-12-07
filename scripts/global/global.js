@@ -263,7 +263,7 @@
 	};
 
 	function handleSettingsButtonClick() {
-		location.href = "../account/accountInfo.php";
+		location.href = "../account/accountinfo.php";
 	}
 
 	/**
