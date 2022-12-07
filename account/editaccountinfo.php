@@ -48,20 +48,23 @@ $account = accountinfo();
         </div>
 
         <div>
-            <p>Current Username: <?PHP echo $account->username ?></p>
             <label for="userName" class="form-label">New Username</label>
-            <input type="text" class="form-control" name="userName" id="userName" minlength="2" maxlength="45" required />
+            <input type="text" value="<?PHP echo $account->username ?>" class="form-control" name="userName" id="userName" minlength="2" maxlength="45" required />
         </div>
         <div>
-            <label for="password" class="form-label">New password</label>
+            <label for="oldpassword" class="form-label">Current Password</label>
+            <input type="text" class="form-control" name="oldpassword" id="oldpassword" minlength="2" maxlength="45" required />
+        </div>
+        <div>
+            <label for="password" class="form-label">New Password</label>
             <input type="text" class="form-control" name="password" id="password" minlength="2" maxlength="45" required />
         </div>
         <div>
-            <label for="email" class="form-label">Change primary email</label>
+            <label for="email" class="form-label">Change Primary Email</label>
             <input type="text" value="<?PHP echo $account->email ?>" class="form-control" name="email" id="email" minlength="2" maxlength="45" required />
         </div>
         <div>
-            <label for="phone" class="form-label">Change phone number</label>
+            <label for="phone" class="form-label">Change Phone Number</label>
             <input type="text" value="<?PHP echo $account->phoneNumber ?>" class="form-control" name="phone" id="phone" minlength="2" maxlength="45" required />
         </div>
 

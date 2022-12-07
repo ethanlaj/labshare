@@ -40,33 +40,7 @@ function createUser(
         header("HTTP/1.1 500 Fatal Error");
     }
 }
-function getUser(
-    $firstName,
-    $lastName,
-    $email,
-    $userName,
-    $pwd,
-    $phoneNumber,
-    $birthday,
-    $user_id
-) {
-    $sql = "SELECT firstName,lastName, email, username, pwd, phoneNumber, birthday
-            FROM users 
-            WHERE user_id = :user_id";
 
-
-    $params =
-        [
-            ":user_id" => $user_id,
-
-        ];
-
-    try {
-        return getDataFromSQL($sql, $params);
-    } catch (Exception $e) {
-        header("HTTP/1.1 500 Fatal Error");
-    }
-}
 
 function get_user_login($userName)
 {
@@ -85,6 +59,24 @@ function get_user_login($userName)
         header("HTTP/1.1 500 Fatal Error");
     }
 }
+function get_hashed_password($id)
+{
+    $sql = "SELECT pwd FROM users WHERE user_id=:id";
+
+    $params =
+        [
+            ":id" => $id,
+        ];
+
+    try {
+        $resp = getDataFromSQL($sql, $params);
+
+        return count($resp) > 0 ? $resp[0] : null;
+    } catch (Exception $e) {
+        header("HTTP/1.1 500 Fatal Error");
+    }
+}
+
 
 function createProfile($qualifications = null, $areaofstudy = null, $years = null, $secondarea = null, $summary = null, $achievements = null)
 {
