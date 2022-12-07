@@ -2,6 +2,8 @@
 header("Content-type: application/json");
 
 $output = array();
+$user_success = false;
+$password_success = false;
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $current_user_id = isset($_SESSION["user"])
@@ -15,21 +17,23 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     $user = null;
     $user = get_user_login($_POST["username"]);
     if ($user) {
-        $output["user_verify"] = true;
+        $user_success = true;
     } else
-        $output["user_verify"] = false;
+        $user_success = false;
 
     $hash = $user["pwd"];
     $is_pwd_correct = password_verify($_POST["password"], $hash);
 
     if ($is_pwd_correct) {
         $_SESSION["user"] = $user["user_id"];
-        $output["password_verify"] = true;
+        $password_success = true;
     } else {
-        $output["password_verify"] = false;
+        $password_success = false;
     }
 } else {
     echo "WRONG PARAMS";
 }
-
+if ($user_success && $password_success) {
+    $output["loginSuccess"] = true;
+}
 echo json_encode($output);

@@ -9,6 +9,10 @@
 
         let register = document.getElementById('register');
         register.addEventListener('click', registerlink);
+        form.addEventListener("input", (event) => {
+            document.getElementById("password").classList.remove('shake');
+            document.getElementById("username").classList.remove('shake');
+        });
     }
 
     function checkForm(event) {
@@ -33,14 +37,24 @@
     function checkcredentials(responseData) {
         let usernamealert = document.getElementById("usernamealert");
         usernamealert.innerText = "";
-        document.getElementById("username").classList.remove('marginless');
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        username.classList.remove('marginless');
+        username.classList.remove('shake');
+        password.classList.remove('shake');
 
-
-        if (!responseData.user_verify || !responseData.password_verify) {
+        if (!responseData.loginSuccess) {
             usernamealert.innerText = "Incorrect Username or Password";
             document.getElementById("username").classList.add('marginless');
+            setTimeout(
+                function () {
+                    username.classList.add("shake");
+                    password.classList.add("shake");
+                },
+                10
+            );
 
-        } else if (responseData.user_verify && responseData.password_verify) {
+        } else if (responseData.loginSuccess) {
             window.location.href = "../posting/posts.html";
         }
 
