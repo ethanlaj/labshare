@@ -159,7 +159,7 @@ class User
 		$this->firstName = array_key_exists("firstName", $db_object)
 			? $db_object["firstName"] : null;
 		$this->lastName = array_key_exists("lastName", $db_object)
-			? $db_object["firstName"] : null;
+			? $db_object["lastName"] : null;
 		$this->fullName = array_key_exists("firstName", $db_object) && array_key_exists("lastName", $db_object)
 			? $db_object["firstName"] . " " . $db_object["lastName"] : null;
 		$this->email = array_key_exists("email", $db_object)

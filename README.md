@@ -203,3 +203,26 @@ Request Format: `search.php?search=bill nye`
 Returned Data: JSON Format
 
 Description: The returned JSON data returns the `user_id`, `profilepic`, `username`, `firstName`, and `lastName` of the matched active user(s).
+## Account API
+
+The following request formats begin with `api/account/`
+
+### Login
+
+Request Type: `POST`
+
+Request Format: login.php with POST parameters `username` and `password` that are retrieved from login form using a formData object
+
+Returned Data: JSON Format
+
+Description: The returned JSON data returns the true or false status of the associative array item loginSuccess. loginSuccess is returned true if the username and password given match a user in the database.
+
+### Register
+
+Request Type: `POST`
+
+Request Format: register.php with POST parameters `firstName`, `lastName`, `email`, `userName`, `password`, `password2`, `phone`, and `birthday` that are retrieved from the register form using a formData object
+
+Returned Data: JSON Format
+
+Description: The returned JSON data returns the associate array which contains the boolean values creation_successful and username_taken. If the username given by the user is already an existing user, username_taken will return true. If the user is successfully added to the database, creation_successful will return true. Creation successful must return true and username_taken must return false in order for the user to be succesfully registered. 

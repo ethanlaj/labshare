@@ -17,7 +17,7 @@ $account = accountinfo();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>My Account</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
@@ -42,15 +42,20 @@ $account = accountinfo();
 </head>
 
 <body>
+    <div id="navbar"></div>
+
     <header>
         <h1>Account Info</h1>
     </header>
     <h6>Logged in as: <?PHP echo $account->username ?> </h6>
+    <h6>First Name: <?PHP echo $account->firstName ?></h6>
+    <h6>Last Name: <?PHP echo $account->lastName ?></h6>
     <h6>Primary email address: <?PHP echo $account->email ?></h6>
     <h6>Phone Number: <?PHP echo $account->phoneNumber ?></h6>
+    <h6>Birthday: <?PHP echo $account->birthday ?></h6>
     <div>
         <button class="btn btn-primary" id="edit">Edit Account</button>
     </div>
 
-
+    <div id="footer"></div>
 </body>

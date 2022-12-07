@@ -9,6 +9,7 @@ body {
 
 .form-control {
     width: 500px;
+    margin-bottom: 1em;
 
 }
 
@@ -20,9 +21,6 @@ body {
 
 }
 
-#submit {
-    margin-top: 25px;
-}
 
 #form {
     display: table-cell;
@@ -63,13 +61,6 @@ label {
 #password2label,
 #usernamelabel {
     margin-bottom: 0px;
-}
-
-.asterik {
-    color: red;
-    opacity: 1;
-    float: left;
-    font-size: 12pt;
 }
 
 .shake {

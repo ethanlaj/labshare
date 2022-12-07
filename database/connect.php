@@ -2,10 +2,10 @@
 // Create DB connection
 $host = getenv("SP_HOST_NAME");
 $database = getenv("SP_SCHEMA");
-$username = getenv("SP_USERNAME");
-$password = getenv("SP_PASSWORD");
+$db_username = getenv("SP_USERNAME");
+$db_password = getenv("SP_PASSWORD");
 $dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=25060";
-$dbconnection = new PDO($dns, $username, $password);
+$dbconnection = new PDO($dns, $db_username, $db_password);
 
 
 /**
@@ -17,9 +17,9 @@ $dbconnection = new PDO($dns, $username, $password);
  */
 function getDataFromSQL($sql, $params = null, $safe_keys = array())
 {
-	global $dns, $username, $password;
+	global $dns, $db_username, $db_password;
 	try {
-		$conn = new PDO($dns, $username, $password);
+		$conn = new PDO($dns, $db_username, $db_password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//echo "Connected successfully";
@@ -61,9 +61,9 @@ function getDataFromSQL($sql, $params = null, $safe_keys = array())
  */
 function postDataFromSQL($sql, $params = array(), $get_inserted_id = false)
 {
-	global $dns, $username, $password;
+	global $dns, $db_username, $db_password;
 	try {
-		$conn = new PDO($dns, $username, $password);
+		$conn = new PDO($dns, $db_username, $db_password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//echo "Connected successfully";

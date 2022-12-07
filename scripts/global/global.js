@@ -25,6 +25,12 @@
 			})
 			.catch(e => console.error(e));
 
+		let requiredFields = document.querySelectorAll("input:required,textarea:required");
+		for (let requiredField of requiredFields) {
+			let requiredFieldLabel = requiredField.parentNode.querySelector("label");
+			requiredFieldLabel.classList.add("asterik");
+		}
+
 		document.addEventListener("keypress", handleEnterPress);
 
 		$("#footer").load("../global/footer.html");
@@ -232,6 +238,10 @@
 			document.getElementById("myProfile").hidden = false;
 			document.getElementById("savedPosts").hidden = false;
 			document.getElementById("yourPosts").hidden = false;
+
+			// Add event listener to settings button
+			let settingsButton = document.getElementById("settingsButton");
+			settingsButton.addEventListener("click", handleSettingsButtonClick);
 		} else {
 			document.getElementById("loginBtn").hidden = false;
 			document.getElementById("registerBtn").hidden = false;
@@ -251,6 +261,10 @@
 			}
 		}
 	};
+
+	function handleSettingsButtonClick() {
+		location.href = "../account/accountInfo.php";
+	}
 
 	/**
 	 * Grabs the user's search input and redirects to the search result page.

@@ -12,10 +12,11 @@ $patterns = array(
 
 	"username" => generateValidationArray(true, "/^[A-Za-z\d]+$/", 3, 20),
 	"password" => generateValidationArray(true, "/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/", 8),
+	"new_password" => generateValidationArray(false, "/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/", 8),
 	"firstName" => generateValidationArray(true, "/^[A-Za-z\d?=']+$/", 1, 20),
 	"lastName" => generateValidationArray(true, "/^[A-Za-z\d?=']+$/", 1, 30),
 	"email" => generateValidationArray(true, "/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"),
-	"phone" => generateValidationArray(false, "/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/"),
+	"phone" => generateValidationArray(false, "/^\(?([0-9]{3,4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/"),
 	"birthday" => generateValidationArray(true, "/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/"),
 
 	"quals_degress" => generateValidationArray(false, "/^[\s\S]+$/"),

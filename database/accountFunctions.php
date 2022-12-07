@@ -159,7 +159,7 @@ function get_profile($id = null)
 function accountinfo()
 {
     $current_user_id = $_SESSION["user"];
-    $sql = "SELECT username, email, phoneNumber FROM users
+    $sql = "SELECT username, email, phoneNumber, firstName, lastName, birthday FROM users
     WHERE user_id = $current_user_id;";
 
 
@@ -173,24 +173,37 @@ function accountinfo()
         return new User($myaccount);
     } else return null;
 }
-function editAccount($userName = null, $pwd = null, $email = null, $phoneNumber = null)
+function editAccount($userName, $email, $phoneNumber, $birthday, $firstName, $lastName, $pwd = null)
 {
+
     if (!isset($_SESSION["user"]))
         return header("HTTP/1.1 401 Unauthorized");
 
     $current_user_id = $_SESSION["user"];
-    $sql = "UPDATE users SET username= :username, pwd = :pwd, email = :email, phoneNumber = :phoneNumber
-    WHERE user_id = $current_user_id";
-
+    $sql = "UPDATE users 
+    SET username= :username,
+    email = :email, 
+    phoneNumber = :phoneNumber, 
+    birthday = :birthday, 
+    firstName = :firstName, 
+    lastName = :lastName";
 
     $params =
         [
             ":username" => $userName,
-            ":pwd" => $pwd,
             ":email" => $email,
-            ":phoneNumber" => $phoneNumber
-
+            ":phoneNumber" => $phoneNumber,
+            ":birthday" => $birthday,
+            ":firstName" => $firstName,
+            ":lastName" => $lastName
         ];
+
+    if ($pwd) {
+        $sql = $sql . ", pwd = :pwd ";
+        $params[":pwd"] = $pwd;
+    }
+
+    $sql = $sql . "WHERE user_id = $current_user_id";
 
     try {
         postDataFromSQL($sql, $params);

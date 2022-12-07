@@ -10,8 +10,11 @@ body {
 	flex-direction: column;
 }
 
-#footer {
-	margin-top: auto;
+.asterik::after {
+	content: ' *';
+	color: red;
+	opacity: 1;
+	font-size: 12pt;
 }
 
 /* Nav and sidebar: */
@@ -112,7 +115,19 @@ body {
 	font-size: 10px;
 }
 
+#settingsButton {
+	font-size: 10px;
+}
+
+#settingsButton:hover {
+	cursor: pointer;
+}
+
 /* Footer */
+#footer {
+	margin-top: auto;
+}
+
 #footerDiv {
 	height: 50px;
 }

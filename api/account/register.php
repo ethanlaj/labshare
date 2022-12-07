@@ -54,7 +54,7 @@ if (!$output["username_taken"]) {
                 echo $e;
             }
         } else {
-            echo ("Wowzers");
+            header("HTTP/1.1 400 Parameter(s) Failed Validation");
         };
     } else {
         header("HTTP/1.1 400 Missing Parameters");

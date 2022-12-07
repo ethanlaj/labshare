@@ -15,7 +15,7 @@
     function checkForm(event) {
         event.preventDefault();
         let form = new FormData(this);
-        fetch("../api/account/checkPassword.php", {
+        fetch("../api/account/checkCredentials.php", {
             method: 'post',
             body: form,
         })
@@ -34,10 +34,12 @@
     function checkcredentials(responseData) {
         let alert = document.getElementById("alert");
         alert.innerText = "";
-        let password = document.getElementById("password");
+        let useralert = document.getElementById("useralert");
+        useralert.innerText = "";
+        let password = document.getElementById("oldpassword");
         password.classList.remove('shake');
 
-        if (!responseData.passwordverify) {
+        if (!responseData.password_verify) {
             alert.innerText = "Incorrect Password";
             setTimeout(
                 function () {
@@ -46,8 +48,11 @@
                 10
             );
 
-        } else if (responseData.loginSuccess) {
-            window.location.href = "./accountinfo.php";
+        } else if (responseData.password_verify) {
+            if (responseData.username_taken) {
+                useralert.innerText = "Username Taken";
+            } else
+                window.location.href = "./accountinfo.php";
         }
 
     }
