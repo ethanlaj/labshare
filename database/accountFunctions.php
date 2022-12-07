@@ -113,7 +113,7 @@ function getCollabs($profile_id)
     WHERE status = 'ACCEPT' 
     AND (poster_id = :profile_id 
     OR applicant_id = :profile_id) 
-    ORDER BY post_id";
+    ORDER BY post_id DESC";
 
     $params = [
         ":profile_id" => $profile_id,

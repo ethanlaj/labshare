@@ -131,7 +131,6 @@ if ($profile->user_id == $_SESSION["user"]) {
 					$i = 0;
 					$collab_usernames = array();
 					foreach ($collabs as $collab) {
-						if (++$i > 4) break;
 						if ($profile->user_id == $collab->applicant_id) {
 							$pic = $collab->posterpic;
 							$username = $collab->poster_username;
@@ -145,6 +144,8 @@ if ($profile->user_id == $_SESSION["user"]) {
 						if (array_search($username, $collab_usernames) === false)
 							array_push($collab_usernames, $username);
 						else continue;
+
+						if (++$i > 4) break;
 					?>
 						<tr>
 							<td>

@@ -241,7 +241,7 @@
 
 			// Add event listener to settings button
 			let settingsButton = document.getElementById("settingsButton");
-			settingsButton.addEventListener("click", handleSettingsButtonClick);
+			settingsButton?.addEventListener("click", handleSettingsButtonClick);
 		} else {
 			document.getElementById("loginBtn").hidden = false;
 			document.getElementById("registerBtn").hidden = false;
