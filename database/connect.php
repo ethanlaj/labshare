@@ -4,9 +4,9 @@ $host = getenv("SP_HOST_NAME");
 $database = getenv("SP_SCHEMA");
 $db_username = getenv("SP_USERNAME");
 $db_password = getenv("SP_PASSWORD");
-$dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=25060";
-$dbconnection = new PDO($dns, $db_username, $db_password);
+$port = 25060;
 
+$dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=$port";
 
 /**
  * @param string $sql The sql to execute
