@@ -203,6 +203,27 @@ Request Format: `search.php?search=bill nye`
 Returned Data: JSON Format
 
 Description: The returned JSON data returns the `user_id`, `profilepic`, `username`, `firstName`, and `lastName` of the matched active user(s).
+
+### Edit Pictures
+
+Request Type: `POST`
+
+Request Format: editpictures.php with file parameters with key values of `banners` and `profilepic`
+
+Returned Data: None
+
+Description: Checks to make sure image requirements are met ad uploads image files to a picture folder in web server google cloud bucket 
+
+### Edit Profile
+
+Request Type: `POST`
+
+Request Format: editprofile.php with parameters `quals_degrees`, `areaOfStudy`, `yearsOfStudy`, `secondaryAreaOfStudy`, `about`, and `achievements`
+
+Returned Data: None;
+
+Description: Stores parameters in the database under the current user logged in
+
 ## Account API
 
 The following request formats begin with `api/account/`
@@ -226,3 +247,13 @@ Request Format: register.php with POST parameters `firstName`, `lastName`, `emai
 Returned Data: JSON Format
 
 Description: The returned JSON data returns the associate array which contains the boolean values creation_successful and username_taken. If the username given by the user is already an existing user, username_taken will return true. If the user is successfully added to the database, creation_successful will return true. Creation successful must return true and username_taken must return false in order for the user to be succesfully registered. 
+
+### Check Credentials
+
+Request Type: `POST`
+
+Request Format: checkCredentials.php with parameters `firstName`, `lastName`, `email`, `userName`, `password`, `phone`, and `birthday`
+
+Returned Data: JSON Format
+
+Description: Allows users to change their account information. API first checks to make sure that the current password was entered correctly. It then checks to make sure that if a user entered a new username, the username is not already taken in the database. The success of those two parameters is returned. 
