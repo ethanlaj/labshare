@@ -4,7 +4,7 @@ $host = getenv("SP_HOST_NAME");
 $database = getenv("SP_SCHEMA");
 $db_username = getenv("SP_USERNAME");
 $db_password = getenv("SP_PASSWORD");
-$port = 25060;
+$port = getenv("SP_PORT");
 
 $dns = "mysql:host=$host;dbname=$database;charset=UTF8;port=$port";
 

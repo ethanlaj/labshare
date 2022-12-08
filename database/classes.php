@@ -2,6 +2,8 @@
 require_once("sharedFunctions.php");
 require_once("postFunctions.php");
 
+$bucket_name = getenv('SP_GC_BUCKET');
+
 class Post
 {
 	// Mapped in the DB
@@ -53,7 +55,7 @@ class Post
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
 		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
-			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/profilepics/" . $db_object["profilepic"]
 			: "../images/noprofilepic.png";
 
 		if ($includeExtraData) {
@@ -108,7 +110,7 @@ class Comment
 		$this->fullName = array_key_exists("fullName", $db_object)
 			? $db_object["fullName"] : null;
 		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
-			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/profilepics/" . $db_object["profilepic"]
 			: "../images/noprofilepic.png";
 
 		if ($includeChildren)
@@ -181,10 +183,10 @@ class User
 		$this->achievements = array_key_exists("achievements", $db_object)
 			? $db_object["achievements"] : null;
 		$this->profilepic = array_key_exists("profilepic", $db_object) && $db_object["profilepic"]
-			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["profilepic"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/profilepics/" . $db_object["profilepic"]
 			: "../images/noprofilepic.png";
 		$this->banner = array_key_exists("banner", $db_object) && $db_object["banner"]
-			? "https://storage.googleapis.com/user_pictures_folder/banners/" . $db_object["banner"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/banners/" . $db_object["banner"]
 			: "../images/defaultbanner.png";
 
 		if ($this->birthday) {
@@ -400,14 +402,14 @@ class Collab
 		$this->applicant_username = array_key_exists("applicant_username", $db_object)
 			? $db_object["applicant_username"] : null;
 		$this->applicant_pic = array_key_exists("applicant_pic", $db_object) && $db_object["applicant_pic"]
-			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["applicant_pic"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/profilepics/" . $db_object["applicant_pic"]
 			: "../images/noprofilepic.png";
 		$this->poster_id = array_key_exists("poster_id", $db_object)
 			? $db_object["poster_id"] : null;
 		$this->poster_username = array_key_exists("poster_username", $db_object)
 			? $db_object["poster_username"] : null;
 		$this->posterpic = array_key_exists("posterpic", $db_object) && $db_object["posterpic"]
-			? "https://storage.googleapis.com/user_pictures_folder/profilepics/" . $db_object["posterpic"]
+			? "https://storage.googleapis.com/{$GLOBALS["bucket_name"]}/profilepics/" . $db_object["posterpic"]
 			: "../images/noprofilepic.png";
 	}
 }

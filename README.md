@@ -2,6 +2,31 @@
 
 Labshare is a web application which allows scientists and science enthusiasts to get help with their projects.
 
+## Running on a Local Machine
+
+1. Run `setup.sql` in MySQL on a local machine. This will create a new database called "labshare" with the required tables, views, and triggers.
+
+2. After creating the database, you will need to add your credentials in either of the two following ways:
+
+-   Creating environmental variables: `SP_HOST_NAME`, `SP_SCHEMA`, `SP_USERNAME`, `SP_PASSWORD`, `SP_PORT`
+-   Manually edit connect.php
+    -   If you decide to manually edit connect.php, you will need to set `$host` equal to your database host name, `$database` equal to the name of your database, `$db_username` and `$db_password` equal to your database username and password, and `$port` equal to your mySQL port number
+
+3. Run `composer install`
+4. If you would like the ability to test profile pictures, you'll need to create your own Google Cloud bucket:
+
+-   Create the google cloud bucket
+-   Create an environmental variable `SP_GC_BUCKET` which holds the name of the bucket you created
+-   Create a service account with the `Storage Object Admin` role
+-   Create a new key for the service account in JSON format, then download it
+-   Create an environmental variable `SERVICE_ACCOUNT_PRIVATE_KEY`, which will hold the key for the service account. In some cases, you may have to remove all the spaces and line breaks from the private key to store it in the environmental variable.
+-   Make the bucket public (read-only) to the internet
+-   For more details, check out [this tutorial](https://zatackcoder.com/upload-file-to-google-cloud-storage-using-php/).
+
+---
+
+---
+
 ## Global API
 
 The following request formats begin with `api/global/`
@@ -212,7 +237,7 @@ Request Format: editpictures.php with file parameters with key values of `banner
 
 Returned Data: None
 
-Description: Checks to make sure image requirements are met ad uploads image files to a picture folder in web server google cloud bucket 
+Description: Checks to make sure image requirements are met ad uploads image files to a picture folder in web server google cloud bucket
 
 ### Edit Profile
 
@@ -246,7 +271,7 @@ Request Format: register.php with POST parameters `firstName`, `lastName`, `emai
 
 Returned Data: JSON Format
 
-Description: The returned JSON data returns the associate array which contains the boolean values creation_successful and username_taken. If the username given by the user is already an existing user, username_taken will return true. If the user is successfully added to the database, creation_successful will return true. Creation successful must return true and username_taken must return false in order for the user to be succesfully registered. 
+Description: The returned JSON data returns the associate array which contains the boolean values creation_successful and username_taken. If the username given by the user is already an existing user, username_taken will return true. If the user is successfully added to the database, creation_successful will return true. Creation successful must return true and username_taken must return false in order for the user to be succesfully registered.
 
 ### Check Credentials
 
@@ -256,4 +281,4 @@ Request Format: checkCredentials.php with parameters `firstName`, `lastName`, `e
 
 Returned Data: JSON Format
 
-Description: Allows users to change their account information. API first checks to make sure that the current password was entered correctly. It then checks to make sure that if a user entered a new username, the username is not already taken in the database. The success of those two parameters is returned. 
+Description: Allows users to change their account information. API first checks to make sure that the current password was entered correctly. It then checks to make sure that if a user entered a new username, the username is not already taken in the database. The success of those two parameters is returned.
