@@ -3,6 +3,10 @@
 
     window.addEventListener("load", init);
 
+    /**
+     * initialize function grabs form and the input fields to add event listeners to check form and provide 
+     * error feedback on input fields
+     */
     function init() {
         let form = document.getElementById("form");
         form.addEventListener("submit", checkForm);
@@ -12,6 +16,11 @@
         });
     }
 
+    /**
+     * @param submit event from form
+     * 
+     * Function stops form from sending and fetches checkCredentials api to make sure correct password
+     */
     function checkForm(event) {
         event.preventDefault();
         let form = new FormData(this);
@@ -23,6 +32,11 @@
             .then(checkcredentials)
     }
 
+    /**
+     * @param response from api
+     * @return json formatted response from api
+     * Function checks response status of api response
+     */
     function checkStatus(response) {
         if (response.ok) {
             return response.json();
@@ -31,6 +45,10 @@
         }
     }
 
+    /**
+     * @param json formatted response from api
+     * Function checks response from api and gives user error if incorrect, redirects if correct
+     */
     function checkcredentials(responseData) {
         let alert = document.getElementById("alert");
         alert.innerText = "";

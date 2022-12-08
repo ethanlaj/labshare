@@ -3,6 +3,9 @@
 
     window.addEventListener("load", init);
 
+    /**
+     * initialize function grabs form and register buttons as well as the input fields 
+     */
     function init() {
         let form = document.getElementById("form");
         form.addEventListener("submit", checkForm);
@@ -15,6 +18,11 @@
         });
     }
 
+    /**
+     * @param mixed event
+     * 
+     * Function prevents form from sending and fetches the login api to test username and password before redirecting to home page
+     */
     function checkForm(event) {
         event.preventDefault();
         let form = new FormData(this);
@@ -26,6 +34,11 @@
             .then(checkcredentials)
     }
 
+    /**
+     * @param response from login api
+     * 
+     * @return json formatted response from api
+     */
     function checkStatus(response) {
         if (response.ok) {
             return response.json();
@@ -34,6 +47,12 @@
         }
     }
 
+    /**
+     * @param response data from api
+     * 
+     * Function checks to to make sure that username and password are correct and redirects to home page if correct.
+     * Otherwise, it creates an error response
+     */
     function checkcredentials(responseData) {
         let usernamealert = document.getElementById("usernamealert");
         usernamealert.innerText = "";
