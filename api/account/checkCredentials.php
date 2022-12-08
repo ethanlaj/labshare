@@ -21,7 +21,7 @@ $email = array_key_exists("email", $_POST)
 $userName = array_key_exists("userName", $_POST)
     ? $_POST["userName"]
     : null;
-$pwd = array_key_exists("password", $_POST)
+$pwd = array_key_exists("password", $_POST) && $_POST["password"] != ""
     ? $_POST["password"]
     : null;
 $phone = array_key_exists("phone", $_POST)
@@ -55,7 +55,8 @@ if ($is_pwd_correct) {
 
 if ($is_pwd_correct && !$output["username_taken"]) {
     try {
-        $pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        $pwd = $pwd ? password_hash($pwd, PASSWORD_DEFAULT) : null;
+
         editAccount($userName, $email, $phone, $birthday, $firstName, $lastName, $pwd);
         $output["success"] = true;
     } catch (Exception $e) {

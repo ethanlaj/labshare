@@ -57,7 +57,7 @@ $account = accountinfo();
             <h6><strong>Last Name:</strong> <?PHP echo $account->lastName ?></h6>
         </div>
         <div>
-            <h6><strong>Primary email address:</strong> <?PHP echo $account->email ?></h6>
+            <h6><strong>Email Address:</strong> <?PHP echo $account->email ?></h6>
         </div>
         <div>
             <h6><strong>Phone Number:</strong> <?PHP echo $account->phoneNumber ?></h6>

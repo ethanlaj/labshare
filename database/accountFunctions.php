@@ -173,11 +173,13 @@ function accountinfo()
         return new User($myaccount);
     } else return null;
 }
+
 function editAccount($userName, $email, $phoneNumber, $birthday, $firstName, $lastName, $pwd = null)
 {
 
     if (!isset($_SESSION["user"]))
         return header("HTTP/1.1 401 Unauthorized");
+
 
     $current_user_id = $_SESSION["user"];
     $sql = "UPDATE users 
@@ -203,7 +205,7 @@ function editAccount($userName, $email, $phoneNumber, $birthday, $firstName, $la
         $params[":pwd"] = $pwd;
     }
 
-    $sql = $sql . "WHERE user_id = $current_user_id";
+    $sql = $sql . " WHERE user_id = $current_user_id";
 
     try {
         postDataFromSQL($sql, $params);
