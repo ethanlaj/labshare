@@ -34,7 +34,7 @@ function call_upload_function($type)
 
     if ($_FILES[$type]['error'] != 4) {
         //set which bucket to work in
-        $bucketName = "user_pictures_folder";
+        $bucketName = getenv("SP_GC_BUCKET");
         // get local file for upload testing
         $fileContent = file_get_contents($_FILES[$type]["tmp_name"]);
         // NOTE: if 'folder' or 'tree' is not exist then it will be automatically created !
