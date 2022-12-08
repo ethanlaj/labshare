@@ -97,7 +97,16 @@
 	 * @param {Array} posts The posts to be added to the table
 	 */
 	function addPostsToView(posts) {
+		let postsBody = document.querySelector("#posts");
 		let tbody = document.querySelector("#postTable tbody");
+
+		if (posts.length == 0) {
+			let p = document.createElement("p");
+			p.innerText = "No posts found";
+
+			postsBody.appendChild(p);
+			return;
+		}
 
 		for (let post of posts) {
 			let tr = document.createElement("tr");

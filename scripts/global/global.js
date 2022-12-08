@@ -257,7 +257,9 @@
 			let searchBarElement = document.getElementById("searchBarNav");
 			if (document.activeElement == searchBarElement) {
 				event.preventDefault();
-				searchBar(1);
+
+				// When on users table, the enter press will be a users search
+				searchBar(document.getElementById("usersTable") ? 2 : 1);
 			}
 		}
 	};

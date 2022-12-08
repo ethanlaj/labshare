@@ -23,7 +23,16 @@
 	 * @param {Array} users The users to be added to the table
 	 */
 	function addUsersToView(users) {
+		let usersBody = document.querySelector("#users");
 		let tbody = document.querySelector("#usersTable tbody");
+
+		if (users.length == 0) {
+			let p = document.createElement("p");
+			p.innerText = "No users found";
+
+			usersBody.appendChild(p);
+			return;
+		}
 
 		for (let user of users) {
 			let tr = document.createElement("tr");
