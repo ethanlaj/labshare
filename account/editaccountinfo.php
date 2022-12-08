@@ -62,27 +62,27 @@ $account = accountinfo();
         <div class="inputContainer">
             <label for="password" class="form-label marginless">New Password</label>
             <span>Must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character</span>
-            <input <?PHP echo convertToHTML($patterns["new_password"]); ?> type="password" class="form-control" name="password" id="password" />
+            <input <?PHP echo convertToHTML($patterns["new_password"]); ?> type="password" class="form-control myform" name="password" id="password" />
         </div class="inputContainer">
         <div class="inputContainer">
             <label for="firstName" class="form-label">First Name</label>
-            <input <?PHP echo convertToHTML($patterns["firstName"]); ?> type="text" value="<?PHP echo $account->firstName ?>" class=" form-control" name="firstName" id="firstName" />
+            <input <?PHP echo convertToHTML($patterns["firstName"]); ?> type="text" value="<?PHP echo $account->firstName ?>" class=" form-control myform" name="firstName" id="firstName" />
         </div class="inputContainer">
         <div class="inputContainer">
             <label for="lastName" class="form-label">Last Name</label>
-            <input <?PHP echo convertToHTML($patterns["lastName"]); ?> type="text" value="<?PHP echo $account->lastName ?>" class=" form-control" name="lastName" id="lastName" />
+            <input <?PHP echo convertToHTML($patterns["lastName"]); ?> type="text" value="<?PHP echo $account->lastName ?>" class=" form-control myform" name="lastName" id="lastName" />
         </div class="inputContainer">
         <div class="inputContainer">
             <label for="email" class="form-label">Change Primary Email</label>
-            <input <?PHP echo convertToHTML($patterns["email"]); ?> type="text" value="<?PHP echo $account->email ?>" class="form-control" name="email" id="email" />
+            <input <?PHP echo convertToHTML($patterns["email"]); ?> type="text" value="<?PHP echo $account->email ?>" class="form-control myform" name="email" id="email" />
         </div class="inputContainer">
         <div class="inputContainer">
             <label for="phone" class="form-label">Change Phone Number</label>
-            <input <?PHP echo convertToHTML($patterns["phone"]); ?> type="text" value="<?PHP echo $account->phoneNumber ?>" class="form-control" name="phone" id="phone" />
+            <input <?PHP echo convertToHTML($patterns["phone"]); ?> type="text" value="<?PHP echo $account->phoneNumber ?>" class="form-control myform" name="phone" id="phone" />
         </div class="inputContainer">
         <div class="inputContainer">
             <label for="birthday" class="form-label">Birthday</label>
-            <input <?PHP echo convertToHTML($patterns["birthday"]); ?> type="date" value="<?PHP echo $account->birthday ?>" class=" form-control" name="birthday" id="birthday" />
+            <input <?PHP echo convertToHTML($patterns["birthday"]); ?> type="date" value="<?PHP echo $account->birthday ?>" class=" form-control myform" name="birthday" id="birthday" />
         </div class="inputContainer">
 
         <div class="inputContainer">
