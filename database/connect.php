@@ -24,7 +24,7 @@ function getDataFromSQL($sql, $params = null, $safe_keys = array())
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//echo "Connected successfully";
 	} catch (PDOException $e) {
-		echo "Connection failed: " . $e->getMessage();
+		// echo "Connection failed: " . $e->getMessage();
 	}
 
 	$stmt = $conn->prepare($sql);
@@ -68,7 +68,7 @@ function postDataFromSQL($sql, $params = array(), $get_inserted_id = false)
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//echo "Connected successfully";
 	} catch (PDOException $e) {
-		echo "Connection failed: " . $e->getMessage();
+		// echo "Connection failed: " . $e->getMessage();
 	}
 
 	$stmt = $conn->prepare($sql);

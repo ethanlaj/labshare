@@ -76,8 +76,6 @@
 	 * 1 if Post A is further away from the selected zip code than Post B;
 	 * 0 if equal;
 	 */
-
-	// FUTURE TODO: If equal distances, sort by date!
 	function compareDistances(a, b, selectedZipInfo) {
 		let distanceA = getDistance(a.lat, a.lon, selectedZipInfo.lat, selectedZipInfo.lon);
 		let distanceB = getDistance(b.lat, b.lon, selectedZipInfo.lat, selectedZipInfo.lon)

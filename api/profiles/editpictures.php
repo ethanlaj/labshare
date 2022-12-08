@@ -16,7 +16,7 @@ try {
 
     header("Location: ../../profiles/profile.php");
 } catch (Exception $e) {
-    echo $e;
+    // echo $e;
 }
 
 function call_upload_function($type)

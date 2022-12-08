@@ -48,7 +48,7 @@ if (isset($_SESSION["user"])) {
 						<p id="usernamealert"></p>
 					</article>
 					<article>
-						<label for="username" class="form-label">Username or Email Address</label>
+						<label for="username" class="form-label">Username</label>
 						<input type="text" class="form-control" name="username" id="username" required />
 					</article>
 					<article>

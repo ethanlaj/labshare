@@ -25,6 +25,6 @@ $achievements = array_key_exists("achievements", $_POST)
 try {
     createProfile($quals_degrees, $areaOfStudy, $yearsOfStudy, $secondaryAreaOfStudy, $about, $achievements);
 } catch (Exception $e) {
-    echo $e;
+    // echo $e;
 }
 header("Location: ../../profiles/profile.php");

@@ -12,7 +12,7 @@ function get_notification($noti_id)
 		return null;
 
 	$user_id = $_SESSION["user"];
-	echo $user_id;
+	// echo $user_id;
 
 	$sql = "SELECT post_id,applicant_id 
 	FROM advanced_notification

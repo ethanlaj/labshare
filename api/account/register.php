@@ -51,7 +51,7 @@ if (!$output["username_taken"]) {
 
                 $output["creation_successful"] = $id != null;
             } catch (Exception $e) {
-                echo $e;
+                // echo $e;
             }
         } else {
             header("HTTP/1.1 400 Parameter(s) Failed Validation");

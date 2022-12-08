@@ -31,7 +31,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $password_success = false;
     }
 } else {
-    echo "WRONG PARAMS";
+    // echo "WRONG PARAMS";
 }
 if ($user_success && $password_success) {
     $output["loginSuccess"] = true;
