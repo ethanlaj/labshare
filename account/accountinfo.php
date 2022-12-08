@@ -43,18 +43,31 @@ $account = accountinfo();
 
 <body>
     <div id="navbar"></div>
-
-    <header>
-        <h1>Account Info</h1>
-    </header>
-    <h6>Logged in as: <?PHP echo $account->username ?> </h6>
-    <h6>First Name: <?PHP echo $account->firstName ?></h6>
-    <h6>Last Name: <?PHP echo $account->lastName ?></h6>
-    <h6>Primary email address: <?PHP echo $account->email ?></h6>
-    <h6>Phone Number: <?PHP echo $account->phoneNumber ?></h6>
-    <h6>Birthday: <?PHP echo $account->birthday ?></h6>
-    <div>
-        <button class="btn btn-primary" id="edit">Edit Account</button>
+    <div id="box">
+        <div>
+            <h1>Account Info</h1>
+        </div>
+        <div>
+            <h6>Username: <?PHP echo $account->username ?> </h6>
+        </div>
+        <div>
+            <h6>First Name: <?PHP echo $account->firstName ?></h6>
+        </div>
+        <div>
+            <h6>Last Name: <?PHP echo $account->lastName ?></h6>
+        </div>
+        <div>
+            <h6>Primary email address: <?PHP echo $account->email ?></h6>
+        </div>
+        <div>
+            <h6>Phone Number: <?PHP echo $account->phoneNumber ?></h6>
+        </div>
+        <div>
+            <h6>Birthday: <?PHP echo $account->birthday ?></h6>
+        </div>
+        <div>
+            <button class="btn btn-primary" id="edit">Edit Account</button>
+        </div>
     </div>
 
     <div id="footer"></div>

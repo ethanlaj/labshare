@@ -3,9 +3,8 @@ require_once(__DIR__ . "/../global/validation.php");
 
 session_start();
 
-$user_id = null;
 if (isset($_SESSION["user"])) {
-	$user_id = $_SESSION["user"];
+	header("Location: ../posting/posts.html");
 }
 ?>
 

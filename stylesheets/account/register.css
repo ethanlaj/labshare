@@ -9,7 +9,6 @@ body {
 
 .form-control {
     width: 500px;
-    margin-bottom: 1em;
 
 }
 
@@ -62,6 +61,15 @@ label {
 #usernamelabel {
     margin-bottom: 0px;
 }
+
+div.inputContainer {
+    margin-bottom: 0.5em;
+}
+
+.marginless {
+    margin-bottom: -0.3em;
+}
+
 
 .shake {
     border: 2px solid red;

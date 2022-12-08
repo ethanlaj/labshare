@@ -1,0 +1,56 @@
+html,
+body {
+    height: 100%;
+}
+
+#passwordalert,
+#usernamealert {
+    text-align: center;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.marginless {
+    margin-bottom: -0.3em;
+}
+
+.form-control {
+    width: 500px;
+
+}
+
+form {
+    margin: auto;
+}
+
+.shake {
+    animation: shake .3s;
+    border: 2px solid red;
+}
+
+span {
+    font-size: 9.5pt;
+    opacity: .5;
+}
+
+label {
+    display: block;
+}
+
+div.inputContainer {
+    margin-bottom: 0.5em;
+}
+
+@keyframes shake {
+    25% {
+        transform: translateX(4px)
+    }
+
+    50% {
+        transform: translateX(-4px)
+    }
+
+    75% {
+        transform: translateX(4px)
+    }
+}
