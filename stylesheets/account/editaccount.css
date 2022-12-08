@@ -14,7 +14,7 @@ body {
     margin-bottom: -0.3em;
 }
 
-.form-control {
+form input {
     width: 500px;
 
 }
