@@ -6,7 +6,9 @@ header("Content-type: application/json");
 // error_reporting(E_ALL);
 
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once(__DIR__ . "/../../database/accountFunctions.php");
 
 

@@ -1,7 +1,9 @@
 <?PHP
 require_once(__DIR__ . "/../global/validation.php");
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 $post = null;
 

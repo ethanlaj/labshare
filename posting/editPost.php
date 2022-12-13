@@ -1,5 +1,7 @@
 <?PHP
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 $logged_in_user = isset($_SESSION["user"])
 	? $_SESSION["user"] : null;

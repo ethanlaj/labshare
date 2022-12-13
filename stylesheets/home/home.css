@@ -1,14 +1,18 @@
 #hero {
-	background-color: rgb(246, 248, 250);
-	margin: auto;
 	width: 75%;
-	border-radius: 5%;
-	box-shadow: 10px 10px rgb(166, 165, 165);
+	margin: auto;
+
+
+
+	/* border-radius: 5%;
+	box-shadow: 5px 10px 20px #888888;
 	border: 2px rgba(0, 0, 0, 0.1) solid;
+	*/
 }
 
+
 body {
-	background-image: url("../../images/science.png");
-	background-size: 100px;
+	background-image: url("../../images/labsharehero8.png");
+	background-size: 100%;
 	overflow-y: hidden;
 }

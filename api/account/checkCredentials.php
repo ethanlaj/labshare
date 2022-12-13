@@ -4,9 +4,7 @@ header("Content-type: application/json");
 $output = array();
 $password;
 require(__DIR__ . "/../../database/accountFunctions.php");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 
 $firstName = array_key_exists("firstName", $_POST)
@@ -60,7 +58,7 @@ if ($is_pwd_correct && !$output["username_taken"]) {
         editAccount($userName, $email, $phone, $birthday, $firstName, $lastName, $pwd);
         $output["success"] = true;
     } catch (Exception $e) {
-        echo $e;
+        //echo $e;
     }
 } else {
     $output["success"] = false;

@@ -1,5 +1,7 @@
 <?PHP
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 
 $current_user_id = isset($_SESSION["user"])

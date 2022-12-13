@@ -1,5 +1,7 @@
 <?PHP
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 $user_id = null;
 if (isset($_SESSION["user"])) {

@@ -15,7 +15,8 @@ body {
 
 @media screen and (min-width: 992px) {
     body {
-        background: linear-gradient(to right, rgb(246, 248, 250) 0%, rgb(246, 248, 250) 50%, #bcefe3 50%, #bcefe3 100%);
+        background: linear-gradient(to right, rgb(246, 248, 250) 0%, rgb(246, 248, 250) 50%, #bcefe374 50%, #bcefe374 100%);
+        /* #bcefe3 */
     }
 }
 
@@ -34,7 +35,7 @@ body {
 }
 
 #rightside {
-    background-color: #bcefe3;
+    background-color: #bcefe374;
     margin: auto;
     text-align: center;
 }

@@ -1,5 +1,7 @@
 <?PHP
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 // Include connection
 require_once "connect.php";
