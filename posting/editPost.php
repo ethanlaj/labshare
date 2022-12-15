@@ -62,15 +62,15 @@ if (isset($_GET["id"])) {
 			<input type="hidden" name="post_id" value="<?PHP echo $post->post_id ?>">
 			<div class="inputContainer">
 				<label class="form-label" for="title">Post Title</label>
-				<input <?php echo convertToHTML($patterns["postTitle"]); ?> id="title" name="title" class="form-control" type="text" value="<?PHP echo $post->title ?>" />
+				<input <?php echo convert_to_html("postTitle"); ?> id="title" name="title" class="form-control" type="text" value="<?PHP echo $post->title ?>" />
 			</div>
 			<div class="inputContainer">
 				<label class="form-label" for="zip">Zip Code</label>
-				<input <?php echo convertToHTML($patterns["zip"]); ?> class="form-control" id="zip" name="zip" type="text" value="<?PHP echo $post->zip ?>" />
+				<input <?php echo convert_to_html("zip"); ?> class="form-control" id="zip" name="zip" type="text" value="<?PHP echo $post->zip ?>" />
 			</div>
 			<div class="inputContainer">
 				<label class="form-label" for="content">Content</label>
-				<textarea <?php echo convertToHTML($patterns["postContent"]); ?> id="content" name="content" class="form-control" rows="15"><?PHP echo $post->content ?></textarea>
+				<textarea <?php echo convert_to_html("postContent"); ?> id="content" name="content" class="form-control" rows="15"><?PHP echo $post->content ?></textarea>
 			</div>
 
 			<div>

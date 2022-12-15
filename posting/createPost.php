@@ -51,15 +51,15 @@ require_once(__DIR__ . "/../global/validation.php");
 	<form id="postForm" action="../api/posting/createPost.php" method="post">
 		<div class="inputContainer">
 			<label class="form-label" for="title">Post Title</label>
-			<input <?php echo convertToHTML($patterns["postTitle"]); ?> id="title" name="title" class="form-control" type="text" />
+			<input <?php echo convert_to_html("postTitle"); ?> id="title" name="title" class="form-control" type="text" />
 		</div>
 		<div class="inputContainer">
 			<label class="form-label" for="zip">Zip Code</label>
-			<input <?php echo convertToHTML($patterns["zip"]); ?> class="form-control" id="zip" name="zip" type="text" />
+			<input <?php echo convert_to_html("zip"); ?> class="form-control" id="zip" name="zip" type="text" />
 		</div>
 		<div class="inputContainer">
 			<label class="form-label" for="content">Content</label>
-			<textarea <?php echo convertToHTML($patterns["postContent"]); ?> id="content" name="content" class="form-control" rows="15"></textarea>
+			<textarea <?php echo convert_to_html("postContent"); ?> id="content" name="content" class="form-control" rows="15"></textarea>
 		</div>
 
 		<input id="submit" value="Create" class="btn btn-primary" type="submit" />

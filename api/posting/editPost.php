@@ -9,7 +9,7 @@ if (isset($_POST["post_id"]) && isset($_POST["title"]) && isset($_POST["content"
 	$content = $_POST["content"];
 	$zip = array_key_exists("zip", $_POST) ? (int) $_POST["zip"] : null;
 
-	if (validateInput($patterns["postTitle"], $title) && validateInput($patterns["postContent"], $content) && validateInput($patterns["zip"], $zip))
+	if (validate_input("postTitle", $title) && validate_input("postContent", $content) && validate_input("zip", $zip))
 		editPost($post_id, $title, $content, $zip ? $zip : null);
 
 	header("Location: ../../posting/post.php?id=$post_id");

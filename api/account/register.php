@@ -43,7 +43,7 @@ $output["username_taken"] = check_matching_username($userName);
 
 if (!$output["username_taken"]) {
     if ($firstName && $lastName && $email && $userName && $pwd && $pwd2 && $birthday) {
-        if (validateInput($patterns["firstName"], $firstName) && validateInput($patterns["lastName"], $lastName) && validateInput($patterns["email"], $email) && validateInput($patterns["username"], $userName) && validateInput($patterns["password"], $pwd) && validateInput($patterns["phone"], $phoneNumber) && validateInput($patterns["birthday"], $birthday)) {
+        if (validate_input("firstName", $firstName) && validate_input("lastName", $lastName) && validate_input("email", $email) && validate_input("username", $userName) && validate_input("password", $pwd) && validate_input("phone", $phoneNumber) && validate_input("birthday", $birthday)) {
             try {
                 $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 

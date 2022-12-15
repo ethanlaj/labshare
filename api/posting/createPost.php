@@ -1,4 +1,5 @@
 <?PHP
+
 require_once(__DIR__ . "/../../global/validation.php");
 
 if (isset($_POST["title"]) && isset($_POST["content"])) {
@@ -8,7 +9,7 @@ if (isset($_POST["title"]) && isset($_POST["content"])) {
 	$content = $_POST["content"];
 	$zip = array_key_exists("zip", $_POST) ? (int) $_POST["zip"] : null;
 
-	if (validateInput($patterns["postTitle"], $title) && validateInput($patterns["postContent"], $content) && validateInput($patterns["zip"], $zip)) {
+	if (validate_input("postTitle", $title) && validate_input("postContent", $content) && validate_input("zip", $zip)) {
 		$new_post_id = createPost($title, $content, $zip ? $zip : null);
 
 		if ($new_post_id)

@@ -152,7 +152,7 @@ $logged_in_user = isset($_SESSION["user"])
 										<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
 
 										<form class="replyForm">
-											<textarea <?php echo convertToHTML($patterns["comment"]); ?> hidden class="replyBox form-control"></textarea>
+											<textarea <?php echo convert_to_html("comment"); ?> hidden class="replyBox form-control"></textarea>
 											<div class="replyActionButtons">
 												<button type="button" class="replyButton btn btn-sm btn-secondary">
 													Reply
@@ -351,7 +351,7 @@ $logged_in_user = isset($_SESSION["user"])
 					<div class="modal-body">
 						<form id="addCommentForm">
 							<label class="form-label">Comment</label>
-							<textarea <?php echo convertToHTML($patterns["comment"]); ?> id="commentAddTextForm" class="form-control" rows="5"></textarea>
+							<textarea <?php echo convert_to_html("comment"); ?> id="commentAddTextForm" class="form-control" rows="5"></textarea>
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -377,7 +377,7 @@ $logged_in_user = isset($_SESSION["user"])
 					<div class="modal-body">
 						<form id="editForm">
 							<label class="form-label">Comment</label>
-							<textarea <?php echo convertToHTML($patterns["comment"]); ?> id="commentEditTextForm" class="form-control"></textarea>
+							<textarea <?php echo convert_to_html("comment"); ?> id="commentEditTextForm" class="form-control"></textarea>
 						</form>
 					</div>
 					<div class="modal-footer">

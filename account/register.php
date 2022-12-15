@@ -42,40 +42,40 @@
 			</article>
 			<div class="inputContainer">
 				<label for="firstName" class="form-label">First Name</label>
-				<input <?PHP echo convertToHTML($patterns["firstName"]); ?> type="text" class="form-control" name="firstName" id="firstName" />
+				<input <?PHP echo convert_to_html("firstName"); ?> type="text" class="form-control" name="firstName" id="firstName" />
 			</div>
 			<div class="inputContainer">
 				<label for="lastName" class="form-label">Last Name</label>
-				<input <?PHP echo convertToHTML($patterns["lastName"]); ?> type="text" class="form-control" name="lastName" id="lastName" />
+				<input <?PHP echo convert_to_html("lastName"); ?> type="text" class="form-control" name="lastName" id="lastName" />
 			</div>
 			<div class="inputContainer">
 				<label for="email" class="form-label">Email Address</label>
-				<input <?PHP echo convertToHTML($patterns["email"]); ?> type="email" class="form-control" name="email" id="email" />
+				<input <?PHP echo convert_to_html("email"); ?> type="email" class="form-control" name="email" id="email" />
 			</div>
 			<div class="inputContainer">
 				<label id="usernamelabel" for="userName" class="form-label marginless">Username</label>
 				<span> May only contain letters and numbers</span>
-				<input <?PHP echo convertToHTML($patterns["username"]); ?> type="text" class="form-control" name="userName" id="userName" />
+				<input <?PHP echo convert_to_html("username"); ?> type="text" class="form-control" name="userName" id="userName" />
 				<p class="alert" id="usernamealert"></p>
 			</div>
 			<div class="inputContainer">
 				<label id="passwordlabel" for="password" class="form-label marginless">Password</label>
 				<span>Must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character</span>
-				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password" id="password" />
+				<input <?PHP echo convert_to_html("password"); ?> type="password" class="form-control" name="password" id="password" />
 				<p class="alert" id="passwordalert1"></p>
 			</div>
 			<div class="inputContainer">
 				<label id="password2label" for="password2" class="form-label">Enter Password Again</label>
-				<input <?PHP echo convertToHTML($patterns["password"]); ?> type="password" class="form-control" name="password2" id="password2" />
+				<input <?PHP echo convert_to_html("password"); ?> type="password" class="form-control" name="password2" id="password2" />
 				<p class="alert" id="passwordalert2"></p>
 			</div>
 			<div class="inputContainer">
 				<label for="phone" class="form-label">Phone Number</label>
-				<input <?PHP echo convertToHTML($patterns["phone"]); ?> type="tel" class="form-control" name="phone" id="phone" />
+				<input <?PHP echo convert_to_html("phone"); ?> type="tel" class="form-control" name="phone" id="phone" />
 			</div>
 			<div class="inputContainer">
 				<label for="birthday" class="form-label">Birthday</label>
-				<input <?PHP echo convertToHTML($patterns["birthday"]); ?> type="date" class="form-control" name="birthday" id="birthday" />
+				<input <?PHP echo convert_to_html("birthday"); ?> type="date" class="form-control" name="birthday" id="birthday" />
 			</div>
 			<div class="inputContainer">
 				<input class="btn btn-primary" type="submit" value="Submit" id="submit" />
