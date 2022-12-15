@@ -61,13 +61,13 @@ header > div {
 	justify-content: space-between;
 }
 
-.user {
+/* .user {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+} */
 
-.user img {
+img {
 	width: 50px;
 	height: 50px;
 	min-width: 50px;
@@ -76,17 +76,24 @@ header > div {
 	border-radius: 50%;
 	object-fit: cover;
 	justify-self: flex-start;
-	margin-right: 10px;
+	/* margin-right: 10px; */
 }
 
-.user a {
-	width: 40%;
-	text-align: center;
+th:nth-child(2) {
+	text-align: left;
+}
+
+.username {
+	text-align: left;
+}
+
+.username a {
+	/* width: 40%; */
 	color: black;
 	text-decoration: none;
 	font-weight: bold;
 }
 
-.user a:hover {
+.username a:hover {
 	color: rgba(0, 0, 0, 0.651);
 }

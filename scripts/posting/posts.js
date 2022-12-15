@@ -1,4 +1,6 @@
 (function () {
+	"use strict";
+
 	const ZIPCODE_BASE_URL = "https://api.zippopotam.us/us/";
 
 	window.addEventListener("load", init);
@@ -111,23 +113,23 @@
 			tr.id = "post" + post.post_id;
 			tr.classList.add("post");
 
-			// User table cell
-			let userData = document.createElement("td");
-			tr.appendChild(userData);
-
-			let innerDiv = document.createElement("div");
-			innerDiv.classList.add("user");
-			userData.appendChild(innerDiv);
-
+			// User profilepic cell
+			let profilePicCell = document.createElement("td");
 			let userImg = document.createElement("img");
 			userImg.src = post.profilepic;
 			userImg.alt = post.username;
-			innerDiv.appendChild(userImg);
+			profilePicCell.appendChild(userImg);
+			profilePicCell.classList.add("profilePic");
+			tr.appendChild(profilePicCell)
 
-			linkToProfile = document.createElement("a");
+			// User username cell
+			let usernameCell = document.createElement("td");
+			let linkToProfile = document.createElement("a");
 			linkToProfile.href = "../profiles/profile.php?id=" + post.author_id;
-			linkToProfile.innerText = post.username;
-			innerDiv.appendChild(linkToProfile);
+			linkToProfile.innerText = post.fullName;
+			usernameCell.classList.add("username");
+			usernameCell.appendChild(linkToProfile);
+			tr.appendChild(usernameCell);
 
 			// Post creation table cell
 			let creationData = document.createElement("td");
