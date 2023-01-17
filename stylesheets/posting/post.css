@@ -9,7 +9,7 @@
 
 #post #actionButtons {
 	display: flex;
-	margin-bottom: 5px;
+	/* margin-bottom: 5px; */
 	margin-bottom: 2em;
 }
 
@@ -120,22 +120,25 @@ img {
 
 #comments {
 	margin: auto;
-	width: 60%;
+	width: 60vw;
+	min-width: min-content;
 }
 
 #commentHeader {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
-#commentHeader h2 {
+/* #commentHeader h2 {
 	margin-right: auto;
 	margin-left: 0;
-}
+} */
 
-#commentHeader button {
+/* #commentHeader button {
 	margin-right: 0;
-}
+} */
 
 #commentTable {
 	border-left: 2px solid rgba(0, 0, 0, 0.1);
@@ -153,6 +156,7 @@ img {
 
 .username {
 	color: black;
+	margin-right: auto;
 }
 
 .username:hover {
@@ -172,12 +176,17 @@ img {
 .commentDate {
 	font-weight: bold;
 	margin-bottom: 10px;
-	margin-left: auto;
+	/* margin-left: auto; */
 	margin-right: 10%;
 }
 
 .commentUnameDate {
 	display: flex;
+	flex-wrap: wrap;
+}
+
+.unameReplyingTo {
+	margin-right: auto;
 }
 
 .nextToCommentProfilePic {

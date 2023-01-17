@@ -203,7 +203,7 @@ $logged_in_user = isset($_SESSION["user"])
 									<img class="commentProfilePic" src="<?PHP echo $child->profilepic ?>" alt="<?PHP echo $child->username ?>" />
 									<div class="nextToCommentProfilePic">
 										<div class="commentUnameDate">
-											<div>
+											<div class="unameReplyingTo">
 												<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $child->author_id ?>">
 													<?PHP echo $child->fullName ?>
 												</a>

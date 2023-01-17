@@ -59,6 +59,7 @@ header > div {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	row-gap: 0.5rem;
 }
 
 /* .user {

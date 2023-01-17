@@ -28,7 +28,7 @@
 		let requiredFields = document.querySelectorAll("input:required,textarea:required");
 		for (let requiredField of requiredFields) {
 			let requiredFieldLabel = requiredField.parentNode.querySelector("label");
-			requiredFieldLabel.classList.add("asterik");
+			requiredFieldLabel?.classList.add("asterik");
 		}
 
 		document.addEventListener("keypress", handleEnterPress);
