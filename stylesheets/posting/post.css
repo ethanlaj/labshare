@@ -1,5 +1,6 @@
 .commentContent {
 	overflow-wrap: anywhere;
+	margin-top: 0.5em;
 }
 
 #post {
@@ -9,8 +10,7 @@
 
 #post #actionButtons {
 	display: flex;
-	/* margin-bottom: 5px; */
-	margin-bottom: 2em;
+	margin-top: 2em;
 }
 
 #postHeader {
@@ -20,6 +20,7 @@
 #nextToProfilePic {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 }
 
 #postHeader #actionButtons > button:nth-child(even) {
@@ -105,9 +106,9 @@ img {
 	margin-top: 0.6em;
 }
 
-.replyText {
+/* .replyText {
 	margin-top: 1em;
-}
+} */
 
 #newComment {
 	margin-bottom: 0.5em;
@@ -164,13 +165,22 @@ img {
 }
 
 #commentTable td:first-child {
-	display: flex;
+	/* display: flex; */
 	padding: 1rem 0 0.3rem 1rem;
 }
 
+.flexRowContainer {
+	display: flex;
+}
+
+/* .flexColContainer {
+	display: flex;
+	flex-direction: column;
+} */
+
 #commentTable .reply td:first-child {
 	padding-bottom: 1rem;
-	margin-left: 2rem;
+	padding-left: 4rem;
 }
 
 .commentDate {
@@ -183,6 +193,7 @@ img {
 .commentUnameDate {
 	display: flex;
 	flex-wrap: wrap;
+	row-gap: 1rem;
 }
 
 .unameReplyingTo {

@@ -62,29 +62,6 @@ $logged_in_user = isset($_SESSION["user"])
 					</a>
 					<p><?PHP echo $post->creationDate ?></p>
 
-					<div id="postTitleWithDropdown">
-						<h1 id="postTitle">
-							<?PHP echo $post->title ?>
-						</h1>
-						<?PHP if ($logged_in_user && $logged_in_user == $post->author_id) { ?>
-							<!--This Dropdown should only be visible to the post owner-->
-							<div class="dropdown-center dropend">
-								<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									...
-								</button>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href="./editPost.php?id=<?PHP echo $post->post_id ?>">Edit</a>
-									</li>
-									<li>
-										<button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">
-											Delete
-										</button>
-									</li>
-								</ul>
-							</div>
-						<?PHP } ?>
-					</div>
 					<?PHP if ($logged_in_user && $logged_in_user != $post->author_id) { ?>
 						<!-- Should only be visible for non-authors -->
 						<div id="actionButtons">
@@ -107,6 +84,29 @@ $logged_in_user = isset($_SESSION["user"])
 						</div>
 					<?PHP } ?>
 				</div>
+			</div>
+			<div id="postTitleWithDropdown">
+				<h1 id="postTitle">
+					<?PHP echo $post->title ?>
+				</h1>
+				<?PHP if ($logged_in_user && $logged_in_user == $post->author_id) { ?>
+					<!--This Dropdown should only be visible to the post owner-->
+					<div class="dropdown-center dropend">
+						<button class="commentButton btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							...
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="./editPost.php?id=<?PHP echo $post->post_id ?>">Edit</a>
+							</li>
+							<li>
+								<button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost">
+									Delete
+								</button>
+							</li>
+						</ul>
+					</div>
+				<?PHP } ?>
 			</div>
 			<p id="postText"><?PHP echo str_replace("\n", "<br />", $post->content) ?></p>
 		</main>
@@ -140,29 +140,31 @@ $logged_in_user = isset($_SESSION["user"])
 					?>
 						<tr id=<?PHP echo "comment" . $comment->comment_id ?> class="comment">
 							<td>
-								<img class="commentProfilePic" src="<?PHP echo $comment->profilepic ?>" alt="<?PHP echo $comment->username ?>" />
-								<div class="nextToCommentProfilePic">
-									<div class="commentUnameDate">
-										<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $comment->author_id ?>">
-											<?PHP echo $comment->fullName ?>
-										</a>
-										<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
+								<div class="flexRowContainer">
+									<img class="commentProfilePic" src="<?PHP echo $comment->profilepic ?>" alt="<?PHP echo $comment->username ?>" />
+									<div class="nextToCommentProfilePic">
+										<div class="commentUnameDate">
+											<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $comment->author_id ?>">
+												<?PHP echo $comment->fullName ?>
+											</a>
+											<div class="commentDate"><?PHP echo $comment->creationDate ?></div>
+										</div>
 									</div>
-									<div class="contentAndReplyBox">
-										<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
+								</div>
+								<div class="contentAndReplyBox">
+									<div class="commentContent"><?PHP echo str_replace("\n", "<br />", $comment->content) ?></div>
 
-										<form class="replyForm">
-											<textarea <?php echo convert_to_html("comment"); ?> hidden class="replyBox form-control"></textarea>
-											<div class="replyActionButtons">
-												<button type="button" class="replyButton btn btn-sm btn-secondary">
-													Reply
-												</button>
-												<button hidden type="button" class="cancelReply btn btn-sm btn-secondary">
-													Cancel
-												</button>
-											</div>
-										</form>
-									</div>
+									<form class="replyForm">
+										<textarea <?php echo convert_to_html("comment"); ?> hidden class="replyBox form-control"></textarea>
+										<div class="replyActionButtons">
+											<button type="button" class="replyButton btn btn-sm btn-secondary">
+												Reply
+											</button>
+											<button hidden type="button" class="cancelReply btn btn-sm btn-secondary">
+												Cancel
+											</button>
+										</div>
+									</form>
 								</div>
 							</td>
 							<td>
@@ -200,19 +202,21 @@ $logged_in_user = isset($_SESSION["user"])
 						?>
 							<tr id="<?PHP echo "reply{$i}comment{$child->comment_id}" ?>" class="comment reply">
 								<td>
-									<img class="commentProfilePic" src="<?PHP echo $child->profilepic ?>" alt="<?PHP echo $child->username ?>" />
-									<div class="nextToCommentProfilePic">
-										<div class="commentUnameDate">
-											<div class="unameReplyingTo">
-												<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $child->author_id ?>">
-													<?PHP echo $child->fullName ?>
-												</a>
-												<div><i>Replying to <?PHP echo $comment->fullName ?></i></div>
+									<div class="flexRowContainer">
+										<img class="commentProfilePic" src="<?PHP echo $child->profilepic ?>" alt="<?PHP echo $child->username ?>" />
+										<div class="nextToCommentProfilePic">
+											<div class="commentUnameDate">
+												<div class="unameReplyingTo">
+													<a class="username" href="<?PHP echo "../profiles/profile.php?id=" . $child->author_id ?>">
+														<?PHP echo $child->fullName ?>
+													</a>
+													<div><i>Replying to <?PHP echo $comment->fullName ?></i></div>
+												</div>
+												<div class="commentDate"><?PHP echo $child->creationDate ?></div>
 											</div>
-											<div class="commentDate"><?PHP echo $child->creationDate ?></div>
 										</div>
-										<div class="replyText commentContent"><?PHP echo str_replace("\n", "<br />", $child->content) ?></div>
 									</div>
+									<div class="replyText commentContent"><?PHP echo str_replace("\n", "<br />", $child->content) ?></div>
 								</td>
 								<td>
 									<?PHP if (
