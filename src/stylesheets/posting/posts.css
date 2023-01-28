@@ -11,7 +11,7 @@ form {
 	display: flex;
 }
 
-#postTable {
+table {
 	margin-top: 0.5rem;
 	width: 100%;
 	text-align: center;
@@ -20,32 +20,32 @@ form {
 	border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-#postTable thead {
+table thead {
 	background-color: #468d7cc0;
 	color: white;
 }
 
-#postTable tbody {
+table tbody {
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-#postTable tbody tr {
+table tbody tr {
 	height: 6em;
 }
 
-#postTable tbody tr:nth-child(even) {
+table tbody tr:nth-child(even) {
 	background-color: #bcefe374;
 }
 
-#postTable tbody tr:nth-child(odd) {
+table tbody tr:nth-child(odd) {
 	background-color: #bcefe374;
 }
 
-#postTable tbody tr:last-child {
+table tbody tr:last-child {
 	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-#postTable td {
+table td {
 	vertical-align: middle;
 }
 

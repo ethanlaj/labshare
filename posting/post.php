@@ -53,38 +53,6 @@ $logged_in_user = isset($_SESSION["user"])
 
 	<?PHP if ($post) { ?>
 		<main id="post">
-			<div id="postHeader">
-				<img src="<?PHP echo $post->profilepic ?>" alt="<?PHP echo $post->username ?>">
-
-				<div id="nextToProfilePic">
-					<a <?PHP echo "href=\"../profiles/profile.php?id={$post->author_id}\"" ?>>
-						<?PHP echo $post->fullName ?>
-					</a>
-					<p><?PHP echo $post->creationDate ?></p>
-
-					<?PHP if ($logged_in_user && $logged_in_user != $post->author_id) { ?>
-						<!-- Should only be visible for non-authors -->
-						<div id="actionButtons">
-							<button id="savePostBtn" class="btn btn-sm btn-outline-primary">
-								<?PHP echo $post->hasSaved ? "Unsave" : "Save" ?>
-							</button>
-							<button id="applyToPostBtn" <?PHP if ($post->hasApplied) echo "disabled" ?> class="btn btn-sm btn-outline-success">
-								<?PHP echo $post->hasApplied ? "Applied" : "Apply" ?>
-							</button>
-
-							<?PHP
-							if ($post->hasReported == false) {
-							?>
-								<button id="initReportBtn" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportPost">
-									Report
-								</button>
-							<?PHP
-							}
-							?>
-						</div>
-					<?PHP } ?>
-				</div>
-			</div>
 			<div id="postTitleWithDropdown">
 				<h1 id="postTitle">
 					<?PHP echo $post->title ?>
