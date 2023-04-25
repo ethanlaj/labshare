@@ -1,9 +1,6 @@
 <?PHP
+require_once(__DIR__ . "/../custom_session.php");
 require_once(__DIR__ . "/../global/validation.php");
-
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
 
 if (isset($_SESSION["user"])) {
 	header("Location: ../posting/posts.html");

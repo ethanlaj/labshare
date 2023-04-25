@@ -1,7 +1,5 @@
 <?PHP
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
+require_once(__DIR__ . "/../custom_session.php");
 
 $user_id = null;
 if (isset($_SESSION["user"])) {

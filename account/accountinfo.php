@@ -1,11 +1,6 @@
 <?PHP
+require_once(__DIR__ . "/../custom_session.php");
 require_once(__DIR__ . "/../database/accountFunctions.php");
-
-
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 $user_id = null;
 if (isset($_SESSION["user"])) {

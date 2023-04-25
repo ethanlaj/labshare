@@ -1,7 +1,6 @@
 <?PHP
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
+require_once(__DIR__ . "/../custom_session.php");
+
 
 $logged_in_user = isset($_SESSION["user"])
 	? $_SESSION["user"] : null;

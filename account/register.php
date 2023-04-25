@@ -1,4 +1,7 @@
-<?PHP require_once(__DIR__ . "/../global/validation.php"); ?>
+<?PHP
+require_once(__DIR__ . "/../custom_session.php");
+require_once(__DIR__ . "/../global/validation.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">

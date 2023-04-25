@@ -1,9 +1,8 @@
 <?PHP
+require_once(__DIR__ . "/../../custom_session.php");
+
 header("Content-Type: application/json");
 
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
 
 $reload_required = false;
 $logged_in = false;
