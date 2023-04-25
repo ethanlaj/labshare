@@ -1,15 +1,16 @@
 #hero {
-	width: 75%;
+	width: 75vw;
 	margin: auto;
-
-
-
-	/* border-radius: 5%;
-	box-shadow: 5px 10px 20px #888888;
-	border: 2px rgba(0, 0, 0, 0.1) solid;
-	*/
 }
 
+@media screen and (max-width: 1000px) {
+	#hero {
+		width: 90vw;
+		background-color: #fffffff2;
+		box-shadow: 0px 0px 10px 0px #00000054;
+		border-radius: 20px;
+	}
+}
 
 body {
 	background-image: url("../../images/labsharehero8.png");
